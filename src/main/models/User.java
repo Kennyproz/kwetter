@@ -8,7 +8,7 @@ public class User {
     private String username, password, photo,bio,location,website;
     private List<Role> roles = new ArrayList<>();
     private List<User> following = new ArrayList<>();
-    private List<Tweet> tweets = new ArrayList<>();
+    private List<Kweet> kweets = new ArrayList<>();
 
     public User(){
 
@@ -107,7 +107,7 @@ public class User {
                 ", website='" + website + '\'' +
                 ", roles=" + roles +
                 ", following=" + following +
-                ", tweets=" + tweets +
+                ", kweets=" + kweets +
                 '}';
     }
 }

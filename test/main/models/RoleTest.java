@@ -1,11 +1,8 @@
 package main.models;
 
-import main.dal.contexts.Memory.RoleMemoryContext;
+import main.dal.contexts.memory.RoleMemoryContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
