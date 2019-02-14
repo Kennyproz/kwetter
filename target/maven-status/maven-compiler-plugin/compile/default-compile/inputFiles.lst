@@ -1,0 +1,13 @@
+D:\Documenten\Github\kwetter\src\main\java\dal\repositories\RoleRepository.java
+D:\Documenten\Github\kwetter\src\main\java\dal\repositories\UserRepository.java
+D:\Documenten\Github\kwetter\src\main\java\dal\contexts\memory\UserMemoryContext.java
+D:\Documenten\Github\kwetter\src\main\java\dal\interfaces\RoleContext.java
+D:\Documenten\Github\kwetter\src\main\java\models\User.java
+D:\Documenten\Github\kwetter\src\main\java\dal\contexts\memory\KweetMemoryContext.java
+D:\Documenten\Github\kwetter\src\main\java\dal\interfaces\KweetContext.java
+D:\Documenten\Github\kwetter\src\main\java\models\Kweet.java
+D:\Documenten\Github\kwetter\src\main\java\Exceptions\UserNotFoundException.java
+D:\Documenten\Github\kwetter\src\main\java\dal\interfaces\UserContext.java
+D:\Documenten\Github\kwetter\src\main\java\models\Role.java
+D:\Documenten\Github\kwetter\src\main\java\dal\contexts\memory\RoleMemoryContext.java
+D:\Documenten\Github\kwetter\src\main\java\dal\repositories\KweetRepository.java
