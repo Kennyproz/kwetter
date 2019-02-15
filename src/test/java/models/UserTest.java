@@ -1,7 +1,7 @@
 package models;
 
 import Exceptions.UserNotFoundException;
-import dal.contexts.memory.UserMemoryContext;
+import dal.contexts.memory.UserMemoryDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,13 +12,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
-    private UserMemoryContext context;
+    private UserMemoryDAO context;
     private Role admin;
     List<Role> roles;
 
     @BeforeEach
     void setUp() {
-        context = new UserMemoryContext();
+        context = new UserMemoryDAO();
         admin = new Role("Admin");
         roles = new ArrayList();
         roles.add(admin);

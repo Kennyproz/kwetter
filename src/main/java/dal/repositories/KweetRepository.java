@@ -1,6 +1,6 @@
 package dal.repositories;
 
-import dal.interfaces.KweetContext;
+import dal.interfaces.KweetDAO;
 import models.Kweet;
 import models.User;
 
@@ -8,9 +8,9 @@ import java.util.List;
 
 public class KweetRepository {
 
-    private KweetContext context;
+    private KweetDAO context;
 
-    public KweetRepository(KweetContext context) {
+    public KweetRepository(KweetDAO context) {
         this.context = context;
     }
 

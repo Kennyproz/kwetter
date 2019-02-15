@@ -1,15 +1,15 @@
 package dal.repositories;
 
-import dal.interfaces.RoleContext;
+import dal.interfaces.RoleDAO;
 import models.Role;
 
 import java.util.List;
 
 public class RoleRepository {
 
-    private RoleContext context;
+    private RoleDAO context;
 
-    public RoleRepository(RoleContext context) {
+    public RoleRepository(RoleDAO context) {
         this.context = context;
     }
 

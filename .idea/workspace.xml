@@ -7,41 +7,55 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ff70a0a9-7203-4d44-a032-2933e03820ba" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__Arquillian_JUnit_Release.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dal/contexts/jpa/KweetJPADAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dal/contexts/jpa/RoleJPADAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dal/contexts/jpa/UserJPADAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/KweetService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/RoleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/kwetter_ear_exploded.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/META-INF/application.xml" beforeDir="false" afterPath="$PROJECT_DIR$/META-INF/application.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kwetter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/kwetter.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/kwetter/META-INF/persistence.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/kwetter/main/Exceptions/UserNotFoundException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/kwetter/main/dal/contexts/Memory/RoleMemoryContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/kwetter/main/dal/contexts/Memory/TweetMemoryContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/kwetter/main/dal/contexts/Memory/UserMemoryContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/kwetter/main/dal/interfaces/RoleContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/kwetter/main/dal/interfaces/TweetContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/kwetter/main/dal/interfaces/UserContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/kwetter/main/dal/repositories/RoleRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/kwetter/main/dal/repositories/TweetRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/kwetter/main/dal/repositories/UserRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/kwetter/main/models/Role.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/kwetter/main/models/Tweet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/kwetter/main/models/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/kwetter/main/models/RoleTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/kwetter/main/models/TweetTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/kwetter/main/models/UserTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/persistence.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dal/contexts/Memory/RoleMemoryContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dal/contexts/memory/RoleMemoryContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dal/contexts/Memory/TweetMemoryContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dal/contexts/memory/TweetMemoryContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dal/contexts/Memory/UserMemoryContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dal/contexts/memory/UserMemoryContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dal/interfaces/TweetContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dal/interfaces/TweetContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dal/repositories/TweetRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dal/repositories/TweetRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/models/Tweet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/models/Kweet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/main/models/RoleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/main/models/RoleTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/main/models/TweetTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/main/models/KweetTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/main/models/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/main/models/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/kwetter_ear_exploded/META-INF/application.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/kwetter_war_exploded/WEB-INF/classes/main/Exceptions/UserNotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/kwetter_war_exploded/WEB-INF/classes/main/dal/contexts/Memory/RoleMemoryContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/kwetter_war_exploded/WEB-INF/classes/main/dal/contexts/Memory/TweetMemoryContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/kwetter_war_exploded/WEB-INF/classes/main/dal/contexts/Memory/UserMemoryContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/kwetter_war_exploded/WEB-INF/classes/main/dal/interfaces/RoleContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/kwetter_war_exploded/WEB-INF/classes/main/dal/interfaces/TweetContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/kwetter_war_exploded/WEB-INF/classes/main/dal/interfaces/UserContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/kwetter_war_exploded/WEB-INF/classes/main/dal/repositories/RoleRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/kwetter_war_exploded/WEB-INF/classes/main/dal/repositories/TweetRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/kwetter_war_exploded/WEB-INF/classes/main/dal/repositories/UserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/kwetter_war_exploded/WEB-INF/classes/main/java/META-INF/persistence.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/kwetter_war_exploded/WEB-INF/classes/main/models/Role.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/kwetter_war_exploded/WEB-INF/classes/main/models/Tweet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/kwetter_war_exploded/WEB-INF/classes/main/models/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dal/contexts/memory/KweetMemoryContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dal/contexts/memory/KweetMemoryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dal/contexts/memory/RoleMemoryContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dal/contexts/memory/RoleMemoryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dal/contexts/memory/UserMemoryContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dal/contexts/memory/UserMemoryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dal/interfaces/KweetContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dal/interfaces/KweetDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dal/interfaces/RoleContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dal/interfaces/RoleDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dal/interfaces/UserContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dal/interfaces/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dal/repositories/KweetRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dal/repositories/KweetRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dal/repositories/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dal/repositories/RoleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dal/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dal/repositories/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/models/RoleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/models/RoleTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/models/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/models/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dal/contexts/memory/KweetMemoryContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dal/contexts/memory/RoleMemoryContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dal/contexts/memory/UserMemoryContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dal/interfaces/KweetContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dal/interfaces/RoleContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dal/interfaces/UserContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dal/repositories/KweetRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dal/repositories/KweetRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dal/repositories/RoleRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dal/repositories/RoleRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dal/repositories/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dal/repositories/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/models/RoleTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/models/RoleTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/models/UserTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/models/UserTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -51,29 +65,27 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/dal/contexts/memory/RoleMemoryContext.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/dal/contexts/memory/UserMemoryDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#543#544#0" expanded="true" />
-                <element signature="e#577#578#0" expanded="true" />
-                <element signature="e#624#625#0" expanded="true" />
-                <element signature="e#652#653#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/main/models/UserTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="44" column="9" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+            <state relative-caret-position="68">
+              <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -82,43 +94,52 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/dal/contexts/memory/UserMemoryContext.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/dal/interfaces/RoleDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="14" column="39" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
+            <state relative-caret-position="68">
+              <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/dal/contexts/jpa/KweetJPADAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="14" selection-start-line="14" selection-end-line="15" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#318#319#0" expanded="true" />
-                <element signature="e#364#365#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/models/User.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/META-INF/persistence.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1275">
-              <caret line="112" column="1" selection-start-line="112" selection-start-column="1" selection-end-line="112" selection-end-column="1" />
+            <state relative-caret-position="204">
+              <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/dal/contexts/jpa/RoleJPADAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="219">
+              <caret line="15" selection-start-line="15" selection-end-line="16" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#User#0;class#User#0" />
-                <element signature="e#940#941#0" expanded="true" />
-                <element signature="e#971#972#0" expanded="true" />
-                <element signature="e#1091#1092#0" expanded="true" />
-                <element signature="e#1119#1120#0" expanded="true" />
-                <element signature="e#1225#1226#0" expanded="true" />
-                <element signature="e#1251#1252#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/dal/contexts/memory/TweetMemoryContext.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/dal/contexts/jpa/UserJPADAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+            <state relative-caret-position="336">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -127,58 +148,43 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/main/models/RoleTest.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/service/KweetService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="32" selection-start-line="30" selection-start-column="39" selection-end-line="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/models/Role.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+            <state relative-caret-position="153">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
               <folding>
-                <element signature="e#124#125#0" expanded="true" />
-                <element signature="e#151#152#0" expanded="true" />
-                <element signature="e#182#183#0" expanded="true" />
-                <element signature="e#209#210#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/models/Kweet.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/dal/interfaces/KweetDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/dal/contexts/memory/KweetMemoryDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/dal/contexts/memory/RoleMemoryDAO.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-              <folding>
-                <element signature="method#Tweet#0;class#Tweet#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/dal/repositories/RoleRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/main/models/KweetTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+              <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -189,8 +195,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -222,18 +228,29 @@
         <option value="$PROJECT_DIR$/src/main/dal/contexts/Memory/RoleMemoryContext.java" />
         <option value="$PROJECT_DIR$/test/main/models/RoleTest.java" />
         <option value="$PROJECT_DIR$/META-INF/application.xml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/dal/contexts/memory/UserMemoryContext.java" />
         <option value="$PROJECT_DIR$/test/main/models/UserTest.java" />
         <option value="$PROJECT_DIR$/src/main/dal/contexts/memory/TweetMemoryContext.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/service/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/RoleService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/KweetService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dal/interfaces/KweetDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dal/contexts/memory/KweetMemoryDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dal/contexts/memory/RoleMemoryDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dal/contexts/memory/UserMemoryDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/META-INF/persistence.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/dal/contexts/jpa/KweetJPADAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dal/contexts/jpa/RoleJPADAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dal/contexts/jpa/UserJPADAO.java" />
       </list>
     </option>
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
-    <option name="FILTER_INFO" value="true" />
-    <option name="FILTER_DEBUG" value="true" />
+    <option name="FILTER_INFO" value="false" />
+    <option name="FILTER_DEBUG" value="false" />
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="MavenImportPreferences">
@@ -243,8 +260,24 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="kwetter" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="kwetter" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
+    <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
@@ -253,7 +286,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -264,7 +297,7 @@
             <path>
               <item name="kwetter" type="b2602c69:ProjectViewProjectNode" />
               <item name="kwetter" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="kwetter" type="b2602c69:ProjectViewProjectNode" />
@@ -282,6 +315,14 @@
               <item name="kwetter" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kwetter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kwetter" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="dal" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -289,6 +330,7 @@
               <item name="kwetter" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="dal" type="462c0819:PsiDirectoryNode" />
               <item name="contexts" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -297,15 +339,17 @@
               <item name="kwetter" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="dal" type="462c0819:PsiDirectoryNode" />
               <item name="contexts" type="462c0819:PsiDirectoryNode" />
-              <item name="memory" type="462c0819:PsiDirectoryNode" />
+              <item name="jpa" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="kwetter" type="b2602c69:ProjectViewProjectNode" />
               <item name="kwetter" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="dal" type="462c0819:PsiDirectoryNode" />
               <item name="interfaces" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -314,50 +358,22 @@
               <item name="kwetter" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="dal" type="462c0819:PsiDirectoryNode" />
-              <item name="repositories" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="kwetter" type="b2602c69:ProjectViewProjectNode" />
               <item name="kwetter" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kwetter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kwetter" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kwetter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kwetter" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kwetter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kwetter" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kwetter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kwetter" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kwetter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kwetter" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -370,7 +386,7 @@
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549910429799" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../KwetterApp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Downloads/04b-ESW-JPA-Demo" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -396,24 +412,21 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="GlassFish Server.GlassFish 5.184.01">
-    <configuration name="GlassFish 5.184.01" type="GlassfishConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="GlassFish 5.184.01" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+  <component name="RunManager" selected="GlassFish Server.GlassFish 5.184.0">
+    <configuration name="GlassFish 5.184.0" type="GlassfishConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="GlassFish 5.184.0" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="kwetter:ear exploded">
-          <settings />
-        </artifact>
         <artifact name="kwetter:war exploded">
           <settings />
         </artifact>
       </deployment>
       <server-settings>
-        <option name="DOMAIN" value="domain1" />
+        <option name="DOMAIN" value="domain3" />
         <option name="PRESERVE" value="false" />
         <option name="COMPATIBILITY" value="false" />
         <option name="VIRTUAL_SERVER" />
         <option name="USERNAME" value="admin" />
-        <option name="PASSWORD" value="" />
+        <option name="PASSWORD" value="admin" />
       </server-settings>
       <predefined_log_file enabled="true" id="GlassFish" />
       <RunnerSettings RunnerId="Debug">
@@ -550,7 +563,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="GlassFish Server.GlassFish 5.184.01" />
+      <item itemvalue="GlassFish Server.GlassFish 5.184.0" />
       <item itemvalue="JUnit.RoleTest" />
       <item itemvalue="JUnit.RoleTest.addRole" />
       <item itemvalue="JUnit.UserTest" />
@@ -583,6 +596,8 @@
       <workItem from="1549876383412" duration="955000" />
       <workItem from="1549877823114" duration="3916000" />
       <workItem from="1549910288626" duration="140000" />
+      <workItem from="1550152664706" duration="634000" />
+      <workItem from="1550154436016" duration="2246000" />
     </task>
     <servers />
   </component>
@@ -619,13 +634,12 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17871000" />
+    <option name="totallyTimeSpent" value="26540000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="953" y="0" width="974" height="1047" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49819493" visible="true" weight="0.17217484" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49819493" visible="true" weight="0.36980307" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Persistence" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
@@ -637,7 +651,7 @@
       <window_info id="Image Layers" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3288889" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32884398" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -648,7 +662,7 @@
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="13" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.33333334" />
       <window_info anchor="bottom" id="Application Servers" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -659,75 +673,22 @@
       <window_info anchor="right" id="Maven" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="JSF" order="9" />
+      <window_info anchor="right" id="CDI" order="10" />
+      <window_info anchor="right" id="Bean Validation" order="11" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/Exceptions/UserNotFoundException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-          <folding>
-            <element signature="e#134#135#0" expanded="true" />
-            <element signature="e#157#158#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/dal/repositories/UserRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#153#154#0" expanded="true" />
-            <element signature="e#191#192#0" expanded="true" />
-            <element signature="e#222#223#0" expanded="true" />
-            <element signature="e#263#264#0" expanded="true" />
-            <element signature="e#299#300#0" expanded="true" />
-            <element signature="e#341#342#0" expanded="true" />
-            <element signature="e#371#372#0" expanded="true" />
-            <element signature="e#408#409#0" expanded="true" />
-            <element signature="e#515#516#0" expanded="true" />
-            <element signature="e#536#537#0" expanded="true" />
-            <element signature="e#501#502#0" expanded="true" />
-            <element signature="e#539#540#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/dal/repositories/TweetRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="5" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="29" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#152#153#0" expanded="true" />
-            <element signature="e#190#191#0" expanded="true" />
-            <element signature="e#219#220#0" expanded="true" />
-            <element signature="e#259#260#0" expanded="true" />
-            <element signature="e#362#363#0" expanded="true" />
-            <element signature="e#383#384#0" expanded="true" />
-            <element signature="e#287#288#0" expanded="true" />
-            <element signature="e#323#324#0" expanded="true" />
-            <element signature="e#392#393#0" expanded="true" />
-            <element signature="e#430#431#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/dal/interfaces/UserContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/dal/repositories/UserRepository.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/dal/repositories/TweetRepository.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/dal/interfaces/UserContext.java" />
     <entry file="file://$PROJECT_DIR$/src/test/main/dal/context.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/util/ArrayList.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-commons/1.4.0/junit-platform-commons-1.4.0.jar!/org/junit/platform/commons/util/StringUtils.class" />
@@ -757,29 +718,9 @@
     <entry file="file://$PROJECT_DIR$/.idea/artifacts/kwetter_war_exploded.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/artifacts/kwetter_ear_exploded.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/dal/interfaces/TweetContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/dal/interfaces/RoleContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/artifacts/kwetter_ear_exploded.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/dal/interfaces/TweetContext.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/dal/interfaces/RoleContext.java" />
     <entry file="file://$PROJECT_DIR$/META-INF/application.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -787,117 +728,213 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/dal/contexts/memory/RoleMemoryContext.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/dal/contexts/memory/UserMemoryContext.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/models/User.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/models/Role.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/models/Kweet.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/dal/repositories/RoleRepository.java" />
+    <entry file="file://$PROJECT_DIR$/test/main/models/KweetTest.java" />
+    <entry file="file://$PROJECT_DIR$/test/main/models/RoleTest.java" />
+    <entry file="file://$PROJECT_DIR$/test/main/models/UserTest.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/dal/contexts/memory/TweetMemoryContext.java" />
+    <entry file="file://$PROJECT_DIR$/src/test/java/models/UserTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="20" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/dal/contexts/memory/RoleMemoryContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
+        <state relative-caret-position="219">
+          <caret line="46" column="43" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#543#544#0" expanded="true" />
-            <element signature="e#577#578#0" expanded="true" />
-            <element signature="e#624#625#0" expanded="true" />
-            <element signature="e#652#653#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/dal/contexts/memory/UserMemoryContext.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/dal/interfaces/UserDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="14" column="39" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
+        <state relative-caret-position="170">
+          <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#318#319#0" expanded="true" />
-            <element signature="e#364#365#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/models/User.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/models/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="112" column="1" selection-start-line="112" selection-start-column="1" selection-end-line="112" selection-end-column="1" />
+        <state relative-caret-position="731">
+          <caret line="63" column="6" selection-start-line="63" selection-start-column="6" selection-end-line="63" selection-end-column="6" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#User#0;class#User#0" />
-            <element signature="e#940#941#0" expanded="true" />
-            <element signature="e#971#972#0" expanded="true" />
-            <element signature="e#1091#1092#0" expanded="true" />
-            <element signature="e#1119#1120#0" expanded="true" />
-            <element signature="e#1225#1226#0" expanded="true" />
-            <element signature="e#1251#1252#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/models/Role.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/models/RoleTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
           <folding>
-            <element signature="e#124#125#0" expanded="true" />
-            <element signature="e#151#152#0" expanded="true" />
-            <element signature="e#182#183#0" expanded="true" />
-            <element signature="e#209#210#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/models/Kweet.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/dal/repositories/UserRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="37" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dal/repositories/RoleRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="15" selection-start-line="15" selection-end-line="23" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dal/repositories/KweetRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="15" selection-start-line="15" selection-end-line="29" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="47" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#165#166#0" expanded="true" />
+            <element signature="e#205#206#0" expanded="true" />
+            <element signature="e#216#217#0" expanded="true" />
+            <element signature="e#243#244#0" expanded="true" />
+            <element signature="e#561#562#0" expanded="true" />
+            <element signature="e#588#589#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/models/Kweet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding>
-            <element signature="method#Tweet#0;class#Tweet#0" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/dal/repositories/RoleRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/main/models/KweetTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/models/KweetTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/main/models/RoleTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/RoleService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="32" selection-start-line="30" selection-start-column="39" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/main/models/UserTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="44" column="9" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+        <state relative-caret-position="68">
+          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/dal/contexts/memory/TweetMemoryContext.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/KweetService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        <state relative-caret-position="153">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/META-INF/persistence.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dal/interfaces/RoleDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dal/interfaces/KweetDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dal/contexts/memory/RoleMemoryDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dal/contexts/memory/UserMemoryDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dal/contexts/memory/KweetMemoryDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dal/contexts/jpa/KweetJPADAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="14" selection-start-line="14" selection-end-line="15" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dal/contexts/jpa/RoleJPADAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="15" selection-start-line="15" selection-end-line="16" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dal/contexts/jpa/UserJPADAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -910,7 +947,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>kwetter:ear exploded</last-edited>
+          <last-edited>kwetter:war exploded</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -1,6 +1,6 @@
 package models;
 
-import dal.contexts.memory.RoleMemoryContext;
+import dal.contexts.memory.RoleMemoryDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,12 +8,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RoleTest {
 
-    private RoleMemoryContext roleMemoryContext;
+    private RoleMemoryDAO roleMemoryContext;
     private Role role;
 
     @BeforeEach
     void setUp() {
-        roleMemoryContext = new RoleMemoryContext();
+        roleMemoryContext = new RoleMemoryDAO();
         role = new Role("Admin");
     }
 

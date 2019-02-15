@@ -1,16 +1,16 @@
 package dal.repositories;
 
 import Exceptions.UserNotFoundException;
-import dal.interfaces.UserContext;
+import dal.interfaces.UserDAO;
 import models.User;
 
 import java.util.List;
 
 public class UserRepository {
 
-    private UserContext context;
+    private UserDAO context;
 
-    public UserRepository(UserContext context) {
+    public UserRepository(UserDAO context) {
         this.context = context;
     }
 
