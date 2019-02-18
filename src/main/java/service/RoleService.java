@@ -1,19 +1,31 @@
 package service;
 
+import dal.interfaces.RoleDAO;
 import models.Role;
 
 import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Default;
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.List;
 
-@Stateless
+@Default
+@ApplicationScoped
 public class RoleService {
-    boolean add(Role role){
-        return false;
-    }
-    void remove(Role role){
 
+    @Inject
+    private RoleDAO roleDAO;
+
+    public boolean add(Role role){
+       return roleDAO.add(role);
     }
-    List<Role> roles(){
-        return null;
+
+    public void remove(Role role){
+        roleDAO.remove(role);
+    }
+
+    public List<Role> roles(){
+        return roleDAO.roles();
     }
 }

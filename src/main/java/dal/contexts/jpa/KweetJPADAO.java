@@ -5,10 +5,15 @@ import models.Kweet;
 import models.User;
 
 import javax.ejb.Stateless;
+import javax.enterprise.inject.Alternative;
+import javax.enterprise.inject.Default;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+@Alternative
+@Named("KweetJPA")
 @Stateless
 public class KweetJPADAO implements KweetDAO {
 

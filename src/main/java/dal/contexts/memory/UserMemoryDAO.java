@@ -5,9 +5,13 @@ import dal.interfaces.UserDAO;
 import models.User;
 
 import javax.ejb.Stateful;
+import javax.enterprise.inject.Alternative;
+import javax.enterprise.inject.Default;
+import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
+@Default
 @Stateful
 public class UserMemoryDAO implements UserDAO {
 
@@ -22,8 +26,9 @@ public class UserMemoryDAO implements UserDAO {
     }
 
     @Override
-    public boolean add(User user) {
-        return this.users.add(user);
+    public User add(User user) {
+         this.users.add(user);
+         return user;
     }
 
     @Override

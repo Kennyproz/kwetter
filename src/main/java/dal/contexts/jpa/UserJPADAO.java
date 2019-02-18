@@ -6,23 +6,25 @@ import dal.interfaces.UserDAO;
 import models.User;
 
 import javax.ejb.Stateless;
+import javax.enterprise.inject.Alternative;
+import javax.enterprise.inject.Default;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+@Alternative
+@Named
 @Stateless
 public class UserJPADAO implements UserDAO {
 
     @PersistenceContext
     private EntityManager em;
-//
-//    public UserJPADAO() {
-//
-//    }
 
     @Override
-    public boolean add(User user) {
-        return false;
+    public User add(User user) {
+        em.persist(user);
+        return user;
     }
 
     @Override

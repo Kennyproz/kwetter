@@ -1,36 +1,46 @@
 package service;
 
 import Exceptions.UserNotFoundException;
+import dal.interfaces.UserDAO;
 import models.User;
 
 import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Default;
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.List;
 
-@Stateless
+@Default
+@ApplicationScoped
 public class UserService {
 
-    boolean add(User user){
-        return false;
+
+    @Inject
+    private UserDAO userDAO;
+
+    public  User add(User user){
+        userDAO.add(user);
+        return user;
     }
 
-    boolean edit(User user){
-        return false;
+    public boolean edit(User user){
+        return userDAO.edit(user);
     }
-    void remove(User user){
-
-
-    }
-
-    User getUser (String username) throws UserNotFoundException {
-        return null;
+    public void remove(User user){
+        userDAO.remove(user);
     }
 
-    List<User> search(String username){
-        return null;
+    public User getUser (String username) throws UserNotFoundException {
+        return userDAO.getUser(username);
     }
 
-    List<User> users(){
-        return null;
+    public List<User> search(String username){
+        return userDAO.search(username);
+    }
+
+    public List<User> users(){
+        return userDAO.users();
     }
 
 }

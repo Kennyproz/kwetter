@@ -4,9 +4,11 @@ import dal.interfaces.RoleDAO;
 import models.Role;
 
 import javax.ejb.Stateful;
+import javax.enterprise.inject.Default;
 import java.util.ArrayList;
 import java.util.List;
 
+@Default
 @Stateful
 public class RoleMemoryDAO implements RoleDAO {
 

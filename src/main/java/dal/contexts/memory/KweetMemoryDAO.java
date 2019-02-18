@@ -6,13 +6,18 @@ import models.User;
 
 
 import javax.ejb.Stateful;
+import javax.enterprise.inject.Default;
 import java.util.ArrayList;
 import java.util.List;
 
+@Default
 @Stateful
 public class KweetMemoryDAO implements KweetDAO {
 
     private List<Kweet> kweets;
+
+    public KweetMemoryDAO() {
+    }
 
     public KweetMemoryDAO(List<Kweet> kweets) {
         this.kweets = kweets;
@@ -25,7 +30,6 @@ public class KweetMemoryDAO implements KweetDAO {
 
     @Override
     public boolean edit(Kweet kweet) {
-
         return false;
     }
 

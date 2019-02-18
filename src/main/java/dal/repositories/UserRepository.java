@@ -14,7 +14,7 @@ public class UserRepository {
         this.context = context;
     }
 
-    boolean add(User user){
+    User add(User user){
         return context.add(user);
     }
 

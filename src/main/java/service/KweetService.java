@@ -1,29 +1,37 @@
 package service;
 
+import dal.interfaces.KweetDAO;
 import models.Kweet;
 import models.User;
 
 import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Default;
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.List;
 
-@Stateless
+@Default
+@ApplicationScoped
 public class KweetService {
 
 
+    @Inject
+    private KweetDAO kweetDAO;
 
 
-    boolean add(Kweet kweet){
-        return false;
+    public boolean add(Kweet kweet){
+        return kweetDAO.add(kweet);
     }
 
-    boolean edit(Kweet kweet){
-        return false;
+    public boolean edit(Kweet kweet){
+        return kweetDAO.edit(kweet);
     }
-    void remove(Kweet kweet){
-
+    public void remove(Kweet kweet){
+        kweetDAO.remove(kweet);
     }
 
-    List<Kweet> kweets(User user){
-        return null;
+    public List<Kweet> kweets(User user){
+        return kweetDAO.userKweets(user);
     }
 }
