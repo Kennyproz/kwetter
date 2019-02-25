@@ -39,21 +39,23 @@ public class UserJPADAO implements UserDAO {
 
     @Override
     public User getUserById(long id) {
-        return null;
+        return em.find(User.class,id);
     }
 
     @Override
     public List<User> users() {
-        return null;
+        return em.createQuery("SELECT u FROM User u").getResultList();
     }
 
     @Override
     public List<User> search(String username) {
-        return null;
+        return em.createQuery("SELECT u FROM User u WHERE u.username LIKE :name").setParameter("name",username).getResultList();
     }
 
     @Override
     public User getUser(String username) throws UserNotFoundException {
-        return null;
+
+        return em.find(User.class,username);
+      //  return em.createQuery("SELECT u FROM User u WHERE u.username = :username").setParameter("username",username).getFirstResult();
     }
 }
