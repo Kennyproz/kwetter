@@ -4,42 +4,64 @@ import Exceptions.UserNotFoundException;
 import dal.interfaces.UserDAO;
 import models.User;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
 import javax.enterprise.inject.Alternative;
 import javax.enterprise.inject.Default;
-import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
-@Default
+@Alternative
 @Stateful
 public class UserMemoryDAO implements UserDAO {
 
-    private List<User> users;
+    private static long userId = 0;
+    private List<User> users = new ArrayList<>();
 
     public UserMemoryDAO() {
-        this.users = new ArrayList<>();
     }
-
-    public UserMemoryDAO(List<User> users) {
-        this.users = users;
-    }
+//
+//    public UserMemoryDAO(List<User> users) {
+//        this.users = users;
+//    }
 
     @Override
     public User add(User user) {
-         this.users.add(user);
-         return user;
+        User userToAdd = new User(userId,user.getUsername(),user.getPassword(),user.getPhoto(),user.getBio(),user.getLocation(),user.getWebsite(),user.getRoles(),user.getFollowing());
+        this.users.add(userToAdd);
+        userId++;
+        return user;
     }
 
     @Override
     public boolean edit(User user) {
 
+        for(User u : users){
+            if(u.getId() == user.getId()){
+                u = user;
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
-    public void remove(User user) {
-        this.users.remove(user);
+    public void remove(long userId) {
+        for (User u : users){
+            if (u.getId() == userId){
+                users.remove(u);
+            }
+        }
+    }
+
+    @Override
+    public User getUserById(long id) {
+        for (User u : users){
+            if(u.getId() == id){
+                return u;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -51,7 +73,7 @@ public class UserMemoryDAO implements UserDAO {
     public List<User> search(String username) {
         List<User> foundUsers = new ArrayList<>();
         for(User u : this.users){
-            if (u.getUsername().equalsIgnoreCase(username)){
+            if (u.getUsername().toLowerCase().contains(username.toLowerCase())){
                 foundUsers.add(u);
             }
         }

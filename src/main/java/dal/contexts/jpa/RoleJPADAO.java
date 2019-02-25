@@ -12,27 +12,29 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@Alternative
+@Default
 @Named("RoleJPA")
 @Stateless
 public class RoleJPADAO implements RoleDAO {
 
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "kwetter")
     private EntityManager em;
-//
-//    public RoleJPADAO(EntityManager em) {
-//        this.em = em;
-//    }
 
     @Override
     public boolean add(Role role) {
-        return false;
+        em.persist(role);
+        return true;
     }
 
     @Override
     public void remove(Role role) {
+        em.remove(role);
+    }
 
+    @Override
+    public Role getRoleById(int roleId) {
+        return null;
     }
 
     @Override

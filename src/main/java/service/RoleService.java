@@ -4,14 +4,12 @@ import dal.interfaces.RoleDAO;
 import models.Role;
 
 import javax.ejb.Stateless;
-import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.List;
 
 @Default
-@ApplicationScoped
+@Stateless
 public class RoleService {
 
     @Inject

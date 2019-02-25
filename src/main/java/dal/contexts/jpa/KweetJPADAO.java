@@ -12,19 +12,20 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@Alternative
+@Default
 @Named("KweetJPA")
 @Stateless
 public class KweetJPADAO implements KweetDAO {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "kwetter")
     private EntityManager em;
 //
 //
 
     @Override
     public boolean add(Kweet kweet) {
-        return false;
+        em.persist(kweet);
+        return true;
     }
 
     @Override
@@ -34,7 +35,13 @@ public class KweetJPADAO implements KweetDAO {
 
     @Override
     public void remove(Kweet kweet) {
+        em.remove(kweet);
 
+    }
+
+    @Override
+    public Kweet getKweetById(long id) {
+        return null;
     }
 
     @Override

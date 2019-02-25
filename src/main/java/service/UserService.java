@@ -6,13 +6,13 @@ import models.User;
 
 import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.List;
 
 @Default
-@ApplicationScoped
+@Stateless
 public class UserService {
 
 
@@ -27,8 +27,9 @@ public class UserService {
     public boolean edit(User user){
         return userDAO.edit(user);
     }
-    public void remove(User user){
-        userDAO.remove(user);
+
+    public void remove(long userId){
+        userDAO.remove(userId);
     }
 
     public User getUser (String username) throws UserNotFoundException {

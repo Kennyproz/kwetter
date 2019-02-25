@@ -1,13 +1,25 @@
 package models;
 
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class User {
+    @Id
+    @GeneratedValue
+    private long id;
+
     private String username, password, photo,bio,location,website;
+
+    @ManyToMany
     private List<Role> roles = new ArrayList<>();
+
+    @ManyToMany
     private List<User> following = new ArrayList<>();
+
+    @OneToMany
     private List<Kweet> kweets = new ArrayList<>();
 
     public User(){
@@ -23,6 +35,22 @@ public class User {
         this.website = website;
         this.roles = roles;
         this.following = following;
+    }
+
+    public User(long id, String username, String password, String photo, String bio, String location, String website, List<Role> roles, List<User> following) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.photo = photo;
+        this.bio = bio;
+        this.location = location;
+        this.website = website;
+        this.roles = roles;
+        this.following = following;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getUsername() {

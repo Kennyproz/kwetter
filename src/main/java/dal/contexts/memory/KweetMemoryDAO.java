@@ -6,15 +6,17 @@ import models.User;
 
 
 import javax.ejb.Stateful;
+import javax.enterprise.inject.Alternative;
 import javax.enterprise.inject.Default;
 import java.util.ArrayList;
 import java.util.List;
 
-@Default
+@Alternative
 @Stateful
 public class KweetMemoryDAO implements KweetDAO {
 
     private List<Kweet> kweets;
+    private static long kweetId = 0;
 
     public KweetMemoryDAO() {
     }
@@ -25,17 +27,29 @@ public class KweetMemoryDAO implements KweetDAO {
 
     @Override
     public boolean add(Kweet kweet) {
+    //
+
         return this.kweets.add(kweet);
     }
 
     @Override
-    public boolean edit(Kweet kweet) {
+    public boolean edit(Kweet kweet){
         return false;
     }
 
     @Override
     public void remove(Kweet kweet) {
         this.kweets.remove(kweet);
+    }
+
+    @Override
+    public Kweet getKweetById(long id) {
+        for( Kweet k : kweets){
+            if (k.getId() == id) {
+                return k;
+            }
+        }
+        return null;
     }
 
     @Override

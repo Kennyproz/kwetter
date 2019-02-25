@@ -6,19 +6,18 @@ import dal.interfaces.UserDAO;
 import models.User;
 
 import javax.ejb.Stateless;
-import javax.enterprise.inject.Alternative;
 import javax.enterprise.inject.Default;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@Alternative
+@Default
 @Named
 @Stateless
 public class UserJPADAO implements UserDAO {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "kwetter")
     private EntityManager em;
 
     @Override
@@ -33,8 +32,14 @@ public class UserJPADAO implements UserDAO {
     }
 
     @Override
-    public void remove(User user) {
+    public void remove(long userId) {
+        User u = getUserById(userId);
+        em.remove(u);
+    }
 
+    @Override
+    public User getUserById(long id) {
+        return null;
     }
 
     @Override

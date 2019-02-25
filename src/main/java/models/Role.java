@@ -1,16 +1,35 @@
 package models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Role {
-    private String Name;
+
+    @Id
+    @GeneratedValue
+    private long id;
+
+    private String name;
 
     public Role() {
     }
 
     public Role(String name) {
-        Name = name;
+        this.name = name;
+    }
+
+    public Role(long id , String name){
+        this.id = id;
+        this.name = name;
+    }
+
+    public long getId() {
+        return this.id;
     }
 
     public String getName() {
-        return Name;
+        return this.name;
     }
 }
