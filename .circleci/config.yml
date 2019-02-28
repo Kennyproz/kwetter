@@ -38,29 +38,15 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
-      - run: mvn integration-test
-        steps:
-          - run:
-              name: Save test results
-              command: |
-                mkdir -p ~/test-results/junit/
-                find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
-              when: always
-          - store_test_results:
-              path: ~/test-results
-          - store_artifacts:
-              path: ~/test-results/junit
-
-              - dependencies:
-                override:
-                  - mvn -DskipTests clean install dependency:resolve-plugins dependency:go-offline
-
-                test:
-                  override:
-                    - mvn -o surefire:test
-
-                deployment:
-                  main:
-                    branch: master
-                    commands:
-                      - mvn -s .circleci.settings.xml -DskipTests deploy
+#      - run: mvn integration-test
+#        steps:
+#          - run:
+#              name: Save test results
+#              command: |
+#                mkdir -p ~/test-results/junit/
+#                find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
+#              when: always
+#          - store_test_results:
+#              path: ~/test-results
+#          - store_artifacts:
+#              path: ~/test-results/junit
