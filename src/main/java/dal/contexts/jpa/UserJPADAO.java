@@ -32,7 +32,9 @@ public class UserJPADAO implements UserDAO {
 
     @Override
     public boolean edit(User user) {
-        return false;
+        em.merge(user);
+        return true;
+
     }
 
     @Override
