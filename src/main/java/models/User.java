@@ -2,8 +2,8 @@ package models;
 
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -11,22 +11,28 @@ public class User {
     @GeneratedValue
     private long id;
 
-    private String username, password, photo,bio,location,website;
+    @Column(unique =true)
+    private String username;
+    private String password, photo, bio, location, website;
 
-    @ManyToMany
-    private List<Role> roles = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> roles;
 
-    @ManyToMany
-    private List<User> following = new ArrayList<>();
+//    @JoinTable(name="following",
+//            joinColumns = @JoinColumn(name="followerUserId"),
+//            inverseJoinColumns = @JoinColumn(name="followingUserId")
+//    )
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<User> following;
 
     @OneToMany
-    private List<Kweet> kweets = new ArrayList<>();
+    private List<Kweet> kweets;
 
     public User(){
 
     }
 
-    public User(String username, String password, String photo, String bio, String location, String website, List<Role> roles, List<User> following) {
+    public User(String username, String password, String photo, String bio, String location, String website, Set<Role> roles, Set<User> following) {
         this.username = username;
         this.password = password;
         this.photo = photo;
@@ -37,7 +43,7 @@ public class User {
         this.following = following;
     }
 
-    public User(long id, String username, String password, String photo, String bio, String location, String website, List<Role> roles, List<User> following) {
+    public User(long id, String username, String password, String photo, String bio, String location, String website, Set<Role> roles, Set<User> following) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -101,19 +107,19 @@ public class User {
         this.website = website;
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
-    public List<User> getFollowing() {
+    public Set<User> getFollowing() {
         return following;
     }
 
-    public void setFollowing(List<User> following) {
+    public void setFollowing(Set<User> following) {
         this.following = following;
     }
 

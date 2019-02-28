@@ -1,5 +1,6 @@
 package service;
 
+import Exceptions.RoleExistsException;
 import dal.interfaces.RoleDAO;
 import models.Role;
 
@@ -15,8 +16,9 @@ public class RoleService {
     @Inject
     private RoleDAO roleDAO;
 
-    public boolean add(Role role){
-       return roleDAO.add(role);
+    public Role add(Role role) throws RoleExistsException {
+        roleDAO.add(role);
+        return role;
     }
 
     public void remove(Role role){
@@ -25,5 +27,9 @@ public class RoleService {
 
     public List<Role> roles(){
         return roleDAO.roles();
+    }
+
+    public Role getRoleById(long id){
+       return roleDAO.getRoleById(id);
     }
 }

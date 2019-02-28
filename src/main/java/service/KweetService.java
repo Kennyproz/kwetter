@@ -5,8 +5,6 @@ import models.Kweet;
 import models.User;
 
 import javax.ejb.Stateless;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import java.util.List;

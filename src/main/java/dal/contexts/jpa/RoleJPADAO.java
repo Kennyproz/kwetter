@@ -1,6 +1,7 @@
 package dal.contexts.jpa;
 
 
+import Exceptions.RoleExistsException;
 import dal.interfaces.RoleDAO;
 import models.Role;
 
@@ -22,9 +23,16 @@ public class RoleJPADAO implements RoleDAO {
     private EntityManager em;
 
     @Override
-    public boolean add(Role role) {
-        em.persist(role);
-        return true;
+    public Role add(Role role) throws RoleExistsException {
+        if(em.createQuery("SELECT r FROM Role r WHERE name LIKE :name").setParameter("name",role.getName()).getResultList().stream().findFirst().orElse(null) == null)
+        {
+            em.persist(role);
+            return role;
+        }
+        throw new RoleExistsException("Rol met de naam: " + role.getName() + " kan niet worden toegevoegd omdat deze al bestaat.");
+
+
+
     }
 
     @Override
@@ -33,12 +41,16 @@ public class RoleJPADAO implements RoleDAO {
     }
 
     @Override
-    public Role getRoleById(int roleId) {
-        return null;
+    public Role getRoleById(long roleId) {
+        return em.find(Role.class,roleId);
     }
+
+//    public Role getRoleByName(String name){
+//        return em.createQuery("SELECT r FROM Role r WHERE r.name LIKE :name").setParameter("name",name).getResultList().stream().findFirst();
+//    }
 
     @Override
     public List<Role> roles() {
-        return null;
+        return em.createQuery("SELECT r FROM Role r").getResultList();
     }
 }

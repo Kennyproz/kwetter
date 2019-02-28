@@ -1,5 +1,6 @@
 package dal.contexts.memory;
 
+import Exceptions.RoleExistsException;
 import dal.interfaces.RoleDAO;
 import models.Role;
 
@@ -19,11 +20,12 @@ public class RoleMemoryDAO implements RoleDAO {
     }
 
     @Override
-    public boolean add(Role role) {
+    public Role add(Role role) throws RoleExistsException{
         if(roles.contains(role)){
-            return false;
+            throw new RoleExistsException("Er bestaat al een rol met de naam: " + role.getName());
         } else{
-            return roles.add(role);
+             roles.add(role);
+             return role;
         }
     }
 
@@ -33,7 +35,7 @@ public class RoleMemoryDAO implements RoleDAO {
     }
 
     @Override
-    public Role getRoleById(int roleId) {
+    public Role getRoleById(long roleId) {
         for (Role r : roles){
             if(r.getId() == roleId){
                 return r;

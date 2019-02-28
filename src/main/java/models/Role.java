@@ -1,5 +1,6 @@
 package models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ public class Role {
     @GeneratedValue
     private long id;
 
+    @Column(unique =true)
     private String name;
 
     public Role() {
@@ -31,5 +33,9 @@ public class Role {
 
     public String getName() {
         return this.name;
+    }
+
+    public void setName(String name){
+        this.name = name;
     }
 }

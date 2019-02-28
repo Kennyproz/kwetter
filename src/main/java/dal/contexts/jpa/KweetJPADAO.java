@@ -41,7 +41,7 @@ public class KweetJPADAO implements KweetDAO {
 
     @Override
     public Kweet getKweetById(long id) {
-        return null;
+        return em.find(Kweet.class,id);
     }
 
     @Override

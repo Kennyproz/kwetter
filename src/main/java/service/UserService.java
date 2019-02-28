@@ -1,12 +1,11 @@
 package service;
 
+import Exceptions.UserExistsException;
 import Exceptions.UserNotFoundException;
 import dal.interfaces.UserDAO;
 import models.User;
 
 import javax.ejb.Stateless;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import java.util.List;
@@ -19,7 +18,7 @@ public class UserService {
     @Inject
     private UserDAO userDAO;
 
-    public  User add(User user){
+    public  User add(User user) throws UserExistsException {
         userDAO.add(user);
         return user;
     }
@@ -32,8 +31,12 @@ public class UserService {
         userDAO.remove(userId);
     }
 
-    public User getUser (String username) throws UserNotFoundException {
+    public User getUser(String username) throws UserNotFoundException {
         return userDAO.getUser(username);
+    }
+
+    public User getUserById(long id){
+        return userDAO.getUserById(id);
     }
 
     public List<User> search(String username){

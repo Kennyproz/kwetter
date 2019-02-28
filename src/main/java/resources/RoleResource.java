@@ -1,5 +1,6 @@
 package resources;
 
+import Exceptions.RoleExistsException;
 import models.Role;
 import service.RoleService;
 
@@ -23,7 +24,6 @@ public class RoleResource {
     public Response allRoles(){
         List<Role> roles =  roleService.roles();
         return Response.status(200).entity(roles).build();
-        //return Response.ok(roles).build();
     }
 
 
@@ -31,9 +31,9 @@ public class RoleResource {
     @Path("/add-role")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addRole(Role role){
-        roleService.add(role);
-        return Response.ok().build();
+    public Response addRole(Role role) throws RoleExistsException {
+        Role addedRole =  roleService.add(role);
+        return Response.status(201).entity(addedRole).build();
     }
 
     @DELETE
@@ -41,7 +41,7 @@ public class RoleResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response removeRole(@PathParam("id") int roleId ){
-       // roleService.remove(roleId);
+//        roleService.remove(roleId);
         return Response.ok().build();
     }
 

@@ -1,13 +1,12 @@
 package dal.contexts.memory;
 
+import Exceptions.UserExistsException;
 import Exceptions.UserNotFoundException;
 import dal.interfaces.UserDAO;
 import models.User;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
 import javax.enterprise.inject.Alternative;
-import javax.enterprise.inject.Default;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,17 +19,19 @@ public class UserMemoryDAO implements UserDAO {
 
     public UserMemoryDAO() {
     }
-//
-//    public UserMemoryDAO(List<User> users) {
-//        this.users = users;
-//    }
 
     @Override
-    public User add(User user) {
+    public User add(User user) throws UserExistsException {
         User userToAdd = new User(userId,user.getUsername(),user.getPassword(),user.getPhoto(),user.getBio(),user.getLocation(),user.getWebsite(),user.getRoles(),user.getFollowing());
+        for (User u : users){
+            if(u.getUsername().equalsIgnoreCase(user.getUsername())){
+               throw new UserExistsException("Er bestaat al een gebruiker met de gebruikersnaam: " + user.getUsername());
+            }
+        }
         this.users.add(userToAdd);
         userId++;
         return user;
+
     }
 
     @Override
@@ -88,5 +89,15 @@ public class UserMemoryDAO implements UserDAO {
             }
         }
         throw new UserNotFoundException("Geen gebruiker gevonden met de gebruikersnaam: " + username + ".");
+    }
+
+    @Override
+    public boolean checkIfUsernameExists(String username) {
+        for (User u : this.users){
+            if (u.getUsername().equalsIgnoreCase(username)){
+               return true;
+            }
+        }
+        return false;
     }
 }

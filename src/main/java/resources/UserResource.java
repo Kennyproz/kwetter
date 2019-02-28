@@ -1,6 +1,6 @@
 package resources;
 
-
+import Exceptions.UserExistsException;
 import Exceptions.UserNotFoundException;
 import models.User;
 import service.UserService;
@@ -20,11 +20,19 @@ public class UserResource {
     UserService userService;
 
     @GET
-    @Path("/{username}")
+    @Path("/get-by-username/{username}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUser(@PathParam("username") String username) throws UserNotFoundException
     {
         User user = userService.getUser(username);
+        return Response.ok(user).build();
+    }
+
+    @GET
+    @Path("/get-by-id/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUserById(@PathParam("id") long id){
+        User user = userService.getUserById(id);
         return Response.ok(user).build();
     }
 
@@ -49,7 +57,7 @@ public class UserResource {
     @Path("/add-user")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addUser(User user){
+    public Response addUser(User user) throws UserExistsException {
         User addedUser = userService.add(user);
         return Response.status(201).entity(addedUser).build();
     }
@@ -58,7 +66,7 @@ public class UserResource {
     @Path("/edit-user/{username}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response editUser(@PathParam("username") String username, User user) throws UserNotFoundException {
+    public Response editUser(@PathParam("username") String username, User user) {
 //        User u = userService.getUser(username);
 //        u = user;
         userService.edit(user);
@@ -68,7 +76,7 @@ public class UserResource {
     @DELETE
     @Path("/delete-user/{username}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response removeUser(@PathParam("username") long userId) throws UserNotFoundException {
+    public Response removeUser(@PathParam("username") long userId) {
         userService.remove(userId);
         return Response.ok().build();
     }

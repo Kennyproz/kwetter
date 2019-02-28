@@ -1,5 +1,6 @@
 package models;
 
+import Exceptions.RoleExistsException;
 import dal.contexts.memory.RoleMemoryDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,11 +19,11 @@ class RoleTest {
     }
 
     @Test
-    void addRole() {
+    void addRole() throws RoleExistsException {
         assertEquals(0,roleMemoryContext.roles().size());
-        assertTrue(roleMemoryContext.add(role));
+        assertEquals(role,roleMemoryContext.add(role));
         assertEquals(1,roleMemoryContext.roles().size());
-        assertFalse(roleMemoryContext.add(role));
+        assertEquals(role,roleMemoryContext.add(role));
         assertEquals(1,roleMemoryContext.roles().size());
     }
 

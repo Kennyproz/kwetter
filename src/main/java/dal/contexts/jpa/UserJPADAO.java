@@ -1,7 +1,7 @@
 package dal.contexts.jpa;
 
 
-import Exceptions.UserNotFoundException;
+import Exceptions.UserExistsException;
 import dal.interfaces.UserDAO;
 import models.User;
 
@@ -21,9 +21,13 @@ public class UserJPADAO implements UserDAO {
     private EntityManager em;
 
     @Override
-    public User add(User user) {
-        em.persist(user);
-        return user;
+    public User add(User user) throws UserExistsException {
+        if(this.checkIfUsernameExists(user.getUsername())){
+            em.persist(user);
+            return user;
+        }
+        throw new UserExistsException("Gebruiker met de naam: " + user.getUsername() + " kan niet worden toegevoegd omdat deze al bestaat.");
+
     }
 
     @Override
@@ -49,13 +53,22 @@ public class UserJPADAO implements UserDAO {
 
     @Override
     public List<User> search(String username) {
-        return em.createQuery("SELECT u FROM User u WHERE u.username LIKE :name").setParameter("name",username).getResultList();
+        return em.createQuery("SELECT u FROM User u WHERE u.username LIKE :name").setParameter("name","%"+username + "%").getResultList();
     }
 
     @Override
-    public User getUser(String username) throws UserNotFoundException {
+    public User getUser(String username) {
 
-        return em.find(User.class,username);
-      //  return em.createQuery("SELECT u FROM User u WHERE u.username = :username").setParameter("username",username).getFirstResult();
+        //return em.find(User.class,username);
+        return (User) em.createQuery("SELECT u FROM User u WHERE u.username = :username").setParameter("username",username).getSingleResult();
+    }
+
+    @Override
+    public boolean checkIfUsernameExists(String username) {
+        if(em.createQuery("SELECT u FROM User u WHERE username LIKE :name").setParameter("name",username).getResultList().stream().findFirst().orElse(null) == null)
+        {
+            return true;
+        }
+        return false;
     }
 }

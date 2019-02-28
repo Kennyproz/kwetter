@@ -1,13 +1,14 @@
 package dal.interfaces;
 
+import Exceptions.RoleExistsException;
 import models.Role;
 
 import java.util.List;
 
 public interface RoleDAO {
-    boolean add(Role role);
+    Role add(Role role) throws RoleExistsException;
     void remove(Role role);
-    Role getRoleById(int roleId);
+    Role getRoleById(long roleId);
     List<Role> roles();
 
 }

@@ -3,6 +3,7 @@ package models;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Kweet {
@@ -18,8 +19,8 @@ public class Kweet {
     @ManyToOne
     private User creator;
 
-    @ManyToMany
-    private List<User> mentions;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<User> mentions;
 
 
     //private List<String> hashtags;
@@ -28,14 +29,14 @@ public class Kweet {
 
     }
 
-    public Kweet(String content, Date dateTime, User creator,List<User> mentions) {
+    public Kweet(String content, Date dateTime, User creator,Set<User> mentions) {
         this.content = content;
         this.dateTime = dateTime;
         this.creator = creator;
         this.mentions = mentions;
     }
 
-    public Kweet(long id,String content, Date dateTime, User creator,List<User> mentions) {
+    public Kweet(long id,String content, Date dateTime, User creator,Set<User> mentions) {
         this.id = id;
         this.content = content;
         this.dateTime = dateTime;
@@ -67,11 +68,15 @@ public class Kweet {
         return creator;
     }
 
-    public List<User> getMentions() {
+    public Set<User> getMentions() {
         return mentions;
     }
 
-    public void setMentions(List<User> mentions) {
+    public void setMentions(Set<User> mentions) {
         this.mentions = mentions;
+    }
+
+    public void addMention(User user){
+        this.mentions.add(user);
     }
 }
