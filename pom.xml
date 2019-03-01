@@ -79,7 +79,6 @@
                 <version>2.22.0</version>
                 <configuration>
                     <reuseForks>true</reuseForks>
-                    <argLine>-Xmx2048m -XX:MaxPermSize=256m</argLine>
                 </configuration>
             </plugin>
         </plugins>
