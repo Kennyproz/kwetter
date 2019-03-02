@@ -20,6 +20,8 @@ public class UserJPADAO implements UserDAO {
     @PersistenceContext(unitName = "kwetter")
     private EntityManager em;
 
+
+
     @Override
     public User add(User user) throws UserExistsException {
         if(this.checkIfUsernameExists(user.getUsername())){

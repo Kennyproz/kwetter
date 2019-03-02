@@ -35,6 +35,7 @@ public class UserService {
         return userDAO.getUser(username);
     }
 
+
     public User getUserById(long id){
         return userDAO.getUserById(id);
     }
@@ -45,6 +46,22 @@ public class UserService {
 
     public List<User> users(){
         return userDAO.users();
+    }
+
+    public User follow(long userId, long userToFollowId){
+        User user = getUserById(userId);
+        User userToFollow = getUserById(userToFollowId);
+        user.getFollowing().add(userToFollow);
+        userDAO.edit(user);
+        return user;
+    }
+    public User unfollow(long userId, long userToUnfollowId){
+        User user = getUserById(userId);
+        User userToUnfollow = getUserById(userToUnfollowId);
+        user.getFollowing().remove(userToUnfollow);
+        userDAO.edit(user);
+        return user;
+
     }
 
 }

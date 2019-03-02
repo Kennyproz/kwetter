@@ -81,6 +81,22 @@ public class UserResource {
         return Response.ok().build();
     }
 
+    @PUT
+    @Path("/follow")
+    public Response follow(@QueryParam("userId") long userId ,@QueryParam("userToFollowId") long userToFollowId){
+        User u = userService.getUserById(userId);
+        userService.follow(userId,userToFollowId);
+        return Response.status(200).entity(u).build();
+    }
+
+    @PUT
+    @Path("/unfollow")
+    public Response unfollow(@QueryParam("userId") long userId, @QueryParam("userToUnfollowId") long userToUnfollowId){
+        User u = userService.getUserById(userId);
+        userService.unfollow(userId,userToUnfollowId);
+        return Response.status(200).entity(u).build();
+    }
+
 
 
 
