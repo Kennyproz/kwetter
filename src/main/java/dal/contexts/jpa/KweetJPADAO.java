@@ -21,14 +21,15 @@ public class KweetJPADAO implements KweetDAO {
     private EntityManager em;
 
     @Override
-    public boolean add(Kweet kweet) {
+    public Kweet add(Kweet kweet) {
         em.persist(kweet);
-        return true;
+        return kweet;
     }
 
     @Override
     public boolean edit(Kweet kweet) {
-        return false;
+        em.merge(kweet);
+        return true;
     }
 
     @Override

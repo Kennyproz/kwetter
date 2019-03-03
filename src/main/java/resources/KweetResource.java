@@ -1,8 +1,12 @@
 package resources;
 
+import Exceptions.UserNotFoundException;
 import models.Kweet;
+import models.KweetConvertor;
+import models.KweetCreator;
 import models.User;
 import service.KweetService;
+import service.UserService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -18,13 +22,19 @@ public class KweetResource {
     @Inject
     KweetService kweetService;
 
+    @Inject
+    UserService userService;
+
+    KweetConvertor kweetConvertor = new KweetConvertor(userService.users());
+
     @POST
     @Path("/add")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response add(Kweet kweet){
-        kweetService.add(kweet);
-        return Response.ok().build();
+    public Response add(KweetCreator kweetCreator){
+        Kweet kweetToAdd = kweetConvertor.convertToKweet(kweetCreator);
+        Kweet kweet = kweetService.add(kweetToAdd);
+        return Response.ok().entity(kweet).build();
     }
 
     @PUT
@@ -47,8 +57,8 @@ public class KweetResource {
 
     @GET
     @Path("/{username}")
-    public Response kweets(@PathParam("username") String username){
-               // kweetService.kweets(user);
-        return Response.ok().build();
+    public Response kweets(@PathParam("username") String username) throws UserNotFoundException {
+        List<Kweet> kweets =  kweetService.kweets(userService.getUser(username));
+        return Response.status(200).entity(kweets).build();
     }
 }

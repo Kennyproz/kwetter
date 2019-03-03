@@ -17,7 +17,7 @@ public class KweetService {
     private KweetDAO kweetDAO;
 
 
-    public boolean add(Kweet kweet){
+    public Kweet add(Kweet kweet){
         return kweetDAO.add(kweet);
     }
 

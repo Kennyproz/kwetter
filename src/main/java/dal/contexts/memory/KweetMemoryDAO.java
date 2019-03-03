@@ -1,21 +1,23 @@
 package dal.contexts.memory;
 
 import dal.interfaces.KweetDAO;
+import models.Hashtag;
 import models.Kweet;
 import models.User;
 
 
 import javax.ejb.Stateful;
 import javax.enterprise.inject.Alternative;
-import javax.enterprise.inject.Default;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Alternative
 @Stateful
 public class KweetMemoryDAO implements KweetDAO {
 
     private List<Kweet> kweets;
+    private Map<Hashtag, Integer> hashtags;
     private static long kweetId = 0;
 
     public KweetMemoryDAO() {
@@ -26,14 +28,14 @@ public class KweetMemoryDAO implements KweetDAO {
     }
 
     @Override
-    public boolean add(Kweet kweet) {
-    //
-
-        return this.kweets.add(kweet);
+    public Kweet add(Kweet kweet) {
+        this.kweets.add(kweet);
+        return kweet;
     }
 
     @Override
     public boolean edit(Kweet kweet){
+
         return false;
     }
 
