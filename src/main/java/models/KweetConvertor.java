@@ -1,15 +1,14 @@
 package models;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class KweetConvertor {
 
+    List<User> users;
 
-
-    public KweetConvertor() {
-
+    public KweetConvertor(List<User> users) {
+        this.users = users;
     }
 
     public Kweet convertToKweet(KweetCreator kweetCreator){
@@ -18,26 +17,43 @@ public class KweetConvertor {
         Date date =  new Date(kweetCreator.getDateTime());
         User user = new User();
 
-        createMentionList(kweetCreator.getContent());
-        Set<User> mentions = null;
+        Set<User> mentions = createMentionList(kweetCreator.getContent());
+        Set<Hashtag> hashtags = createHashtagList(kweetCreator.getContent());
 
-
-        Kweet kweet = new Kweet(content,date,user,mentions);
+        Kweet kweet = new Kweet(content,date,user,mentions,hashtags);
         return kweet;
 
     }
 
     public Set<User> createMentionList(String content){
 
-        Set<User> users = new HashSet<>();
+        Set<User> mentions = new HashSet<>();
         for(String s : content.split(" ")){
             if(s.charAt(0) == '@'){
-                System.out.println("User mentioned" + s);
                 String username = s.substring(1);
-                System.out.println(username);
+                Optional<User> matchingObject = users.stream().
+                        filter(u -> u.getUsername().equals(username)).
+                        findFirst();
+                User u = matchingObject.orElse(null);
+                if(u != null){
+                    mentions.add(u);
+                }
             }
         }
 
-        return null;
+        return mentions;
+    }
+
+    public Set<Hashtag> createHashtagList(String content){
+        Set<Hashtag> hashtags = new HashSet<>();
+        for(String s : content.split(" ")){
+            if(s.charAt(0) == '#'){
+                if(s.length() > 1){
+                    String hashtag = s.substring(1);
+                    hashtags.add(new Hashtag(hashtag));
+                }
+            }
+        }
+        return hashtags;
     }
 }

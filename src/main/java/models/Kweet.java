@@ -1,8 +1,10 @@
 package models;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Entity
@@ -22,26 +24,28 @@ public class Kweet {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<User> mentions;
 
-
-    //private List<String> hashtags;
+    @OneToMany
+    private Set<Hashtag> hashtags;
 
     public Kweet(){
 
     }
 
-    public Kweet(String content, Date dateTime, User creator,Set<User> mentions) {
+    public Kweet(String content, Date dateTime, User creator,Set<User> mentions,Set<Hashtag> hashtags) {
         this.content = content;
         this.dateTime = dateTime;
         this.creator = creator;
         this.mentions = mentions;
+        this.hashtags = hashtags;
     }
 
-    public Kweet(long id,String content, Date dateTime, User creator,Set<User> mentions) {
+    public Kweet(long id,String content, Date dateTime, User creator,Set<User> mentions,Set<Hashtag> hashtags) {
         this.id = id;
         this.content = content;
         this.dateTime = dateTime;
         this.creator = creator;
         this.mentions = mentions;
+        this.hashtags = hashtags;
     }
 
     public long getId() {

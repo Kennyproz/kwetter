@@ -1,12 +1,16 @@
 package models;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class KweetCreator {
     private String content;
     private String dateTime;
     private String creator;
-    private List<String> mentions;
+    private Set<String> mentions;
+    private Set<String> hashtags;
 
     public KweetCreator(String content, String dateTime, String creator) {
         this.content = content;
@@ -39,11 +43,19 @@ public class KweetCreator {
         this.creator = creator;
     }
 
-    public List<String> getMentions() {
+    public Set<String> getMentions() {
         return mentions;
     }
 
-    public void setMentions(List<String> mentions) {
+    public void setMentions(Set<String> mentions) {
         this.mentions = mentions;
+    }
+
+    public Set<String> getHashtags() {
+        return hashtags;
+    }
+
+    public void setHashtags(Set<String> hashtags) {
+        this.hashtags = hashtags;
     }
 }

@@ -18,11 +18,7 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-//    @JoinTable(name="following",
-//            joinColumns = @JoinColumn(name="followerUserId"),
-//            inverseJoinColumns = @JoinColumn(name="followingUserId")
-//    )
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     private Set<User> following;
 
     @OneToMany
@@ -121,6 +117,14 @@ public class User {
 
     public void setFollowing(Set<User> following) {
         this.following = following;
+    }
+
+    public List<Kweet> getKweets() {
+        return kweets;
+    }
+
+    public void addKweet(Kweet kweet){
+        this.kweets.add(kweet);
     }
 
     public void follow(User user){

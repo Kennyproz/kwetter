@@ -52,7 +52,7 @@ public class UserJPADAO implements UserDAO {
 
     @Override
     public List<User> users() {
-        return em.createQuery("SELECT u FROM User u").getResultList();
+        return em.createQuery("SELECT u FROM User u JOIN FETCH User a").getResultList();
     }
 
     @Override

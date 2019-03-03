@@ -46,6 +46,6 @@ public class KweetJPADAO implements KweetDAO {
 
     @Override
     public List<Kweet> userKweets(User user) {
-        return null;
+        return user.getKweets();
     }
 }

@@ -30,7 +30,6 @@ class UserServiceTest {
         user = Mockito.mock(User.class);
         userMemoryDAO.add(user);
         assertEquals(1,userMemoryDAO.users().size());
-      //  userMemoryDAO.add(user);
 
     }
 
