@@ -23,9 +23,11 @@ public class UserMemoryDAO implements UserDAO {
     @Override
     public User add(User user) throws UserExistsException {
         User userToAdd = new User(userId,user.getUsername(),user.getPassword(),user.getPhoto(),user.getBio(),user.getLocation(),user.getWebsite(),user.getRoles(),user.getFollowing());
-        for (User u : users){
-            if(u.getUsername().equalsIgnoreCase(user.getUsername())){
-               throw new UserExistsException("Er bestaat al een gebruiker met de gebruikersnaam: " + user.getUsername());
+        if(users.size() > 0){
+            for (User u : users){
+                if(u.getUsername().equalsIgnoreCase(user.getUsername())){
+                   throw new UserExistsException("Er bestaat al een gebruiker met de gebruikersnaam: " + user.getUsername());
+                }
             }
         }
         this.users.add(userToAdd);
@@ -48,11 +50,13 @@ public class UserMemoryDAO implements UserDAO {
 
     @Override
     public void remove(long userId) {
+        User userToDelete = null;
         for (User u : users){
             if (u.getId() == userId){
-                users.remove(u);
+                userToDelete = u;
             }
         }
+        users.remove(userToDelete);
     }
 
     @Override

@@ -30,9 +30,6 @@ public class RoleJPADAO implements RoleDAO {
             return role;
         }
         throw new RoleExistsException("Rol met de naam: " + role.getName() + " kan niet worden toegevoegd omdat deze al bestaat.");
-
-
-
     }
 
     @Override
@@ -45,9 +42,9 @@ public class RoleJPADAO implements RoleDAO {
         return em.find(Role.class,roleId);
     }
 
-//    public Role getRoleByName(String name){
-//        return em.createQuery("SELECT r FROM Role r WHERE r.name LIKE :name").setParameter("name",name).getResultList().stream().findFirst();
-//    }
+    public Role getRoleByName(String name){
+        return (Role) em.createQuery("SELECT r FROM Role r WHERE r.name LIKE :name").setParameter("name",name).getResultList().stream().findFirst().get();
+    }
 
     @Override
     public List<Role> roles() {

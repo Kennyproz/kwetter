@@ -19,9 +19,7 @@ public class UserJPADAO implements UserDAO {
 
     @PersistenceContext(unitName = "kwetter")
     private EntityManager em;
-
-
-
+    
     @Override
     public User add(User user) throws UserExistsException {
         if(this.checkIfUsernameExists(user.getUsername())){
@@ -29,14 +27,12 @@ public class UserJPADAO implements UserDAO {
             return user;
         }
         throw new UserExistsException("Gebruiker met de naam: " + user.getUsername() + " kan niet worden toegevoegd omdat deze al bestaat.");
-
     }
 
     @Override
     public boolean edit(User user) {
         em.merge(user);
         return true;
-
     }
 
     @Override
@@ -62,8 +58,6 @@ public class UserJPADAO implements UserDAO {
 
     @Override
     public User getUser(String username) {
-
-        //return em.find(User.class,username);
         return (User) em.createQuery("SELECT u FROM User u WHERE u.username = :username").setParameter("username",username).getSingleResult();
     }
 

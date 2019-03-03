@@ -23,37 +23,45 @@ class UserServiceTest {
     void setUp() {
         userService = new UserService();
         userMemoryDAO = new UserMemoryDAO();
+        User u = Mockito.mock(User.class);
+        Mockito.when(u.getUsername()).thenReturn("testUser");
+        try {
+            userMemoryDAO.add(u);
+        } catch (UserExistsException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     void add() throws UserExistsException {
         user = Mockito.mock(User.class);
+        Mockito.when(user.getUsername()).thenReturn("test");
         userMemoryDAO.add(user);
-        assertEquals(1,userMemoryDAO.users().size());
-
+        assertEquals(2,userMemoryDAO.users().size());
     }
 
     @Test
     void edit() {
     }
 
-    @Test
-    void remove() {
-    }
 
     @Test
     void getUser() {
     }
 
     @Test
-    void getUserById() {
-    }
-
-    @Test
     void search() {
+
     }
 
     @Test
     void users() {
+        assertEquals(1,userMemoryDAO.users().size());
+    }
+
+    @Test
+    void remove() {
+        userMemoryDAO.remove(1);
+        assertEquals(1,userMemoryDAO.users().size());
     }
 }

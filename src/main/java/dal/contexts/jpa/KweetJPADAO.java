@@ -19,8 +19,6 @@ public class KweetJPADAO implements KweetDAO {
 
     @PersistenceContext(unitName = "kwetter")
     private EntityManager em;
-//
-//
 
     @Override
     public boolean add(Kweet kweet) {
@@ -36,7 +34,6 @@ public class KweetJPADAO implements KweetDAO {
     @Override
     public void remove(Kweet kweet) {
         em.remove(kweet);
-
     }
 
     @Override

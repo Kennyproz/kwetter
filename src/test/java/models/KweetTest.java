@@ -12,8 +12,6 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class KweetTest {
-
-
     KweetConvertor kweetConvertor;
     List<User> users;
     User user;
@@ -43,8 +41,8 @@ class KweetTest {
     void createMentionList(){
         String content = "this is a test, how are you doing @nonExistingPerson @Ken @Kenny ";
         Set<User> mentionSet = kweetConvertor.createMentionList(content);
-        assertEquals("Ken",mentionSet.stream().findFirst().get().getUsername());
-        assertEquals("Kenny",mentionSet.stream().skip(1).findFirst().get().getUsername());
+        assertEquals("Ken",mentionSet.stream().filter(user -> user.getUsername().equals("Ken")).findFirst().get().getUsername());
+        assertEquals("Kenny",mentionSet.stream().filter(user -> user.getUsername().equals("Kenny")).findFirst().get().getUsername());
 
     }
 

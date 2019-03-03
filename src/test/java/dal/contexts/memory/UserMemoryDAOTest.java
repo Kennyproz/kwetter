@@ -67,14 +67,24 @@ class UserMemoryDAOTest {
     }
 
     @Test
-    void edit() {
+    void edit() throws UserNotFoundException {
+        User testUser = context.getUser("User 1");
+        assertEquals("This is the first user",testUser.getBio());
+        String newbio = "New bio, this is an admin";
+        testUser.setBio(newbio);
+        context.edit(testUser);
+        User newBioUser = context.getUser("User 1");
+        assertEquals(newbio,newBioUser.getBio());
+
     }
 
     @Test
     void remove() {
-    }
+        assertEquals(10,context.users().size());
+        int size = context.users().size();
+        User u = context.users().get(size - 1);
+        context.remove(u.getId());
+        assertEquals(size - 1,context.users().size());
 
-    @Test
-    void getUser() {
     }
 }
