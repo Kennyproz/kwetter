@@ -37,7 +37,7 @@ class RoleTest {
 
     @Test
     void removeRole(){
-        roleMemoryContext.remove(role);
+        roleMemoryContext.remove(role.getId());
         assertEquals(0,roleMemoryContext.roles().size());
     }
 }

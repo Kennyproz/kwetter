@@ -28,10 +28,21 @@ public class Kweet {
     private Set<Hashtag> hashtags;
 
     public Kweet(){
-
     }
 
-    public Kweet(String content, Date dateTime, User creator,Set<User> mentions,Set<Hashtag> hashtags) {
+
+    public Kweet(String content, Date dateTime) {
+        this.content = content;
+        this.dateTime = dateTime;
+    }
+
+    public Kweet(String content, Date dateTime, User creator) {
+        this.content = content;
+        this.dateTime = dateTime;
+        this.creator = creator;
+    }
+
+    public Kweet(String content, Date dateTime, User creator, Set<User> mentions, Set<Hashtag> hashtags) {
         this.content = content;
         this.dateTime = dateTime;
         this.creator = creator;

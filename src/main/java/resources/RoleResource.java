@@ -40,9 +40,9 @@ public class RoleResource {
     @Path("/remove-role/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response removeRole(@PathParam("id") int roleId ){
-//        roleService.remove(roleId);
-        return Response.ok().build();
+    public Response removeRole(@PathParam("id") long roleId ){
+        roleService.remove(roleId);
+        return Response.noContent().build();
     }
 
 }

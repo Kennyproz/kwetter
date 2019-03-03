@@ -20,6 +20,12 @@ public class UserMemoryDAO implements UserDAO {
     public UserMemoryDAO() {
     }
 
+    /**
+     *  Adds an user
+     * @param user
+     * @return Returns the added user
+     * @throws UserExistsException
+     */
     @Override
     public User add(User user) throws UserExistsException {
         User userToAdd = new User(userId,user.getUsername(),user.getPassword(),user.getPhoto(),user.getBio(),user.getLocation(),user.getWebsite(),user.getRoles(),user.getFollowing());

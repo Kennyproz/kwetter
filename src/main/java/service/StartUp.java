@@ -24,6 +24,9 @@ public class StartUp {
     public StartUp() {
     }
 
+    /**
+     *  Inserts users to the database when starting the application
+     */
     @PostConstruct
     private void addUsers() {
         try {

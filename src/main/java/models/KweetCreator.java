@@ -1,20 +1,23 @@
 package models;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.List;
-import java.util.Map;
+import java.io.Serializable;
 import java.util.Set;
 
-public class KweetCreator {
+public class KweetCreator implements Serializable {
+
+    private static final long serialVersionUID = 4865903039190150223L;
     private String content;
-    private String dateTime;
+    private String datetime;
     private String creator;
     private Set<String> mentions;
     private Set<String> hashtags;
 
-    public KweetCreator(String content, String dateTime, String creator) {
+    public KweetCreator() {
+    }
+
+    public KweetCreator(String content, String datetime, String creator) {
         this.content = content;
-        this.dateTime = dateTime;
+        this.datetime = datetime;
         this.creator = creator;
     }
 
@@ -27,12 +30,12 @@ public class KweetCreator {
         this.content = content;
     }
 
-    public String getDateTime() {
-        return dateTime;
+    public String getDatetime() {
+        return datetime;
     }
 
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
     }
 
     public String getCreator() {

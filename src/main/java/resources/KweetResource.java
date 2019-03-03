@@ -2,9 +2,7 @@ package resources;
 
 import Exceptions.UserNotFoundException;
 import models.Kweet;
-import models.KweetConvertor;
 import models.KweetCreator;
-import models.User;
 import service.KweetService;
 import service.UserService;
 
@@ -25,15 +23,12 @@ public class KweetResource {
     @Inject
     UserService userService;
 
-    KweetConvertor kweetConvertor = new KweetConvertor(userService.users());
-
     @POST
     @Path("/add")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response add(KweetCreator kweetCreator){
-        Kweet kweetToAdd = kweetConvertor.convertToKweet(kweetCreator);
-        Kweet kweet = kweetService.add(kweetToAdd);
+    public Response add(KweetCreator kweetcreator){
+        Kweet kweet = kweetService.add(kweetcreator,userService.users());
         return Response.ok().entity(kweet).build();
     }
 
@@ -55,10 +50,10 @@ public class KweetResource {
         return Response.status(202).entity("Deleted succesfully").build();
     }
 
-    @GET
-    @Path("/{username}")
-    public Response kweets(@PathParam("username") String username) throws UserNotFoundException {
-        List<Kweet> kweets =  kweetService.kweets(userService.getUser(username));
-        return Response.status(200).entity(kweets).build();
-    }
+//    @GET
+//    @Path("/{username}")
+//    public Response kweets(@PathParam("username") String username) throws UserNotFoundException {
+//       // List<Kweet> kweets =  kweetService.kweets(userService.getUser(username));
+//        return Response.status(200).entity(kweets).build();
+//    }
 }

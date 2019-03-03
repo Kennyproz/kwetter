@@ -33,7 +33,8 @@ public class RoleJPADAO implements RoleDAO {
     }
 
     @Override
-    public void remove(Role role) {
+    public void remove(long roleId) {
+        Role role = getRoleById(roleId);
         em.remove(role);
     }
 

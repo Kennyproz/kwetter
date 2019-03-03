@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface RoleDAO {
     Role add(Role role) throws RoleExistsException;
-    void remove(Role role);
+    void remove(long roleId);
     Role getRoleById(long roleId);
     List<Role> roles();
 

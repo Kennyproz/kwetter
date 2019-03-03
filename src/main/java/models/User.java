@@ -18,10 +18,10 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<User> following;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Kweet> kweets;
 
     public User(){

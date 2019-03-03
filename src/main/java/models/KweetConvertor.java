@@ -1,21 +1,34 @@
 package models;
 
+import javax.ejb.Stateless;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Stateless
 public class KweetConvertor {
 
     List<User> users;
 
+    public KweetConvertor() {
+    }
+
     public KweetConvertor(List<User> users) {
+        this.users = users;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 
     public Kweet convertToKweet(KweetCreator kweetCreator){
 
         String content = kweetCreator.getContent();
-        Date date =  new Date(kweetCreator.getDateTime());
-        User user = new User();
+        Date date = new Date();// new Date(kweetCreator.getDatetime());
+        User user = this.getUserFromUsername(kweetCreator.getCreator());
 
         Set<User> mentions = createMentionList(kweetCreator.getContent());
         Set<Hashtag> hashtags = createHashtagList(kweetCreator.getContent());
@@ -24,6 +37,17 @@ public class KweetConvertor {
         return kweet;
 
     }
+
+
+    private User getUserFromUsername(String username){
+        for (User u : users){
+            if(u.getUsername().equals(username)){
+                return u;
+            }
+        }
+        return null;
+    }
+
 
     public Set<User> createMentionList(String content){
 

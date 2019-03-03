@@ -30,8 +30,14 @@ public class RoleMemoryDAO implements RoleDAO {
     }
 
     @Override
-    public void remove(Role role) {
-        roles.remove(role);
+    public void remove(long roleId) {
+        Role roleToDelete = null;
+        for (Role r : roles){
+            if (r.getId() == roleId){
+                roleToDelete = r;
+            }
+        }
+        roles.remove(roleToDelete);
     }
 
     @Override

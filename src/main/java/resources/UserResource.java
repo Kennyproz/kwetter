@@ -74,9 +74,9 @@ public class UserResource {
     }
 
     @DELETE
-    @Path("/delete-user/{username}")
+    @Path("/delete-user/{userId}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response removeUser(@PathParam("username") long userId) {
+    public Response removeUser(@PathParam("userId") long userId) {
         userService.remove(userId);
         return Response.ok().build();
     }

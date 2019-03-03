@@ -2,6 +2,8 @@ package service;
 
 import dal.interfaces.KweetDAO;
 import models.Kweet;
+import models.KweetConvertor;
+import models.KweetCreator;
 import models.User;
 
 import javax.ejb.Stateless;
@@ -17,17 +19,41 @@ public class KweetService {
     private KweetDAO kweetDAO;
 
 
-    public Kweet add(Kweet kweet){
-        return kweetDAO.add(kweet);
+    /**
+     * Creates an Kweet by converting the KweetCreator to a kweet
+     * @param kweetCreator
+     * @param users
+     * @return
+     */
+    public Kweet add(KweetCreator kweetCreator,List<User> users){
+        KweetConvertor kweetConvertor = new KweetConvertor();
+        kweetConvertor.setUsers(users);
+        Kweet kweetToAdd = kweetConvertor.convertToKweet(kweetCreator);
+        return kweetDAO.add(kweetToAdd);
     }
 
+    /**
+     * Updates the kweet
+     * @param kweet
+     * @return
+     */
     public boolean edit(Kweet kweet){
         return kweetDAO.edit(kweet);
     }
+
+    /**
+     * Deletes the kweet
+     * @param kweet
+     */
     public void remove(Kweet kweet){
         kweetDAO.remove(kweet);
     }
 
+    /**
+     * Returns all kweets of the user
+     * @param user
+     * @return
+     */
     public List<Kweet> kweets(User user){
         return kweetDAO.userKweets(user);
     }
