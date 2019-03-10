@@ -55,10 +55,10 @@ public class KweetMemoryDAO implements KweetDAO {
     }
 
     @Override
-    public List<Kweet> userKweets(User user) {
+    public List<Kweet> userKweets(long userId) {
         List<Kweet> kweetsOfUser = new ArrayList<>();
         for(Kweet t : this.kweets){
-            if(t.getCreator().getUsername().equalsIgnoreCase(user.getUsername())){
+            if(t.getCreator().getId() ==  userId){
                 kweetsOfUser.add(t);
             }
         }

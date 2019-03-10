@@ -50,10 +50,10 @@ public class KweetResource {
         return Response.status(202).entity("Deleted succesfully").build();
     }
 
-//    @GET
-//    @Path("/{username}")
-//    public Response kweets(@PathParam("username") String username) throws UserNotFoundException {
-//       // List<Kweet> kweets =  kweetService.kweets(userService.getUser(username));
-//        return Response.status(200).entity(kweets).build();
-//    }
+    @GET
+    @Path("/{userId}")
+    public Response kweets(@PathParam("userId") long userId) {
+        List<Kweet> kweets =  kweetService.kweets(userId);
+        return Response.status(200).entity(kweets).build();
+    }
 }

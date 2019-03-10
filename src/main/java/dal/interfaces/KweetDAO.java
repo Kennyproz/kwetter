@@ -10,7 +10,7 @@ public interface KweetDAO {
     boolean edit(Kweet kweet);
     void remove(Kweet kweet);
     Kweet getKweetById(long id);
-    List<Kweet> userKweets(User user);
+    List<Kweet> userKweets(long userId);
 
 
 }

@@ -51,10 +51,10 @@ public class KweetService {
 
     /**
      * Returns all kweets of the user
-     * @param user
+     * @param userId
      * @return
      */
-    public List<Kweet> kweets(User user){
-        return kweetDAO.userKweets(user);
+    public List<Kweet> kweets(long userId){
+        return kweetDAO.userKweets(userId);
     }
 }

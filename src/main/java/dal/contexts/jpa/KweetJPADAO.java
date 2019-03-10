@@ -43,7 +43,8 @@ public class KweetJPADAO implements KweetDAO {
     }
 
     @Override
-    public List<Kweet> userKweets(User user) {
-        return user.getKweets();
+    public List<Kweet> userKweets(long userId) {
+        return em.createQuery("SELECT k FROM Kweet k WHERE k.creator.id = :userid").setParameter("userid",userId).getResultList();
+     //   return user.getKweets();
     }
 }
