@@ -28,6 +28,14 @@ public class User {
 
     }
 
+    public User(String username, String photo, String bio, String location, String website) {
+        this.username = username;
+        this.photo = photo;
+        this.bio = bio;
+        this.location = location;
+        this.website = website;
+    }
+
     public User(String username, String password, String photo, String bio, String location, String website, Set<Role> roles, Set<User> following) {
         this.username = username;
         this.password = password;
