@@ -110,4 +110,13 @@ public class UserMemoryDAO implements UserDAO {
         }
         return false;
     }
+
+    @Override
+    public User login(String username, String password) {
+        for (User u : this.users){
+            if(u.getUsername().equals(username) && u.getPassword().equals(password))
+                return u;
+        }
+        return null;
+    }
 }

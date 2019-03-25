@@ -69,4 +69,15 @@ public class UserJPADAO implements UserDAO {
         }
         return false;
     }
+
+    @Override
+    public User login(String username, String password) {
+        User user = (User) em.createQuery("SELECT u FROM User u WHERE username LIKE :name AND password LIKE :password").setParameter("name",username).setParameter("password",password).getSingleResult();
+        if(user!= null){
+            return user;
+        }
+        return null;
+    }
+
+
 }

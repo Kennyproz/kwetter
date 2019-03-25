@@ -3,6 +3,7 @@ package resources;
 import Exceptions.UserExistsException;
 import Exceptions.UserNotFoundException;
 import models.User;
+import models.UserLogin;
 import service.UserService;
 
 import javax.enterprise.context.RequestScoped;
@@ -95,6 +96,15 @@ public class UserResource {
         User u = userService.getUserById(userId);
         userService.unfollow(userId,userToUnfollowId);
         return Response.status(200).entity(u).build();
+    }
+
+    @POST
+    @Path("/login")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response login(UserLogin user){
+        User userLogin = userService.login(user.getUsername(),user.getPassword());
+        return Response.status(200).entity(userLogin).build();
     }
 
 

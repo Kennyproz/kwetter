@@ -16,6 +16,7 @@ import javax.ws.rs.ApplicationPath;
 public class myConfig extends ResourceConfig {
 
     public myConfig(){
+        register(CORSResponseFilter.class);
         register(KweetCreator.class);
        // register(KweetConvertor.class);
         register(UserResource.class);

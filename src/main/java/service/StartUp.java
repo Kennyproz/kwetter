@@ -31,8 +31,11 @@ public class StartUp {
     private void addUsers() {
         try {
             roleService.add(new Role("Admin"));
-            userService.add(new User("Ken","TestPWK","photolink","This is the first user" ,"Over Here","https://www.example.com",null,null));
-            userService.add(new User("Ralf","TestPWR","photolink","This is the second user","Over there","https://www.example.com",null,null));
+            userService.add(new User("Ken","TestPWK","https://picsum.photos/200","This is the first user" ,"Brouwhuis","https://picsum.photos/200",null,null));
+            userService.add(new User("Ralf","TestPWR","https://picsum.photos/200","This is the second user","Gemert","https://picsum.photos/200",null,null));
+            userService.add(new User("Kenny","TestPWK","https://picsum.photos/200","This is the third user" ,"Eindhoven","https://picsum.photos/200",null,null));
+            userService.add(new User("Ralfie","TestPWR","https://picsum.photos/200","This is the fourth user","Amsterdam","https://picsum.photos/200",null,null));
+
         } catch (UserExistsException e) {
             e.printStackTrace();
         } catch (RoleExistsException e) {
