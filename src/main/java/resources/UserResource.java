@@ -3,6 +3,7 @@ package resources;
 import Exceptions.UserExistsException;
 import Exceptions.UserNotFoundException;
 import models.User;
+import models.UserCreator;
 import models.UserLogin;
 import service.UserService;
 
@@ -58,9 +59,9 @@ public class UserResource {
     @Path("/add-user")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addUser(User user) throws UserExistsException {
+    public Response addUser(UserCreator user) throws UserExistsException {
         User addedUser = userService.add(user);
-        return Response.status(201).entity(addedUser).build();
+        return Response.ok().entity(addedUser).build();
     }
 
     @PUT

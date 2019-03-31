@@ -4,6 +4,8 @@ import Exceptions.UserExistsException;
 import Exceptions.UserNotFoundException;
 import dal.interfaces.UserDAO;
 import models.User;
+import models.UserConvertor;
+import models.UserCreator;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
@@ -20,11 +22,13 @@ public class UserService {
 
     /**
      *  Creates an user.
-     * @param user
+     * @param userCreator
      * @return Returns the added user
      * @throws UserExistsException
      */
-    public  User add(User user) throws UserExistsException {
+    public  User add(UserCreator userCreator) throws UserExistsException {
+        UserConvertor userConvertor = new UserConvertor();
+        User user = userConvertor.convertToUser(userCreator);
         userDAO.add(user);
         return user;
     }
