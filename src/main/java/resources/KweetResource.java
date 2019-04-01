@@ -51,9 +51,18 @@ public class KweetResource {
     }
 
     @GET
-    @Path("/{userId}")
+    @Path("/get-by-id/{userId}")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response kweets(@PathParam("userId") long userId) {
         List<Kweet> kweets =  kweetService.kweets(userId);
         return Response.status(200).entity(kweets).build();
+    }
+
+    @GET
+    @Path("/get-by-username/{username}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response kweets(@PathParam("username") String username){
+        List<Kweet> kweets = kweetService.kweets(username);
+        return  Response.ok().entity(kweets).build();
     }
 }

@@ -57,4 +57,10 @@ public class KweetService {
     public List<Kweet> kweets(long userId){
         return kweetDAO.userKweets(userId);
     }
+
+    public List<Kweet> kweets(String username){
+        return kweetDAO.userKweets(username);
+    }
+
+
 }

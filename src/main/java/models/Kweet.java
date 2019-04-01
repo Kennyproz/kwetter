@@ -2,12 +2,12 @@ package models;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "getKweets", query = "select k from Kweet k WHERE k.creator.username = :username"),
+})
 public class Kweet {
 
 
@@ -16,7 +16,7 @@ public class Kweet {
     private long id;
 
     private String content;
-    private Date dateTime;
+    private Calendar dateTime;
 
     @ManyToOne
     private User creator;
@@ -31,18 +31,18 @@ public class Kweet {
     }
 
 
-    public Kweet(String content, Date dateTime) {
+    public Kweet(String content, Calendar dateTime) {
         this.content = content;
         this.dateTime = dateTime;
     }
 
-    public Kweet(String content, Date dateTime, User creator) {
+    public Kweet(String content, Calendar dateTime, User creator) {
         this.content = content;
         this.dateTime = dateTime;
         this.creator = creator;
     }
 
-    public Kweet(String content, Date dateTime, User creator, Set<User> mentions, Set<Hashtag> hashtags) {
+    public Kweet(String content, Calendar dateTime, User creator, Set<User> mentions, Set<Hashtag> hashtags) {
         this.content = content;
         this.dateTime = dateTime;
         this.creator = creator;
@@ -50,7 +50,7 @@ public class Kweet {
         this.hashtags = hashtags;
     }
 
-    public Kweet(long id,String content, Date dateTime, User creator,Set<User> mentions,Set<Hashtag> hashtags) {
+    public Kweet(long id,String content, Calendar dateTime, User creator,Set<User> mentions,Set<Hashtag> hashtags) {
         this.id = id;
         this.content = content;
         this.dateTime = dateTime;
@@ -71,11 +71,11 @@ public class Kweet {
         this.content = content;
     }
 
-    public Date getDateTime() {
+    public Calendar getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(Date dateTime) {
+    public void setDateTime(Calendar dateTime) {
         this.dateTime = dateTime;
     }
 

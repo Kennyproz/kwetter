@@ -3,15 +3,14 @@ package service;
 
 import Exceptions.RoleExistsException;
 import Exceptions.UserExistsException;
-import models.Role;
-import models.User;
-import models.UserConvertor;
-import models.UserCreator;
+import models.*;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
+import java.util.Calendar;
+import java.util.Date;
 
 @Singleton
 @Startup
@@ -23,6 +22,10 @@ public class StartUp {
     @Inject
     private RoleService roleService;
 
+    @Inject
+    private KweetService kweetService;
+
+
     public StartUp() {
     }
 
@@ -30,6 +33,11 @@ public class StartUp {
      *  Inserts users to the database when starting the application
      */
     @PostConstruct
+    private void settingUpDatabase(){
+        this.addUsers();
+        this.addKweets();
+    }
+
     private void addUsers() {
         UserConvertor userConvertor = new UserConvertor();
 
@@ -54,5 +62,10 @@ public class StartUp {
         } catch (RoleExistsException e) {
             e.printStackTrace();
         }
+    }
+
+    private void addKweets(){
+        KweetCreator kweetCreator1 = new KweetCreator("The very first Kweet Yohoo",  Calendar.getInstance().toString(),"Ken");
+        kweetService.add(kweetCreator1,userService.users());
     }
 }

@@ -11,6 +11,7 @@ public interface KweetDAO {
     void remove(Kweet kweet);
     Kweet getKweetById(long id);
     List<Kweet> userKweets(long userId);
+    List<Kweet> userKweets(String username);
 
 
 }

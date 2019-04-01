@@ -1,6 +1,7 @@
 package models;
 
 import javax.ejb.Stateless;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -27,13 +28,14 @@ public class KweetConvertor {
     public Kweet convertToKweet(KweetCreator kweetCreator){
 
         String content = kweetCreator.getContent();
-        Date date = new Date();// new Date(kweetCreator.getDatetime());
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy'T'HH:mm");
+        Calendar date = Calendar.getInstance();// new Date(kweetCreator.getDatetime());
         User user = this.getUserFromUsername(kweetCreator.getCreator());
 
         Set<User> mentions = createMentionList(kweetCreator.getContent());
         Set<Hashtag> hashtags = createHashtagList(kweetCreator.getContent());
-
         Kweet kweet = new Kweet(content,date,user,mentions,hashtags);
+//        user.addKweet(kweet);
         return kweet;
 
     }

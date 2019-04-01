@@ -64,4 +64,15 @@ public class KweetMemoryDAO implements KweetDAO {
         }
         return kweetsOfUser;
     }
+
+    @Override
+    public List<Kweet> userKweets(String username) {
+        List<Kweet> kweetsOfUser = new ArrayList<>();
+        for(Kweet t : this.kweets){
+            if(t.getCreator().getUsername().equalsIgnoreCase(username)){
+                kweetsOfUser.add(t);
+            }
+        }
+        return kweetsOfUser;
+    }
 }

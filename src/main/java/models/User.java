@@ -2,10 +2,15 @@ package models;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "getUser", query = "select u from User u"),
+
+})
 public class User {
     @Id
     @GeneratedValue
@@ -25,7 +30,7 @@ public class User {
     private List<Kweet> kweets;
 
     public User(){
-
+        this.kweets = new ArrayList<>();
     }
 
     public User(String username, String photo, String bio, String location, String website) {
@@ -34,6 +39,8 @@ public class User {
         this.bio = bio;
         this.location = location;
         this.website = website;
+        this.kweets = new ArrayList<>();
+
     }
 
     public User(String username, String password, String photo, String bio, String location, String website) {
@@ -43,6 +50,8 @@ public class User {
         this.bio = bio;
         this.location = location;
         this.website = website;
+        this.kweets = new ArrayList<>();
+
     }
 
     public User(String username, String password, String photo, String bio, String location, String website, Set<Role> roles, Set<User> following) {
@@ -54,6 +63,8 @@ public class User {
         this.website = website;
         this.roles = roles;
         this.following = following;
+        this.kweets = new ArrayList<>();
+
     }
 
     public User(long id, String username, String password, String photo, String bio, String location, String website, Set<Role> roles, Set<User> following) {
@@ -66,6 +77,8 @@ public class User {
         this.website = website;
         this.roles = roles;
         this.following = following;
+        this.kweets = new ArrayList<>();
+
     }
 
     public long getId() {
