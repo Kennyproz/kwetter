@@ -4,12 +4,13 @@ package service;
 import Exceptions.RoleExistsException;
 import Exceptions.UserExistsException;
 import models.*;
+import sun.java2d.pipe.SpanShapeRenderer;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Singleton
@@ -65,7 +66,9 @@ public class StartUp {
     }
 
     private void addKweets(){
-        KweetCreator kweetCreator1 = new KweetCreator("The very first Kweet Yohoo",  Calendar.getInstance().toString(),"Ken");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy HH:mm:ss");
+        System.out.println(new Date().toString());
+        KweetCreator kweetCreator1 = new KweetCreator("The very first Kweet Yohoo",  sdf.format(new Date()) ,"Ken");
         kweetService.add(kweetCreator1,userService.users());
     }
 }

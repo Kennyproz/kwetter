@@ -29,7 +29,7 @@ public class KweetConvertor {
 
         String content = kweetCreator.getContent();
 //        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy'T'HH:mm");
-        Calendar date = Calendar.getInstance();// new Date(kweetCreator.getDatetime());
+        Date date =  new Date(kweetCreator.getDatetime());
         User user = this.getUserFromUsername(kweetCreator.getCreator());
 
         Set<User> mentions = createMentionList(kweetCreator.getContent());
