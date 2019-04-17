@@ -3,6 +3,7 @@ package dal.contexts.jpa;
 import dal.interfaces.KweetDAO;
 import models.Kweet;
 import models.User;
+import sun.swing.BakedArrayList;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
@@ -10,6 +11,8 @@ import javax.enterprise.inject.Default;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Default
@@ -44,12 +47,30 @@ public class KweetJPADAO implements KweetDAO {
 
     @Override
     public List<Kweet> userKweets(long userId) {
-        return em.createQuery("SELECT k FROM Kweet k WHERE k.creator.id = :userid").setParameter("userid",userId).getResultList();
-     //   return user.getKweets();
+        List<Object[]> allkweets = em.createNamedQuery("getKweetsById").setParameter("userid",userId).getResultList();
+        return this.getKweetList(allkweets);
     }
 
     @Override
     public List<Kweet> userKweets(String username) {
-    return em.createNamedQuery("getKweets",Kweet.class).setParameter("username",username).getResultList();
+        List<Object[]> allkweets = em.createNamedQuery("getKweetsByUsername").setParameter("username",username).getResultList();
+        return this.getKweetList(allkweets);
+    }
+
+    private List<Kweet> getKweetList(List<Object[]> allKweets){
+        List<Kweet> kweets = new ArrayList<>();
+        for(Object[] kweet: allKweets){
+            long id = (long)kweet[0];
+            String content = (String)kweet[1];
+            long creatorId = (long)kweet[2];
+            Date date = (Date)kweet[3];
+            String creator = (String)kweet[4];
+            String creatorPhoto = (String)kweet[5];
+
+            Kweet k = new Kweet(id,content,date,new User(creatorId,creator,creatorPhoto));
+            kweets.add(k);
+        }
+        return kweets;
+
     }
 }

@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -34,7 +35,7 @@ public class StartUp {
      *  Inserts users to the database when starting the application
      */
     @PostConstruct
-    private void settingUpDatabase(){
+    private void settingUpDatabase() {
         this.addUsers();
         this.addKweets();
     }
@@ -65,10 +66,8 @@ public class StartUp {
         }
     }
 
-    private void addKweets(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy HH:mm:ss");
-        System.out.println(new Date().toString());
-        KweetCreator kweetCreator1 = new KweetCreator("The very first Kweet Yohoo",  sdf.format(new Date()) ,"Ken");
+    private void addKweets() {
+        KweetCreator kweetCreator1 = new KweetCreator("The very first Kweet Yohoo" ,"Ken");
         kweetService.add(kweetCreator1,userService.users());
     }
 }

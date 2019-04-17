@@ -1,6 +1,7 @@
 package models;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 public class KweetCreator implements Serializable {
@@ -9,18 +10,26 @@ public class KweetCreator implements Serializable {
     private String content;
     private String datetime;
     private String creator;
+    private String photo;
     private Set<String> mentions;
     private Set<String> hashtags;
 
     public KweetCreator() {
     }
 
-    public KweetCreator(String content, String datetime, String creator) {
+    public KweetCreator(String content, String creator) {
         this.content = content;
-        this.datetime = datetime;
         this.creator = creator;
+        this.datetime = new Date().toString();
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 
     public String getContent() {
         return content;

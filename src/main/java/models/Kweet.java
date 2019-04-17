@@ -6,7 +6,9 @@ import java.util.*;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "getKweets", query = "select k from Kweet k WHERE k.creator.username = :username"),
+        @NamedQuery(name = "getKweetsById", query = "SELECT k.id, k.content, k.creator.id, k.dateTime, k.creator.username, k.creator.photo FROM Kweet k WHERE k.creator.id = :userid"),
+        @NamedQuery(name = "getKweetsByUsername", query = "SELECT k.id, k.content, k.creator.id, k.dateTime, k.creator.username, k.creator.photo FROM Kweet k WHERE k.creator.username = :username")
+
 })
 public class Kweet {
 
@@ -42,6 +44,14 @@ public class Kweet {
         this.creator = creator;
     }
 
+    public Kweet(long id, String content, Date dateTime, User creator) {
+        this.id = id;
+        this.content = content;
+        this.dateTime = dateTime;
+        this.creator = creator;
+    }
+
+
     public Kweet(String content, Date dateTime, User creator, Set<User> mentions, Set<Hashtag> hashtags) {
         this.content = content;
         this.dateTime = dateTime;
@@ -73,6 +83,10 @@ public class Kweet {
 
     public Date getDateTime() {
         return dateTime;
+    }
+
+    public String getStringDateTime() {
+        return dateTime.toString();
     }
 
     public void setDateTime(Date dateTime) {
