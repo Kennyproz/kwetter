@@ -16,6 +16,7 @@ public interface UserDAO {
     User getUser(String username) throws UserNotFoundException;
     boolean checkIfUsernameExists(String username);
     User login(String username, String password);
+    List<User> getFollowing(long id);
 
 
 }

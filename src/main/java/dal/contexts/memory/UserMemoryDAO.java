@@ -119,4 +119,15 @@ public class UserMemoryDAO implements UserDAO {
         }
         return null;
     }
+
+    @Override
+    public List<User> getFollowing(long id) {
+//        List<User> following = null;
+//        for (User u : this.users){
+//
+//
+//        }
+        return null;
+    }
+
 }

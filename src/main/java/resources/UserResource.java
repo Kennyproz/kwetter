@@ -37,6 +37,15 @@ public class UserResource {
         return Response.ok(user).build();
     }
 
+
+    @GET
+    @Path("/following/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getFollowing(@PathParam("id") long id) {
+        List<User> users = userService.getFollowingById(id);
+        return Response.ok(users).build();
+    }
+
     @GET
     @Path("/all-users")
     @Produces(MediaType.APPLICATION_JSON)

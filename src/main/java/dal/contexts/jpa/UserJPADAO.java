@@ -10,6 +10,7 @@ import javax.enterprise.inject.Default;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
 
 @Default
@@ -77,6 +78,24 @@ public class UserJPADAO implements UserDAO {
             return user;
         }
         return null;
+    }
+
+    @Override
+    public List<User> getFollowing(long id) {
+         List<Object[]> users = em.createNamedQuery("getFollowingById").setParameter("id",id).getResultList();
+         return this.getUsers(users);
+    }
+
+    private List<User> getUsers(List<Object[]> users){
+        List<User> followingUsers = new ArrayList<>();
+        for(Object[] user: users){
+            long id = (long)user[0];
+            String username = (String)user[1];
+
+            User u = new User(id,username);
+            followingUsers.add(u);
+        }
+        return followingUsers;
     }
 
 

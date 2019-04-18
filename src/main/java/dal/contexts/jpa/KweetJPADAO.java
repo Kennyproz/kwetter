@@ -71,6 +71,6 @@ public class KweetJPADAO implements KweetDAO {
             kweets.add(k);
         }
         return kweets;
-
     }
+
 }
