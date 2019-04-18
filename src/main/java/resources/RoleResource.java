@@ -21,8 +21,8 @@ public class RoleResource {
     @GET
     @Path("/all-roles")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response allRoles(){
-        List<Role> roles =  roleService.roles();
+    public Response allRoles() {
+        List<Role> roles = roleService.roles();
         return Response.status(200).entity(roles).build();
     }
 
@@ -32,7 +32,7 @@ public class RoleResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addRole(Role role) throws RoleExistsException {
-        Role addedRole =  roleService.add(role);
+        Role addedRole = roleService.add(role);
         return Response.status(201).entity(addedRole).build();
     }
 
@@ -40,7 +40,7 @@ public class RoleResource {
     @Path("/remove-role/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response removeRole(@PathParam("id") long roleId ){
+    public Response removeRole(@PathParam("id") long roleId) {
         roleService.remove(roleId);
         return Response.noContent().build();
     }

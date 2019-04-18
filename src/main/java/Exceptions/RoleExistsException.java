@@ -2,7 +2,7 @@ package Exceptions;
 
 public class RoleExistsException extends Exception {
 
-    public RoleExistsException(String message){
+    public RoleExistsException(String message) {
         super(message);
     }
 }

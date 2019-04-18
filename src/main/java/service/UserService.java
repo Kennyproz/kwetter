@@ -21,12 +21,13 @@ public class UserService {
     private UserDAO userDAO;
 
     /**
-     *  Creates an user.
+     * Creates an user.
+     *
      * @param userCreator
      * @return Returns the added user
      * @throws UserExistsException
      */
-    public  User add(UserCreator userCreator) throws UserExistsException {
+    public User add(UserCreator userCreator) throws UserExistsException {
         UserConvertor userConvertor = new UserConvertor();
         User user = userConvertor.convertToUser(userCreator);
         userDAO.add(user);
@@ -35,24 +36,27 @@ public class UserService {
 
     /**
      * Updates the user
+     *
      * @param user
      * @return
      */
-    public boolean edit(User user){
+    public boolean edit(User user) {
         return userDAO.edit(user);
     }
 
     /**
      * Deletes the user
+     *
      * @param userId
      */
-    public void remove(long userId){
+    public void remove(long userId) {
         userDAO.remove(userId);
     }
 
 
     /**
      * Returns the user with the given username
+     *
      * @param username
      * @return User
      * @throws UserNotFoundException
@@ -63,38 +67,42 @@ public class UserService {
 
     /**
      * Returns user by Id
+     *
      * @param id
      * @return User
      */
-    public User getUserById(long id){
+    public User getUserById(long id) {
         return userDAO.getUserById(id);
     }
 
     /**
      * Searhes for the user based on username, returns all users containing parameter username in username
+     *
      * @param username
      * @return
      */
-    public List<User> search(String username){
+    public List<User> search(String username) {
         return userDAO.search(username);
     }
 
     /**
      * Returns all users
+     *
      * @return
      */
-    public List<User> users(){
+    public List<User> users() {
         return userDAO.users();
     }
 
 
     /**
      * Makes user with id userId follow the user with id userToFollowId
+     *
      * @param userId
      * @param userToFollowId
      * @return
      */
-    public User follow(long userId, long userToFollowId){
+    public User follow(long userId, long userToFollowId) {
         User user = getUserById(userId);
         User userToFollow = getUserById(userToFollowId);
         user.getFollowing().add(userToFollow);
@@ -104,11 +112,12 @@ public class UserService {
 
     /**
      * Makes the user with id userId unfollow the user with id userToUnfollowId
+     *
      * @param userId
      * @param userToUnfollowId
      * @return
      */
-    public User unfollow(long userId, long userToUnfollowId){
+    public User unfollow(long userId, long userToUnfollowId) {
         User user = getUserById(userId);
         User userToUnfollow = getUserById(userToUnfollowId);
         user.getFollowing().remove(userToUnfollow);
@@ -117,8 +126,8 @@ public class UserService {
 
     }
 
-    public User login(String username, String password){
-        return userDAO.login(username,password);
+    public User login(String username, String password) {
+        return userDAO.login(username, password);
     }
 
 }

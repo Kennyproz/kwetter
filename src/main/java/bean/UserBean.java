@@ -17,7 +17,7 @@ import java.util.List;
 public class UserBean implements Serializable {
 
 
-    private static final long serialVersionUID =1L;
+    private static final long serialVersionUID = 1L;
 
     @Inject
     private UserService userService;
@@ -29,7 +29,7 @@ public class UserBean implements Serializable {
 //        return user;
 //    }
 
-    public List<User> getUsers(){
+    public List<User> getUsers() {
         return userService.users();
     }
 }

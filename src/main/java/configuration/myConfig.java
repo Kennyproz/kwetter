@@ -16,11 +16,11 @@ import javax.ws.rs.ApplicationPath;
 @ApplicationPath("/api")
 public class myConfig extends ResourceConfig {
 
-    public myConfig(){
+    public myConfig() {
         register(CORSResponseFilter.class);
         register(KweetCreator.class);
         register(UserCreator.class);
-       // register(KweetConvertor.class);
+        // register(KweetConvertor.class);
         register(UserResource.class);
         register(RoleResource.class);
         register(KweetResource.class);

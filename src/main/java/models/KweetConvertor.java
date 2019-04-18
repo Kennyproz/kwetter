@@ -25,7 +25,7 @@ public class KweetConvertor {
         this.users = users;
     }
 
-    public Kweet convertToKweet(KweetCreator kweetCreator){
+    public Kweet convertToKweet(KweetCreator kweetCreator) {
 
         String content = kweetCreator.getContent();
 //        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy'T'HH:mm");
@@ -34,16 +34,16 @@ public class KweetConvertor {
 
         Set<User> mentions = createMentionList(kweetCreator.getContent());
         Set<Hashtag> hashtags = createHashtagList(kweetCreator.getContent());
-        Kweet kweet = new Kweet(content,date,user,mentions,hashtags);
+        Kweet kweet = new Kweet(content, date, user, mentions, hashtags);
 //        user.addKweet(kweet);
         return kweet;
 
     }
 
 
-    private User getUserFromUsername(String username){
-        for (User u : users){
-            if(u.getUsername().equals(username)){
+    private User getUserFromUsername(String username) {
+        for (User u : users) {
+            if (u.getUsername().equals(username)) {
                 return u;
             }
         }
@@ -51,17 +51,17 @@ public class KweetConvertor {
     }
 
 
-    public Set<User> createMentionList(String content){
+    public Set<User> createMentionList(String content) {
 
         Set<User> mentions = new HashSet<>();
-        for(String s : content.split(" ")){
-            if(s.charAt(0) == '@'){
+        for (String s : content.split(" ")) {
+            if (s.charAt(0) == '@') {
                 String username = s.substring(1);
                 Optional<User> matchingObject = users.stream().
                         filter(u -> u.getUsername().equals(username)).
                         findFirst();
                 User u = matchingObject.orElse(null);
-                if(u != null){
+                if (u != null) {
                     mentions.add(u);
                 }
             }
@@ -70,11 +70,11 @@ public class KweetConvertor {
         return mentions;
     }
 
-    public Set<Hashtag> createHashtagList(String content){
+    public Set<Hashtag> createHashtagList(String content) {
         Set<Hashtag> hashtags = new HashSet<>();
-        for(String s : content.split(" ")){
-            if(s.charAt(0) == '#'){
-                if(s.length() > 1){
+        for (String s : content.split(" ")) {
+            if (s.charAt(0) == '#') {
+                if (s.length() > 1) {
                     String hashtag = s.substring(1);
                     hashtags.add(new Hashtag(hashtag));
                 }

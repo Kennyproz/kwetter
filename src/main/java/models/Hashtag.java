@@ -12,7 +12,7 @@ public class Hashtag {
     @GeneratedValue
     private long id;
 
-    @Column(unique =true)
+    @Column(unique = true)
     private String name;
 
 

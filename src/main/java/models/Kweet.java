@@ -27,7 +27,7 @@ public class Kweet {
     @OneToMany
     private Set<Hashtag> hashtags;
 
-    public Kweet(){
+    public Kweet() {
     }
 
 
@@ -50,7 +50,7 @@ public class Kweet {
         this.hashtags = hashtags;
     }
 
-    public Kweet(long id,String content, Calendar dateTime, User creator,Set<User> mentions,Set<Hashtag> hashtags) {
+    public Kweet(long id, String content, Calendar dateTime, User creator, Set<User> mentions, Set<Hashtag> hashtags) {
         this.id = id;
         this.content = content;
         this.dateTime = dateTime;
@@ -91,7 +91,7 @@ public class Kweet {
         this.mentions = mentions;
     }
 
-    public void addMention(User user){
+    public void addMention(User user) {
         this.mentions.add(user);
     }
 }

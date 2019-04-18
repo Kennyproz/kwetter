@@ -18,6 +18,7 @@ public class RoleService {
 
     /**
      * Creates a Role
+     *
      * @param role
      * @return
      * @throws RoleExistsException
@@ -29,27 +30,30 @@ public class RoleService {
 
     /**
      * Removes the role with given roleId
+     *
      * @param roleId
      */
-    public void remove(long roleId){
+    public void remove(long roleId) {
         roleDAO.remove(roleId);
     }
 
     /**
      * Returns all roles
+     *
      * @return
      */
-    public List<Role> roles(){
+    public List<Role> roles() {
         return roleDAO.roles();
     }
 
 
     /**
      * Returns the role with given id
+     *
      * @param id
      * @return
      */
-    public Role getRoleById(long id){
-       return roleDAO.getRoleById(id);
+    public Role getRoleById(long id) {
+        return roleDAO.getRoleById(id);
     }
 }

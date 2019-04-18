@@ -12,7 +12,7 @@ public class Role {
     @GeneratedValue
     private long id;
 
-    @Column(unique =true)
+    @Column(unique = true)
     private String name;
 
     public Role() {
@@ -22,7 +22,7 @@ public class Role {
         this.name = name;
     }
 
-    public Role(long id , String name){
+    public Role(long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -35,7 +35,7 @@ public class Role {
         return this.name;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 }

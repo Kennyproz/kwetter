@@ -89,7 +89,7 @@ public class UserCreator implements Serializable {
 //
 //    }
 
-    public UserCreator(){
+    public UserCreator() {
 
     }
 

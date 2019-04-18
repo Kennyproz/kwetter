@@ -21,11 +21,12 @@ public class KweetService {
 
     /**
      * Creates an Kweet by converting the KweetCreator to a kweet
+     *
      * @param kweetCreator
      * @param users
      * @return
      */
-    public Kweet add(KweetCreator kweetCreator,List<User> users){
+    public Kweet add(KweetCreator kweetCreator, List<User> users) {
         KweetConvertor kweetConvertor = new KweetConvertor();
         kweetConvertor.setUsers(users);
         Kweet kweetToAdd = kweetConvertor.convertToKweet(kweetCreator);
@@ -34,31 +35,34 @@ public class KweetService {
 
     /**
      * Updates the kweet
+     *
      * @param kweet
      * @return
      */
-    public boolean edit(Kweet kweet){
+    public boolean edit(Kweet kweet) {
         return kweetDAO.edit(kweet);
     }
 
     /**
      * Deletes the kweet
+     *
      * @param kweet
      */
-    public void remove(Kweet kweet){
+    public void remove(Kweet kweet) {
         kweetDAO.remove(kweet);
     }
 
     /**
      * Returns all kweets of the user
+     *
      * @param userId
      * @return
      */
-    public List<Kweet> kweets(long userId){
+    public List<Kweet> kweets(long userId) {
         return kweetDAO.userKweets(userId);
     }
 
-    public List<Kweet> kweets(String username){
+    public List<Kweet> kweets(String username) {
         return kweetDAO.userKweets(username);
     }
 

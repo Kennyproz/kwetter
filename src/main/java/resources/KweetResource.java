@@ -27,8 +27,8 @@ public class KweetResource {
     @Path("/add")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response add(KweetCreator kweetcreator){
-        Kweet kweet = kweetService.add(kweetcreator,userService.users());
+    public Response add(KweetCreator kweetcreator) {
+        Kweet kweet = kweetService.add(kweetcreator, userService.users());
         return Response.ok().entity(kweet).build();
     }
 
@@ -36,16 +36,16 @@ public class KweetResource {
     @Path("/edit")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response edit(Kweet kweet){
-         kweetService.edit(kweet);
-         return Response.ok().build();
+    public Response edit(Kweet kweet) {
+        kweetService.edit(kweet);
+        return Response.ok().build();
     }
 
     @DELETE
     @Path("/remove")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response remove(Kweet kweet){
+    public Response remove(Kweet kweet) {
         kweetService.remove(kweet);
         return Response.status(202).entity("Deleted succesfully").build();
     }
@@ -54,15 +54,15 @@ public class KweetResource {
     @Path("/get-by-id/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response kweets(@PathParam("userId") long userId) {
-        List<Kweet> kweets =  kweetService.kweets(userId);
+        List<Kweet> kweets = kweetService.kweets(userId);
         return Response.status(200).entity(kweets).build();
     }
 
     @GET
     @Path("/get-by-username/{username}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response kweets(@PathParam("username") String username){
+    public Response kweets(@PathParam("username") String username) {
         List<Kweet> kweets = kweetService.kweets(username);
-        return  Response.ok().entity(kweets).build();
+        return Response.ok().entity(kweets).build();
     }
 }

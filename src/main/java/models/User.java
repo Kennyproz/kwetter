@@ -16,7 +16,7 @@ public class User {
     @GeneratedValue
     private long id;
 
-    @Column(unique =true)
+    @Column(unique = true)
     private String username;
     private String password, photo, bio, location, website;
 
@@ -29,7 +29,7 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER)
     private List<Kweet> kweets;
 
-    public User(){
+    public User() {
         this.kweets = new ArrayList<>();
     }
 
@@ -153,15 +153,15 @@ public class User {
         return kweets;
     }
 
-    public void addKweet(Kweet kweet){
+    public void addKweet(Kweet kweet) {
         this.kweets.add(kweet);
     }
 
-    public void follow(User user){
+    public void follow(User user) {
         this.following.add(user);
     }
 
-    public void unfollow(User user){
+    public void unfollow(User user) {
         this.following.remove(user);
     }
 
