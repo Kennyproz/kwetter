@@ -1,9 +1,10 @@
 package models;
 
+
 import javax.ejb.Stateless;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 @Stateless
 public class KweetConvertor {
@@ -28,8 +29,8 @@ public class KweetConvertor {
     public Kweet convertToKweet(KweetCreator kweetCreator) {
 
         String content = kweetCreator.getContent();
-//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy'T'HH:mm");
-        Calendar date = Calendar.getInstance();// new Date(kweetCreator.getDatetime());
+        SimpleDateFormat dt = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        Date date = new Date();
         User user = this.getUserFromUsername(kweetCreator.getCreator());
 
         Set<User> mentions = createMentionList(kweetCreator.getContent());

@@ -27,8 +27,9 @@ public class KweetResource {
     @Path("/add")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+
     public Response add(KweetCreator kweetcreator) {
-        Kweet kweet = kweetService.add(kweetcreator, userService.users());
+        Kweet kweet = kweetService.add(kweetcreator, userService.users())
         return Response.ok().entity(kweet).build();
     }
 

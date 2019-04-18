@@ -1,12 +1,13 @@
 package models;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.*;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "getKweets", query = "select k from Kweet k WHERE k.creator.username = :username"),
+        @NamedQuery(name = "getKweetsById", query = "SELECT k.id, k.content, k.creator.id, k.dateTime, k.creator.username, k.creator.photo FROM Kweet k WHERE k.creator.id = :userid"),
+        @NamedQuery(name = "getKweetsByUsername", query = "SELECT k.id, k.content, k.creator.id, k.dateTime, k.creator.username, k.creator.photo FROM Kweet k WHERE k.creator.username = :username")
+
 })
 public class Kweet {
 
@@ -16,7 +17,7 @@ public class Kweet {
     private long id;
 
     private String content;
-    private Calendar dateTime;
+    private Date dateTime;
 
     @ManyToOne
     private User creator;
@@ -31,18 +32,26 @@ public class Kweet {
     }
 
 
-    public Kweet(String content, Calendar dateTime) {
+    public Kweet(String content, Date dateTime) {
         this.content = content;
         this.dateTime = dateTime;
     }
 
-    public Kweet(String content, Calendar dateTime, User creator) {
+    public Kweet(String content, Date dateTime, User creator) {
         this.content = content;
         this.dateTime = dateTime;
         this.creator = creator;
     }
 
-    public Kweet(String content, Calendar dateTime, User creator, Set<User> mentions, Set<Hashtag> hashtags) {
+    public Kweet(long id, String content, Date dateTime, User creator) {
+        this.id = id;
+        this.content = content;
+        this.dateTime = dateTime;
+        this.creator = creator;
+    }
+
+
+    public Kweet(String content, Date dateTime, User creator, Set<User> mentions, Set<Hashtag> hashtags) {
         this.content = content;
         this.dateTime = dateTime;
         this.creator = creator;
@@ -50,7 +59,8 @@ public class Kweet {
         this.hashtags = hashtags;
     }
 
-    public Kweet(long id, String content, Calendar dateTime, User creator, Set<User> mentions, Set<Hashtag> hashtags) {
+
+    public Kweet(long id,String content, Date dateTime, User creator,Set<User> mentions,Set<Hashtag> hashtags) {
         this.id = id;
         this.content = content;
         this.dateTime = dateTime;
@@ -71,11 +81,15 @@ public class Kweet {
         this.content = content;
     }
 
-    public Calendar getDateTime() {
+    public Date getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(Calendar dateTime) {
+    public String getStringDateTime() {
+        return dateTime.toString();
+    }
+
+    public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
 

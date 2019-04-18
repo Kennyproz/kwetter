@@ -4,13 +4,17 @@ package service;
 import Exceptions.RoleExistsException;
 import Exceptions.UserExistsException;
 import models.*;
+import sun.java2d.pipe.SpanShapeRenderer;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
-import java.util.Calendar;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 
 @Singleton
 @Startup
@@ -40,11 +44,12 @@ public class StartUp {
 
     private void addUsers() {
         UserConvertor userConvertor = new UserConvertor();
-
-        User user1 = new User("Ken", "TestPWK", "https://picsum.photos/200", "This is the first user", "Brouwhuis", "https://www.exmaple.com", null, null);
-        User user2 = new User("Ralf", "TestPWR", "https://picsum.photos/200", "This is the second user", "Gemert", "https://www.exmaple.com", null, null);
-        User user3 = new User("Kenny", "TestPWK", "https://picsum.photos/200", "This is the third user", "Eindhoven", "https://www.exmaple.com", null, null);
-        User user4 = new User("Ralfie", "TestPWR", "https://picsum.photos/200", "This is the fourth user", "Amsterdam", "https://www.exmaple.com", null, null);
+        User user1 = new User("Ken","TestPWK","https://picsum.photos/200","This is the first user" ,"Brouwhuis","https://www.exmaple.com",null, new HashSet<>());
+        User user2 = new User("Ralf","TestPWR","https://picsum.photos/200","This is the second user","Gemert","https://www.exmaple.com",null, new HashSet<>());
+        User user3 = new User("Kenny","TestPWK","https://picsum.photos/200","This is the third user" ,"Eindhoven","https://www.exmaple.com",null, new HashSet<>());
+        User user4 = new User("Ralfie","TestPWR","https://picsum.photos/200","This is the fourth user","Amsterdam","https://www.exmaple.com",null, new HashSet<>());
+        user1.getFollowing().add(user2);
+        user2.getFollowing().add(user3);
         UserCreator userCreator1 = userConvertor.convertToCreator(user1);
         UserCreator userCreator2 = userConvertor.convertToCreator(user2);
         UserCreator userCreator3 = userConvertor.convertToCreator(user3);
@@ -65,7 +70,7 @@ public class StartUp {
     }
 
     private void addKweets() {
-        KweetCreator kweetCreator1 = new KweetCreator("The very first Kweet Yohoo", Calendar.getInstance().toString(), "Ken");
-        kweetService.add(kweetCreator1, userService.users());
+        KweetCreator kweetCreator1 = new KweetCreator("The very first Kweet Yohoo" ,"Ken");
+        kweetService.add(kweetCreator1,userService.users());
     }
 }

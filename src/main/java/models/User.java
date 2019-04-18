@@ -8,7 +8,12 @@ import java.util.Set;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "getUser", query = "select u from User u"),
+        @NamedQuery(name = "getUsers", query = "SELECT u FROM User u"),
+//        @NamedQuery(name = "getFollowing", query = "SELECT * FROM User u LEFT JOIN u.following f ON u.  WHERE User u ")
+        //@NamedQuery(name = "getFollowingById", query = "SELECT u.following FROM User u WHERE u.id = :id")
+//        @NamedQuery(name = "getFollowingById", query = "SELECT following.id,following.username FROM User u LEFT JOIN user_user uu ON u.id = uu.User_id JOIN User as following ON following.id = uu.following_id WHERE uu.User_id = 3")
+
+
 
 })
 public class User {
@@ -24,6 +29,11 @@ public class User {
     private Set<Role> roles;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_user",
+            joinColumns = @JoinColumn (name = "User_id"),
+            inverseJoinColumns = @JoinColumn(name = "following_id")
+    )
     private Set<User> following;
 
     @OneToMany(fetch = FetchType.EAGER)
@@ -31,6 +41,12 @@ public class User {
 
     public User() {
         this.kweets = new ArrayList<>();
+    }
+
+    public User(long id, String username, String photo) {
+        this.id = id;
+        this.username = username;
+        this.photo = photo;
     }
 
     public User(String username, String photo, String bio, String location, String website) {

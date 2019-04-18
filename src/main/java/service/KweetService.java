@@ -9,6 +9,7 @@ import models.User;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
+
 import java.util.List;
 
 @Default
@@ -29,7 +30,10 @@ public class KweetService {
     public Kweet add(KweetCreator kweetCreator, List<User> users) {
         KweetConvertor kweetConvertor = new KweetConvertor();
         kweetConvertor.setUsers(users);
-        Kweet kweetToAdd = kweetConvertor.convertToKweet(kweetCreator);
+
+        Kweet kweetToAdd = null;
+        kweetToAdd = kweetConvertor.convertToKweet(kweetCreator);
+
         return kweetDAO.add(kweetToAdd);
     }
 
