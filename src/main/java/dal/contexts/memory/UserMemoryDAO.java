@@ -131,6 +131,11 @@ public class UserMemoryDAO implements UserDAO {
     }
 
     @Override
+    public List<User> getFollowers(long id) {
+        return null;
+    }
+
+    @Override
     public boolean isFollowing(long userId, long isFollowingUserId) {
         return false;
     }

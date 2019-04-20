@@ -65,6 +65,10 @@ public class UserService {
         return userDAO.getUser(username);
     }
 
+    public List<User> getFollowersById(long id){
+        return userDAO.getFollowers(id);
+    }
+
     public List<User> getFollowingById(long id){
         return userDAO.getFollowing(id);
     }

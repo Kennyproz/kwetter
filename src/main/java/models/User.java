@@ -11,6 +11,7 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = "getUsers", query = "SELECT u FROM User u"),
         @NamedQuery(name = "getFollowingById", query = "SELECT following.id,following.username FROM User u JOIN u.following as following WHERE u.id = :id"),
+        @NamedQuery(name = "getFollowersById", query = "SELECT u.id,u.username FROM User u JOIN u.following as following WHERE following.id = :id"),
         @NamedQuery(name =  "isFollowing", query = "SELECT CASE WHEN (count(u) > 0) THEN TRUE ELSE FALSE END FROM User u JOIN u.following as following WHERE u.id = :userid AND following.id = :userfollowid")
 })
 public class User {

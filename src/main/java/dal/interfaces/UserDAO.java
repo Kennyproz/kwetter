@@ -17,6 +17,7 @@ public interface UserDAO {
     boolean checkIfUsernameExists(String username);
     User login(String username, String password);
     List<User> getFollowing(long id);
+    List<User> getFollowers(long id);
     boolean isFollowing(long userId, long isFollowingUserId);
 
 
