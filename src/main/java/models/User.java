@@ -3,6 +3,7 @@ package models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -10,10 +11,7 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = "getUsers", query = "SELECT u FROM User u"),
         @NamedQuery(name = "getFollowingById", query = "SELECT following.id,following.username FROM User u JOIN u.following as following WHERE u.id = :id"),
-        @NamedQuery(name =  "isFollowing", query = "SELECT u FROM User u JOIN u.following as following WHERE u.id = :userid AND following.id = :userfollowid")
-
-
-
+        @NamedQuery(name =  "isFollowing", query = "SELECT CASE WHEN (count(u) > 0) THEN TRUE ELSE FALSE END FROM User u JOIN u.following as following WHERE u.id = :userid AND following.id = :userfollowid")
 })
 public class User {
     @Id
@@ -28,11 +26,6 @@ public class User {
     private Set<Role> roles;
 
     @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(
-//            name = "user_user",
-//            joinColumns = @JoinColumn (name = "User_id"),
-//            inverseJoinColumns = @JoinColumn(name = "following_id")
-//    )
     private Set<User> following;
 
     @OneToMany(fetch = FetchType.EAGER)
@@ -60,7 +53,7 @@ public class User {
         this.location = location;
         this.website = website;
         this.kweets = new ArrayList<>();
-
+        this.following = new HashSet<>();
     }
 
     public User(String username, String password, String photo, String bio, String location, String website) {
@@ -70,6 +63,7 @@ public class User {
         this.bio = bio;
         this.location = location;
         this.website = website;
+        this.following = new HashSet<>();
         this.kweets = new ArrayList<>();
 
     }

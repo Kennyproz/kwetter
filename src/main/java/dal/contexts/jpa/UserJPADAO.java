@@ -89,7 +89,7 @@ public class UserJPADAO implements UserDAO {
     @Override
     public boolean isFollowing(long userId, long isFollowingUserId) {
         Object isFollowing =  em.createNamedQuery("isFollowing").setParameter("userid",userId).setParameter("userfollowid",isFollowingUserId).getSingleResult();
-        if(isFollowing!=null){
+        if((boolean)isFollowing){
             return true;
         }
         return false;

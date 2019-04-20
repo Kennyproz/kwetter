@@ -51,6 +51,7 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response isFollowing(@PathParam("userid") long id, @PathParam("userfollowid") long userfollowid) {
         boolean isFollowing = userService.isFollowing(id,userfollowid);
+
         return Response.ok(isFollowing).build();
     }
 
