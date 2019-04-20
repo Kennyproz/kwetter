@@ -9,9 +9,8 @@ import java.util.Set;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "getUsers", query = "SELECT u FROM User u"),
-//        @NamedQuery(name = "getFollowing", query = "SELECT * FROM User u LEFT JOIN u.following f ON u.  WHERE User u ")
-        //@NamedQuery(name = "getFollowingById", query = "SELECT u.following FROM User u WHERE u.id = :id")
-        @NamedQuery(name = "getFollowingById", query = "SELECT following.id,following.username FROM User u JOIN u.following as following WHERE u.id = :id")
+        @NamedQuery(name = "getFollowingById", query = "SELECT following.id,following.username FROM User u JOIN u.following as following WHERE u.id = :id"),
+        @NamedQuery(name =  "isFollowing", query = "SELECT u FROM User u JOIN u.following as following WHERE u.id = :userid AND following.id = :userfollowid")
 
 
 

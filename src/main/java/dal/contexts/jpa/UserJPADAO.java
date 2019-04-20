@@ -86,6 +86,15 @@ public class UserJPADAO implements UserDAO {
          return this.getUsers(users);
     }
 
+    @Override
+    public boolean isFollowing(long userId, long isFollowingUserId) {
+        Object isFollowing =  em.createNamedQuery("isFollowing").setParameter("userid",userId).setParameter("userfollowid",isFollowingUserId).getSingleResult();
+        if(isFollowing!=null){
+            return true;
+        }
+        return false;
+    }
+
     private List<User> getUsers(List<Object[]> users){
         List<User> followingUsers = new ArrayList<>();
         for(Object[] user: users){

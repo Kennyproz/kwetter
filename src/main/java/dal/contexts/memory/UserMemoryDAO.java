@@ -130,4 +130,9 @@ public class UserMemoryDAO implements UserDAO {
         return null;
     }
 
+    @Override
+    public boolean isFollowing(long userId, long isFollowingUserId) {
+        return false;
+    }
+
 }

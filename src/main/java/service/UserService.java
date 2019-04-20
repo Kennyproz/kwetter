@@ -134,4 +134,8 @@ public class UserService {
         return userDAO.login(username, password);
     }
 
+    public boolean isFollowing(long userId, long userFollowId){
+        return userDAO.isFollowing(userId,userFollowId);
+    }
+
 }
