@@ -44,22 +44,28 @@ public class UserJPADAO implements UserDAO {
 
     @Override
     public User getUserById(long id) {
-        return em.find(User.class,id);
+        return em.createNamedQuery("getUserById",User.class).setParameter("id",id).getSingleResult();
+    }
+
+    @Override
+    public User getFullUserById(long id) {
+        return em.createQuery("SELECT u FROM User u WHERE u.id = :id",User.class).setParameter("id",id).getSingleResult();
     }
 
     @Override
     public List<User> users() {
-        return em.createQuery("SELECT u FROM User u").getResultList();
+        return em.createNamedQuery("getUsers",User.class).getResultList();
     }
 
     @Override
     public List<User> search(String username) {
-        return em.createQuery("SELECT u FROM User u WHERE u.username LIKE :name").setParameter("name","%"+username + "%").getResultList();
+        return em.createNamedQuery("searchUsers",User.class).setParameter("name","%"+username + "%").getResultList();
+
     }
 
     @Override
     public User getUser(String username) {
-        return (User) em.createQuery("SELECT u FROM User u WHERE u.username = :username").setParameter("username",username).getSingleResult();
+        return em.createNamedQuery("getUserByUsername",User.class).setParameter("username",username).getSingleResult();
     }
 
     @Override
@@ -83,13 +89,13 @@ public class UserJPADAO implements UserDAO {
     @Override
     public List<User> getFollowing(long id) {
          List<Object[]> users = em.createNamedQuery("getFollowingById").setParameter("id",id).getResultList();
-         return this.getUsers(users);
+         return this.getUserFollowings(users);
     }
 
     @Override
     public List<User> getFollowers(long id) {
         List<Object[]> users = em.createNamedQuery("getFollowersById").setParameter("id",id).getResultList();
-        return this.getUsers(users);
+        return this.getUserFollowings(users);
     }
 
     @Override
@@ -101,7 +107,7 @@ public class UserJPADAO implements UserDAO {
         return false;
     }
 
-    private List<User> getUsers(List<Object[]> users){
+    private List<User> getUserFollowings(List<Object[]> users){
         List<User> followingUsers = new ArrayList<>();
         for(Object[] user: users){
             long id = (long)user[0];

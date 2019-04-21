@@ -1,6 +1,7 @@
 package models;
 
 
+import javax.inject.Named;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -9,10 +10,13 @@ import java.util.Set;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "getUsers", query = "SELECT u FROM User u"),
+        @NamedQuery(name = "getUserById", query = "SELECT NEW models.User(u.id, u.username, u.password, u.photo, u.bio, u.location, u.website) FROM User u WHERE u.id = :id"),
+        @NamedQuery(name = "getUserByUsername", query = "SELECT NEW models.User(u.id, u.username, u.password, u.photo, u.bio, u.location, u.website) FROM User u WHERE u.username = :username"),
+        @NamedQuery(name = "getUsers", query = "SELECT NEW models.User(u.id, u.username, u.password, u.photo, u.bio, u.location, u.website) FROM User u"),
         @NamedQuery(name = "getFollowingById", query = "SELECT following.id,following.username FROM User u JOIN u.following as following WHERE u.id = :id"),
         @NamedQuery(name = "getFollowersById", query = "SELECT u.id,u.username FROM User u JOIN u.following as following WHERE following.id = :id"),
-        @NamedQuery(name =  "isFollowing", query = "SELECT CASE WHEN (count(u) > 0) THEN TRUE ELSE FALSE END FROM User u JOIN u.following as following WHERE u.id = :userid AND following.id = :userfollowid")
+        @NamedQuery(name = "isFollowing", query = "SELECT CASE WHEN (count(u) > 0) THEN TRUE ELSE FALSE END FROM User u JOIN u.following as following WHERE u.id = :userid AND following.id = :userfollowid"),
+        @NamedQuery(name = "searchUsers", query = "SELECT NEW models.User(u.id, u.username, u.password, u.photo, u.bio, u.location, u.website) FROM User u WHERE u.username LIKE :name")
 })
 public class User {
     @Id
@@ -55,6 +59,16 @@ public class User {
         this.website = website;
         this.kweets = new ArrayList<>();
         this.following = new HashSet<>();
+    }
+
+    public User(long id,String username,String password, String photo, String bio, String location, String website) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.photo = photo;
+        this.bio = bio;
+        this.location = location;
+        this.website = website;
     }
 
     public User(String username, String password, String photo, String bio, String location, String website) {

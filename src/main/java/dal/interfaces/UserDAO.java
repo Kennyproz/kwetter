@@ -19,6 +19,7 @@ public interface UserDAO {
     List<User> getFollowing(long id);
     List<User> getFollowers(long id);
     boolean isFollowing(long userId, long isFollowingUserId);
+    User getFullUserById(long id);
 
 
 }

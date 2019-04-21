@@ -140,4 +140,9 @@ public class UserMemoryDAO implements UserDAO {
         return false;
     }
 
+    @Override
+    public User getFullUserById(long id) {
+        return null;
+    }
+
 }

@@ -10,6 +10,7 @@ import models.UserCreator;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
+import java.util.HashSet;
 import java.util.List;
 
 @Default
@@ -83,6 +84,10 @@ public class UserService {
         return userDAO.getUserById(id);
     }
 
+    public User getFullUserById(long id){
+        return userDAO.getFullUserById(id);
+    }
+
     /**
      * Searhes for the user based on username, returns all users containing parameter username in username
      *
@@ -111,8 +116,8 @@ public class UserService {
      * @return
      */
     public User follow(long userId, long userToFollowId) {
-        User user = getUserById(userId);
-        User userToFollow = getUserById(userToFollowId);
+        User user = getFullUserById(userId);
+        User userToFollow = getFullUserById(userToFollowId);
         user.getFollowing().add(userToFollow);
         userDAO.edit(user);
         return user;
@@ -131,8 +136,8 @@ public class UserService {
         user.getFollowing().remove(userToUnfollow);
         userDAO.edit(user);
         return user;
-
     }
+
 
     public User login(String username, String password) {
         return userDAO.login(username, password);
