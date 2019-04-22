@@ -55,13 +55,19 @@ public class StartUp {
         UserCreator userCreator3 = userConvertor.convertToCreator(user3);
         UserCreator userCreator4 = userConvertor.convertToCreator(user4);
 
+
         try {
             roleService.add(new Role("Admin"));
             userService.add(userCreator1);
             userService.add(userCreator2);
             userService.add(userCreator3);
             userService.add(userCreator4);
-
+            for (int i = 1; i < 10; i++)
+            {
+                User u = new User("user"+i,"user"+i,"https://picsum.photos/200","this is user " + i,"Somewhere","https://www.example.com",new HashSet<>(),new HashSet<>());
+                UserCreator uc = userConvertor.convertToCreator(u);
+                userService.add(uc);
+            }
         } catch (UserExistsException e) {
             e.printStackTrace();
         } catch (RoleExistsException e) {
