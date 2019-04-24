@@ -11,9 +11,7 @@ import javax.enterprise.inject.Default;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Default
 @Named("KweetJPA")
@@ -55,6 +53,26 @@ public class KweetJPADAO implements KweetDAO {
     public List<Kweet> userKweets(String username) {
         List<Object[]> allkweets = em.createNamedQuery("getKweetsByUsername").setParameter("username",username).getResultList();
         return this.getKweetList(allkweets);
+    }
+
+    @Override
+    public List<Kweet> searchKweets(String search) {
+        List<Kweet> kweets = em.createNamedQuery("searchKweets",Kweet.class).setParameter("search",'%'+search+'%').getResultList();
+        return kweets;
+    }
+
+    @Override
+    public List<Kweet> timeline(long userId) {
+        List<Kweet> kweets = em.createNamedQuery("timelineKweets",Kweet.class).setParameter("id",userId).getResultList();
+        List<Kweet> userKweets = this.userKweets(userId);
+        kweets.addAll(userKweets);
+        Collections.sort(kweets, new Comparator<Kweet>(){
+            @Override
+            public int compare(Kweet k1, Kweet k2) {
+                return k2.getDateTime().compareTo(k1.getDateTime());
+            }
+        });
+        return kweets;
     }
 
     private List<Kweet> getKweetList(List<Object[]> allKweets){

@@ -77,6 +77,19 @@ public class StartUp {
 
     private void addKweets() {
         KweetCreator kweetCreator1 = new KweetCreator("The very first Kweet Yohoo" ,"Ken");
+        KweetCreator kweetCreator2 = new KweetCreator("The very second Kweet Yohoo" ,"Ken");
+        KweetCreator kweetCreator3 = new KweetCreator("The very third Kweet Yohoo" ,"Ken");
+        KweetCreator kweetCreator4 = new KweetCreator("The very fourth Kweet Yohoo" ,"Ken");
+        KweetCreator kweetCreator5 = new KweetCreator("The very fifth Kweet Yohoo" ,"Ken");
         kweetService.add(kweetCreator1,userService.users());
+        kweetService.add(kweetCreator2,userService.users());
+        kweetService.add(kweetCreator3,userService.users());
+        kweetService.add(kweetCreator4,userService.users());
+        kweetService.add(kweetCreator5,userService.users());
+        for (int i = 1; i < 10; i++) {
+            KweetCreator kweetCreator = new KweetCreator("A test kweet " + i ,"user1");
+            kweetService.add(kweetCreator,userService.users());
+        }
+
     }
 }

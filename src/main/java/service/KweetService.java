@@ -70,5 +70,12 @@ public class KweetService {
         return kweetDAO.userKweets(username);
     }
 
+    public List<Kweet> search(String search){
+        return kweetDAO.searchKweets(search);
+    }
+
+    public List<Kweet> timeline(long userId){
+        return kweetDAO.timeline(userId);
+    }
 
 }

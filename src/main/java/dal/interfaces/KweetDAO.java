@@ -12,6 +12,7 @@ public interface KweetDAO {
     Kweet getKweetById(long id);
     List<Kweet> userKweets(long userId);
     List<Kweet> userKweets(String username);
-
+    List<Kweet> searchKweets(String search);
+    List<Kweet> timeline(long userId);
 
 }

@@ -75,4 +75,14 @@ public class KweetMemoryDAO implements KweetDAO {
         }
         return kweetsOfUser;
     }
+
+    @Override
+    public List<Kweet> searchKweets(String search) {
+        return null;
+    }
+
+    @Override
+    public List<Kweet> timeline(long userId) {
+        return null;
+    }
 }

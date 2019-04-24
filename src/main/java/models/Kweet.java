@@ -6,8 +6,10 @@ import java.util.*;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "getKweetsById", query = "SELECT k.id, k.content, k.creator.id, k.dateTime, k.creator.username, k.creator.photo FROM Kweet k WHERE k.creator.id = :userid"),
-        @NamedQuery(name = "getKweetsByUsername", query = "SELECT k.id, k.content, k.creator.id, k.dateTime, k.creator.username, k.creator.photo FROM Kweet k WHERE k.creator.username = :username")
-
+        @NamedQuery(name = "getKweetsByUsername", query = "SELECT k.id, k.content, k.creator.id, k.dateTime, k.creator.username, k.creator.photo FROM Kweet k WHERE k.creator.username = :username"),
+        @NamedQuery(name = "searchKweets", query = "SELECT NEW models.Kweet(k.id, k.content, k.creator.id, k.dateTime, k.creator.username, k.creator.photo) FROM Kweet k WHERE k.content LIKE :search"),
+        @NamedQuery(name = "timelineKweets", query = "SELECT NEW models.Kweet(k.id, k.content, k.creator.id, k.dateTime, k.creator.username, k.creator.photo) FROM Kweet k JOIN k.creator user WHERE user.id IN (SELECT following.id FROM User u JOIN u.following as following WHERE u.id = :id)"),
+//        @NamedQuery(name = "timelineKweets", query = "SELECT NEW models.Kweet(k.id, k.content, k.creator.id, k.dateTime, k.creator.username, k.creator.photo) FROM Kweet k JOIN User u ON u.id = :id JOIN u.following as following ON u.id = following.id ORDER BY k.dateTime DESC")
 })
 public class Kweet {
 
@@ -59,8 +61,14 @@ public class Kweet {
         this.hashtags = hashtags;
     }
 
+    public Kweet(long kweetId, String content, long userId, Date dateTime, String username, String photo) {
+        this.id = kweetId;
+        this.content = content;
+        this.dateTime = dateTime;
+        this.creator = new User(userId,username,photo);
+    }
 
-    public Kweet(long id,String content, Date dateTime, User creator,Set<User> mentions,Set<Hashtag> hashtags) {
+    public Kweet(long id, String content, Date dateTime, User creator, Set<User> mentions, Set<Hashtag> hashtags) {
         this.id = id;
         this.content = content;
         this.dateTime = dateTime;

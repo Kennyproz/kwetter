@@ -66,4 +66,20 @@ public class KweetResource {
         List<Kweet> kweets = kweetService.kweets(username);
         return Response.ok().entity(kweets).build();
     }
+
+    @GET
+    @Path("/search/{search}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response search(@PathParam("search") String search) {
+        List<Kweet> kweets = kweetService.search(search);
+        return Response.ok().entity(kweets).build();
+    }
+
+    @GET
+    @Path("/timeline/{userId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response search(@PathParam("userId") long userId) {
+        List<Kweet> kweets = kweetService.timeline(userId);
+        return Response.ok().entity(kweets).build();
+    }
 }
