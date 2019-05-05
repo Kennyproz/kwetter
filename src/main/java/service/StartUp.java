@@ -38,8 +38,8 @@ public class StartUp {
      */
     @PostConstruct
     private void settingUpDatabase() {
-        this.addUsers();
-        this.addKweets();
+//        this.addUsers();
+//        this.addKweets();
     }
 
     private void addUsers() {
@@ -64,7 +64,7 @@ public class StartUp {
             userService.add(userCreator4);
             for (int i = 1; i < 10; i++)
             {
-                User u = new User("user"+i,"user"+i,"https://picsum.photos/200","this is user " + i,"Somewhere","https://www.example.com",new HashSet<>(),new HashSet<>());
+                User u = new User("user"+i,"user"+i,"https://picsum.photos/200?grayscale?random="+i,"this is user " + i,"Somewhere","https://www.example.com",new HashSet<>(),new HashSet<>());
                 UserCreator uc = userConvertor.convertToCreator(u);
                 userService.add(uc);
             }
