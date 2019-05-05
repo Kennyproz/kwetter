@@ -10,5 +10,8 @@ public interface RoleDAO {
     void remove(long roleId);
     Role getRoleById(long roleId);
     List<Role> roles();
+    List<Role> getRolesByUserId(long userId);
+    void removeRoleFromUser(long userId, long roleId);
+    boolean addRoleToUser(long userId, long roleId);
 
 }

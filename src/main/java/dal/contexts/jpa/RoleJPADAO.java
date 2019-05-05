@@ -51,4 +51,20 @@ public class RoleJPADAO implements RoleDAO {
     public List<Role> roles() {
         return em.createQuery("SELECT r FROM Role r").getResultList();
     }
+
+    @Override
+    public List<Role> getRolesByUserId(long userId) {
+//        return em.createQuery("SELECT r FROM Role JOIN User WHERE User.id LIKE :userId").setParameter("userId",userId).getResultList();
+        return null;
+    }
+
+    @Override
+    public void removeRoleFromUser(long userId, long roleId) {
+
+    }
+
+    @Override
+    public boolean addRoleToUser(long userId, long roleId) {
+        return false;
+    }
 }

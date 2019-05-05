@@ -64,4 +64,19 @@ public class RoleMemoryDAO implements RoleDAO {
     public List<Role> roles() {
         return roles;
     }
+
+    @Override
+    public List<Role> getRolesByUserId(long userId) {
+        return null;
+    }
+
+    @Override
+    public void removeRoleFromUser(long userId, long roleId) {
+
+    }
+
+    @Override
+    public boolean addRoleToUser(long userId, long roleId) {
+        return false;
+    }
 }
