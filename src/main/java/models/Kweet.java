@@ -8,8 +8,7 @@ import java.util.*;
         @NamedQuery(name = "getKweetsById", query = "SELECT k.id, k.content, k.creator.id, k.dateTime, k.creator.username, k.creator.photo FROM Kweet k WHERE k.creator.id = :userid"),
         @NamedQuery(name = "getKweetsByUsername", query = "SELECT k.id, k.content, k.creator.id, k.dateTime, k.creator.username, k.creator.photo FROM Kweet k WHERE k.creator.username = :username"),
         @NamedQuery(name = "searchKweets", query = "SELECT NEW models.Kweet(k.id, k.content, k.creator.id, k.dateTime, k.creator.username, k.creator.photo) FROM Kweet k WHERE k.content LIKE :search"),
-        @NamedQuery(name = "timelineKweets", query = "SELECT NEW models.Kweet(k.id, k.content, k.creator.id, k.dateTime, k.creator.username, k.creator.photo) FROM Kweet k JOIN k.creator user WHERE user.id IN (SELECT following.id FROM User u JOIN u.following as following WHERE u.id = :id)"),
-//        @NamedQuery(name = "timelineKweets", query = "SELECT NEW models.Kweet(k.id, k.content, k.creator.id, k.dateTime, k.creator.username, k.creator.photo) FROM Kweet k JOIN User u ON u.id = :id JOIN u.following as following ON u.id = following.id ORDER BY k.dateTime DESC")
+        @NamedQuery(name = "timelineKweets", query = "SELECT NEW models.Kweet(k.id, k.content, k.creator.id, k.dateTime, k.creator.username, k.creator.photo) FROM Kweet k WHERE k.creator.id = :id OR k.creator.id IN (SELECT following.id FROM User u JOIN u.following as following WHERE u.id = :id) "),
 })
 public class Kweet {
 

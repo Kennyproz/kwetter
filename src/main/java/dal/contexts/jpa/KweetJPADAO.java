@@ -64,8 +64,6 @@ public class KweetJPADAO implements KweetDAO {
     @Override
     public List<Kweet> timeline(long userId) {
         List<Kweet> kweets = em.createNamedQuery("timelineKweets",Kweet.class).setParameter("id",userId).getResultList();
-        List<Kweet> userKweets = this.userKweets(userId);
-        kweets.addAll(userKweets);
         Collections.sort(kweets, new Comparator<Kweet>(){
             @Override
             public int compare(Kweet k1, Kweet k2) {
