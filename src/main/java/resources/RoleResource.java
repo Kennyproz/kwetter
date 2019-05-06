@@ -45,4 +45,12 @@ public class RoleResource {
         return Response.noContent().build();
     }
 
+    @GET
+    @Path("/get-user-roles/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUserRoles(long userId){
+        List<Role> roles = roleService.userRoles(userId);
+        return Response.ok().entity(roles).build();
+    }
+
 }

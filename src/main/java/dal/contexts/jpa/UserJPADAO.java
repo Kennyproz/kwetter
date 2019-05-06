@@ -3,6 +3,7 @@ package dal.contexts.jpa;
 
 import Exceptions.UserExistsException;
 import dal.interfaces.UserDAO;
+import models.Role;
 import models.User;
 
 import javax.ejb.Stateless;
@@ -69,6 +70,11 @@ public class UserJPADAO implements UserDAO {
     }
 
     @Override
+    public List<Role> getUserRoles(long id){
+        return em.createQuery("SELECT r.id, r.name FROM User u JOIN u.roles r WHERE u.id = :id ").setParameter("id",id).getResultList();
+    }
+
+    @Override
     public boolean checkIfUsernameExists(String username) {
         if(em.createQuery("SELECT NEW models.User(u.id, u.username, u.password, u.photo, u.bio, u.location, u.website) FROM User u WHERE username LIKE :name").setParameter("name",username).getResultList().stream().findFirst().orElse(null) == null)
         {
@@ -80,7 +86,7 @@ public class UserJPADAO implements UserDAO {
     @Override
     public User login(String username, String password) {
         User user = (User) em.createQuery("SELECT NEW models.User(u.id, u.username, u.password, u.photo, u.bio, u.location, u.website) FROM User u WHERE username LIKE :name AND password LIKE :password").setParameter("name",username).setParameter("password",password).getSingleResult();
-        if(user!= null){
+        if(user != null){
             return user;
         }
         return null;

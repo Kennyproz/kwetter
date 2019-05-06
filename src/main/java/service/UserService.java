@@ -3,6 +3,7 @@ package service;
 import Exceptions.UserExistsException;
 import Exceptions.UserNotFoundException;
 import dal.interfaces.UserDAO;
+import models.Role;
 import models.User;
 import models.UserConvertor;
 import models.UserCreator;
@@ -123,6 +124,10 @@ public class UserService {
         return user;
     }
 
+    public List<Role> getUserRoles(long userId){
+        return userDAO.getUserRoles(userId);
+    }
+
     /**
      * Makes the user with id userId unfollow the user with id userToUnfollowId
      *
@@ -146,5 +151,7 @@ public class UserService {
     public boolean isFollowing(long userId, long userFollowId){
         return userDAO.isFollowing(userId,userFollowId);
     }
+
+
 
 }

@@ -12,11 +12,11 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = "getUserById", query = "SELECT NEW models.User(u.id, u.username, u.password, u.photo, u.bio, u.location, u.website) FROM User u WHERE u.id = :id"),
         @NamedQuery(name = "getUserByUsername", query = "SELECT NEW models.User(u.id, u.username, u.password, u.photo, u.bio, u.location, u.website) FROM User u WHERE u.username = :username"),
-        @NamedQuery(name = "getUsers", query = "SELECT NEW models.User(u.id, u.username, u.password, u.photo, u.bio, u.location, u.website) FROM User u"),
+        @NamedQuery(name = "getUsers", query = "SELECT NEW models.User(u.id, u.username, u.password, u.photo, u.bio, u.location, u.website) FROM User u "),
         @NamedQuery(name = "getFollowingById", query = "SELECT following.id,following.username FROM User u JOIN u.following as following WHERE u.id = :id"),
         @NamedQuery(name = "getFollowersById", query = "SELECT u.id,u.username FROM User u JOIN u.following as following WHERE following.id = :id"),
         @NamedQuery(name = "isFollowing", query = "SELECT CASE WHEN (count(u) > 0) THEN TRUE ELSE FALSE END FROM User u JOIN u.following as following WHERE u.id = :userid AND following.id = :userfollowid"),
-        @NamedQuery(name = "searchUsers", query = "SELECT NEW models.User(u.id, u.username, u.password, u.photo, u.bio, u.location, u.website) FROM User u WHERE u.username LIKE :name")
+        @NamedQuery(name = "searchUsers", query = "SELECT NEW models.User(u.id, u.username, u.password, u.photo, u.bio, u.location, u.website) FROM User u WHERE u.username LIKE :name"),
 })
 public class User {
     @Id
@@ -25,7 +25,7 @@ public class User {
 
     @Column(unique = true)
     private String username;
-    private String password, photo, bio, location, website;
+    private String password, photo, bio, location, website, token;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
@@ -69,7 +69,35 @@ public class User {
         this.bio = bio;
         this.location = location;
         this.website = website;
+        this.roles = new HashSet<>();
     }
+
+    public User(long id,String username,String password, String photo, String bio, String location, String website, Set<Role> roles) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.photo = photo;
+        this.bio = bio;
+        this.location = location;
+        this.website = website;
+        this.roles = roles;
+    }
+
+//    public User(long id,String username,String password, String photo, String bio, String location, String website, Role role) {
+//        this.id = id;
+//        this.username = username;
+//        this.password = password;
+//        this.photo = photo;
+//        this.bio = bio;
+//        this.location = location;
+//        this.website = website;
+//        if(this.roles == null){
+//            this.roles = new HashSet<>();
+//        }
+//        if(role != null){
+//            this.roles.add(role);
+//        }
+//    }
 
     public User(String username, String password, String photo, String bio, String location, String website) {
         this.username = username;
@@ -80,6 +108,7 @@ public class User {
         this.website = website;
         this.following = new HashSet<>();
         this.kweets = new ArrayList<>();
+        this.roles = new HashSet<>();
 
     }
 
@@ -170,6 +199,16 @@ public class User {
         this.roles = roles;
     }
 
+    public Set<String> getRoleNames(){
+        Set<String> stringRoles = new HashSet<>();
+        if(this.roles != null){
+            for(Role r : this.roles){
+                stringRoles.add(r.getName());
+            }
+        }
+        return stringRoles;
+    }
+
     public Set<User> getFollowing() {
         return following;
     }
@@ -180,6 +219,14 @@ public class User {
 
     public List<Kweet> getKweets() {
         return kweets;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public void addKweet(Kweet kweet) {
