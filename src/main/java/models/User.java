@@ -69,7 +69,6 @@ public class User {
         this.bio = bio;
         this.location = location;
         this.website = website;
-        this.roles = new HashSet<>();
     }
 
     public User(long id,String username,String password, String photo, String bio, String location, String website, Set<Role> roles) {
