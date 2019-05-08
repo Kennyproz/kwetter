@@ -155,12 +155,15 @@ public class UserService {
     }
 
 
-    public Set<String> getRoleNames(long userId){
-        Set<String> roles = new HashSet<>();
-        for(Role r : this.getUserRoles(userId)){
-            roles.add(r.getName());
-        }
-        return roles;
-    }
+//    public Set<String> getRoleNames(long userId){
+//        Set<String> roles = new HashSet<>();
+//        List<Role> roleList = this.getUserRoles(userId);
+//        for(int i = 0; i < roleList.size();i++){
+//            System.out.println(roleList.get(i).getName());
+//            System.out.println(roleList.get(i).getId());
+////            roles.add(roleList.get(i).getName());
+//        }
+//        return roles;
+//    }
 
 }

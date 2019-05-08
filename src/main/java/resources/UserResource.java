@@ -86,7 +86,7 @@ public class UserResource {
     }
 
     @GET
-    @PermitAll
+    @RolesAllowed({ADMIN})
     @Path("/all-users")
     @Produces(MediaType.APPLICATION_JSON)
     public Response allUsers() {
@@ -95,7 +95,6 @@ public class UserResource {
     }
 
     @GET
-    @RolesAllowed({USER,ADMIN})
     @Path("/search/{username}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response search(@PathParam("username") String username) {
@@ -158,7 +157,6 @@ public class UserResource {
         if(userLogin == null){
             return Response.status(404).build();
         }
-        Set<String> roles = userService.getRoleNames(userLogin.getId());
         String token = tokenProvider.createToken(userLogin.getUsername(),userLogin.getRoleNames(),true);
         userLogin.setToken(token);
         User u = userService.getUser(userLogin.getUsername());

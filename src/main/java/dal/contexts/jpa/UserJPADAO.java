@@ -12,7 +12,9 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Default
 @Named
@@ -71,7 +73,7 @@ public class UserJPADAO implements UserDAO {
 
     @Override
     public List<Role> getUserRoles(long id){
-        return em.createQuery("SELECT r.id, r.name FROM User u JOIN u.roles r WHERE u.id = :id ").setParameter("id",id).getResultList();
+        return em.createQuery("SELECT NEW models.Role(r.id, r.name) FROM User u JOIN u.roles r WHERE u.id = :id ").setParameter("id",id).getResultList();
     }
 
     @Override
@@ -87,6 +89,7 @@ public class UserJPADAO implements UserDAO {
     public User login(String username, String password) {
         User user = (User) em.createQuery("SELECT NEW models.User(u.id, u.username, u.password, u.photo, u.bio, u.location, u.website) FROM User u WHERE username LIKE :name AND password LIKE :password").setParameter("name",username).setParameter("password",password).getSingleResult();
         if(user != null){
+            user.setRoles(new HashSet<Role>(this.getUserRoles(user.getId())));
             return user;
         }
         return null;
