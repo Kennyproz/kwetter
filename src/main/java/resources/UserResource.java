@@ -18,6 +18,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.Set;
 
 import static security.jwt.Constants.ADMIN;
 import static security.jwt.Constants.USER;
@@ -157,6 +158,7 @@ public class UserResource {
         if(userLogin == null){
             return Response.status(404).build();
         }
+        Set<String> roles = userService.getRoleNames(userLogin.getId());
         String token = tokenProvider.createToken(userLogin.getUsername(),userLogin.getRoleNames(),true);
         userLogin.setToken(token);
         User u = userService.getUser(userLogin.getUsername());

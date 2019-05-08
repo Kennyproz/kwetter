@@ -11,8 +11,10 @@ import models.UserCreator;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Default
 @Stateless
@@ -153,5 +155,12 @@ public class UserService {
     }
 
 
+    public Set<String> getRoleNames(long userId){
+        Set<String> roles = new HashSet<>();
+        for(Role r : this.getUserRoles(userId)){
+            roles.add(r.getName());
+        }
+        return roles;
+    }
 
 }
