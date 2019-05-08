@@ -46,6 +46,10 @@ public class RoleService {
         return roleDAO.roles();
     }
 
+    public List<Role> userRoles(long userId) {
+        return roleDAO.getRolesByUserId(userId);
+    }
+
 
     /**
      * Returns the role with given id

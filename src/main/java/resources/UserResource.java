@@ -2,24 +2,37 @@ package resources;
 
 import Exceptions.UserExistsException;
 import Exceptions.UserNotFoundException;
+import models.Role;
 import models.User;
 import models.UserCreator;
 import models.UserLogin;
+import security.jwt.TokenProvider;
 import service.UserService;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.Set;
+
+import static security.jwt.Constants.ADMIN;
+import static security.jwt.Constants.USER;
 
 @Path("/user")
+//@RolesAllowed({USER,ADMIN})
 @RequestScoped
 public class UserResource {
 
     @Inject
     UserService userService;
+
+    @Inject
+    TokenProvider tokenProvider;
 
     @GET
     @Path("/get-by-username/{username}")
@@ -64,6 +77,16 @@ public class UserResource {
     }
 
     @GET
+    @Path("/roles/{userId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getRoles(@PathParam("userId") long id)
+    {
+        List<Role> roles = userService.getUserRoles(id);
+        return Response.ok().entity(roles).build();
+    }
+
+    @GET
+    @RolesAllowed({ADMIN})
     @Path("/all-users")
     @Produces(MediaType.APPLICATION_JSON)
     public Response allUsers() {
@@ -125,13 +148,26 @@ public class UserResource {
     }
 
     @POST
+    @PermitAll
     @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response login(UserLogin user) {
+    public Response login(UserLogin user) throws UserNotFoundException {
         User userLogin = userService.login(user.getUsername(), user.getPassword());
+        if(userLogin == null){
+            return Response.status(404).build();
+        }
+        String token = tokenProvider.createToken(userLogin.getUsername(),userLogin.getRoleNames(),true);
+        userLogin.setToken(token);
+        User u = userService.getUser(userLogin.getUsername());
+        u.setToken(token);
+        userService.edit(u);
         return Response.status(200).entity(userLogin).build();
     }
+
+
+
+
 
 
 }

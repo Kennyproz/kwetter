@@ -3,6 +3,7 @@ package service;
 import Exceptions.UserExistsException;
 import Exceptions.UserNotFoundException;
 import dal.interfaces.UserDAO;
+import models.Role;
 import models.User;
 import models.UserConvertor;
 import models.UserCreator;
@@ -10,8 +11,10 @@ import models.UserCreator;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Default
 @Stateless
@@ -123,6 +126,10 @@ public class UserService {
         return user;
     }
 
+    public List<Role> getUserRoles(long userId){
+        return userDAO.getUserRoles(userId);
+    }
+
     /**
      * Makes the user with id userId unfollow the user with id userToUnfollowId
      *
@@ -146,5 +153,17 @@ public class UserService {
     public boolean isFollowing(long userId, long userFollowId){
         return userDAO.isFollowing(userId,userFollowId);
     }
+
+
+//    public Set<String> getRoleNames(long userId){
+//        Set<String> roles = new HashSet<>();
+//        List<Role> roleList = this.getUserRoles(userId);
+//        for(int i = 0; i < roleList.size();i++){
+//            System.out.println(roleList.get(i).getName());
+//            System.out.println(roleList.get(i).getId());
+////            roles.add(roleList.get(i).getName());
+//        }
+//        return roles;
+//    }
 
 }

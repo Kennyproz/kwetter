@@ -1,11 +1,11 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "getRoles", query = "SELECT NEW models.Role(r.id,r.name) FROM User u JOIN u.roles r WHERE u.id = :id"),
+})
 public class Role {
 
     @Id

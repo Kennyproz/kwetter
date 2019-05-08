@@ -2,6 +2,7 @@ package dal.interfaces;
 
 import Exceptions.UserExistsException;
 import Exceptions.UserNotFoundException;
+import models.Role;
 import models.User;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public interface UserDAO {
     List<User> getFollowers(long id);
     boolean isFollowing(long userId, long isFollowingUserId);
     User getFullUserById(long id);
+    List<Role> getUserRoles(long id);
 
 
 }

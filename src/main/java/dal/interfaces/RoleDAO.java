@@ -14,4 +14,5 @@ public interface RoleDAO {
     void removeRoleFromUser(long userId, long roleId);
     boolean addRoleToUser(long userId, long roleId);
 
+
 }

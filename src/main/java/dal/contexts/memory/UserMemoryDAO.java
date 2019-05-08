@@ -3,6 +3,7 @@ package dal.contexts.memory;
 import Exceptions.UserExistsException;
 import Exceptions.UserNotFoundException;
 import dal.interfaces.UserDAO;
+import models.Role;
 import models.User;
 
 import javax.ejb.Stateful;
@@ -142,6 +143,11 @@ public class UserMemoryDAO implements UserDAO {
 
     @Override
     public User getFullUserById(long id) {
+        return null;
+    }
+
+    @Override
+    public List<Role> getUserRoles(long id) {
         return null;
     }
 
