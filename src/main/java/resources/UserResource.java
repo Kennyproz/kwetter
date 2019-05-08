@@ -159,7 +159,7 @@ public class UserResource {
         }
         String token = tokenProvider.createToken(userLogin.getUsername(),userLogin.getRoleNames(),true);
         userLogin.setToken(token);
-        User u = userService.getUser(userLogin.getUsername());
+        User u = userService.getFullUserById(userLogin.getId());
         u.setToken(token);
         userService.edit(u);
         return Response.status(200).entity(userLogin).build();
