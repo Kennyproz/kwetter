@@ -1,7 +1,5 @@
 package models;
 
-
-import javax.inject.Named;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -36,7 +34,10 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER)
     private List<Kweet> kweets;
 
-    public List<Link> links = new ArrayList<>();
+
+    @OneToMany
+    private List<Link> links;
+//    public List<Link> links = new ArrayList<>();
 
     public User() {
         this.kweets = new ArrayList<>();
@@ -83,22 +84,6 @@ public class User {
         this.website = website;
         this.roles = roles;
     }
-
-//    public User(long id,String username,String password, String photo, String bio, String location, String website, Role role) {
-//        this.id = id;
-//        this.username = username;
-//        this.password = password;
-//        this.photo = photo;
-//        this.bio = bio;
-//        this.location = location;
-//        this.website = website;
-//        if(this.roles == null){
-//            this.roles = new HashSet<>();
-//        }
-//        if(role != null){
-//            this.roles.add(role);
-//        }
-//    }
 
     public User(String username, String password, String photo, String bio, String location, String website) {
         this.username = username;

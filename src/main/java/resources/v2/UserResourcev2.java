@@ -6,6 +6,7 @@ import models.Role;
 import models.User;
 import models.UserCreator;
 import models.UserLogin;
+import resources.UserResource;
 import security.jwt.TokenProvider;
 import service.UserService;
 
@@ -13,9 +14,13 @@ import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.json.Json;
+import javax.json.JsonObject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static security.jwt.Constants.ADMIN;
@@ -39,18 +44,25 @@ public class UserResourcev2 {
     }
 
     @GET
-    @Path("/get-by-id/{id}")
-
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getUserById(@PathParam("id") long id) {
+    public Response getUserById(@PathParam("id") long id, @Context UriInfo uriInfo) {
         User user = userService.getUserById(id);
-
-        return Response.ok(user).build();
+        Link self = Link.fromUriBuilder(uriInfo.getAbsolutePathBuilder()).rel("self").build();
+        Link followers = Link.fromUriBuilder(
+                uriInfo.getBaseUriBuilder()
+                        .path(UserResourcev2.class)
+                        .path(Long.toString(user.getId()))
+                        .path("/followers"))
+                        .rel("followers")
+                .build();
+//        Link self = getUriForSelf(uriInfo,user);
+        return Response.ok(user).links(self,followers).build();
     }
 
 
     @GET
-    @Path("/following/{id}")
+    @Path("/{id}/following")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getFollowing(@PathParam("id") long id) {
         List<User> users = userService.getFollowingById(id);
@@ -58,7 +70,7 @@ public class UserResourcev2 {
     }
 
     @GET
-    @Path("/followers/{id}")
+    @Path("/{id}/followers")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getFollowers(@PathParam("id") long id){
         List<User> users = userService.getFollowersById(id);
@@ -66,29 +78,38 @@ public class UserResourcev2 {
     }
 
     @GET
-    @Path("/following/{userid}/{userfollowid}")
+    @Path("/{id}/isfollowing/{userfollowid}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response isFollowing(@PathParam("userid") long id, @PathParam("userfollowid") long userfollowid) {
+    public Response isFollowing(@PathParam("id") long id, @PathParam("userfollowid") long userfollowid) {
         boolean isFollowing = userService.isFollowing(id,userfollowid);
 
         return Response.ok(isFollowing).build();
     }
 
     @GET
-    @Path("/roles/{userId}")
+    @Path("/{id}/roles")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getRoles(@PathParam("userId") long id)
+    public Response getRoles(@PathParam("id") long id)
     {
         List<Role> roles = userService.getUserRoles(id);
         return Response.ok().entity(roles).build();
     }
 
     @GET
-    @RolesAllowed({ADMIN})
-    @Path("/all-users")
+//    @RolesAllowed({ADMIN})
+    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response allUsers() {
+    public Response allUsers(@Context UriInfo uriInfo) {
         List<User> users = userService.users();
+        users.forEach(u -> initLinks(u,uriInfo));
+//        Link self = Link.fromUriBuilder(uriInfo.getAbsolutePathBuilder()).rel("self").build();
+//        Link followers = Link.fromUriBuilder(
+//                uriInfo.getBaseUriBuilder()
+//                        .path(UserResourcev2.class)
+//                        .path(Long.toString(users.getId()))
+//                        .path("/followers"))
+//                .rel("followers")
+//                .build();
         return Response.status(200).entity(users).build();
     }
 
@@ -102,46 +123,44 @@ public class UserResourcev2 {
 
 
     @POST
-    @Path("/add-user")
+    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addUser(UserCreator user) throws UserExistsException {
         User addedUser = userService.add(user);
-        return Response.ok().entity(addedUser).build();
+        return Response.status(201).entity(addedUser).build();
     }
 
     @PUT
-    @Path("/edit-user/{username}")
+    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response editUser(@PathParam("username") String username, User user) {
-//        User u = userService.getUser(username);
-//        u = user;
+    public Response editUser(User user) {
         userService.edit(user);
         return Response.ok().entity(user).build();
     }
 
     @DELETE
-    @Path("/delete-user/{userId}")
+    @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response removeUser(@PathParam("userId") long userId) {
-        userService.remove(userId);
-        return Response.ok().build();
+    public Response removeUser(@PathParam("id") long id) {
+        userService.remove(id);
+        return Response.status(204).build();
     }
 
     @PUT
-    @Path("/follow")
-    public Response follow(@QueryParam("userId") long userId, @QueryParam("userToFollowId") long userToFollowId) {
-        User u = userService.getUserById(userId);
-        userService.follow(userId, userToFollowId);
+    @Path("/{id}/follow/{userToFollowId}")
+    public Response follow(@PathParam("id") long id, @PathParam("userToFollowId") long userToFollowId) {
+        User u = userService.getUserById(id);
+        userService.follow(id, userToFollowId);
         return Response.status(200).entity(u).build();
     }
 
     @PUT
-    @Path("/unfollow")
-    public Response unfollow(@QueryParam("userId") long userId, @QueryParam("userToUnfollowId") long userToUnfollowId) {
-        User u = userService.getUserById(userId);
-        userService.unfollow(userId, userToUnfollowId);
+    @Path("{id}/unfollow/{userToUnfollowId}")
+    public Response unfollow(@PathParam("id") long id, @PathParam("userToUnfollowId") long userToUnfollowId) {
+        User u = userService.getUserById(id);
+        userService.unfollow(id, userToUnfollowId);
         return Response.status(200).entity(u).build();
     }
 
@@ -161,5 +180,48 @@ public class UserResourcev2 {
         u.setToken(token);
         userService.edit(u);
         return Response.status(200).entity(userLogin).build();
+    }
+
+
+
+    private void initLinks(User user, UriInfo uriInfo){
+        UriBuilder uriBuilder = uriInfo.getRequestUriBuilder();
+        uriBuilder = uriBuilder.path(Long.toString(user.getId()));
+        UriBuilder kweetUriBuilder = uriInfo.getBaseUriBuilder().path(KweetResourcev2.class);
+        UriBuilder roleUriBuilder = uriInfo.getBaseUriBuilder().path(RoleResourcev2.class);
+        Link.Builder linkBuilder = Link.fromUriBuilder(uriBuilder);
+
+        Link selfLink = linkBuilder.build();
+        Link followersLink = Link.fromUriBuilder(uriInfo.getRequestUriBuilder().path(Long.toString(user.getId())).path("/followers")).build();
+        Link followingLink = Link.fromUriBuilder(uriInfo.getRequestUriBuilder().path(Long.toString(user.getId())).path("/following")).build();
+        Link kweetsLink = Link.fromUriBuilder(kweetUriBuilder.path(Long.toString(user.getId()))).build();
+        Link rolesLink = Link.fromUriBuilder(roleUriBuilder.path(Long.toString(user.getId()))).build();
+
+        List<models.Link> links = new ArrayList<>();
+
+        links.add(new models.Link(selfLink.toString(),"self"));
+        links.add(new models.Link(followersLink.toString(),"followers"));
+        links.add(new models.Link(followingLink.toString(),"following"));
+        links.add(new models.Link(kweetsLink.toString(),"kweets"));
+        links.add(new models.Link(rolesLink.toString(),"roles"));
+
+        user.setLinks(links);
+    }
+
+    private String getUriForSelf(UriInfo uriInfo, User user){
+        String uri = uriInfo.getBaseUriBuilder()
+                .path(UserResource.class)
+                .path(Long.toString(user.getId()))
+                .build().toString();
+        return uri;
+    }
+
+
+    public JsonObject toJosn(URI self){
+        return Json.createObjectBuilder()
+                .add("links", Json.createObjectBuilder()
+                .add("rel", "self")
+                .add("href", self.toString())
+                ).build();
     }
 }

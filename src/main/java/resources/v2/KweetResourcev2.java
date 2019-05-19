@@ -24,7 +24,7 @@ public class KweetResourcev2 {
     UserService userService;
 
     @POST
-    @Path("/add")
+    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
 
@@ -34,7 +34,7 @@ public class KweetResourcev2 {
     }
 
     @PUT
-    @Path("/edit")
+    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response edit(Kweet kweet) {
@@ -43,7 +43,7 @@ public class KweetResourcev2 {
     }
 
     @DELETE
-    @Path("/remove")
+    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response remove(Kweet kweet) {
@@ -52,7 +52,7 @@ public class KweetResourcev2 {
     }
 
     @GET
-    @Path("/get-by-id/{userId}")
+    @Path("/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response kweets(@PathParam("userId") long userId) {
         List<Kweet> kweets = kweetService.kweets(userId);
@@ -76,7 +76,7 @@ public class KweetResourcev2 {
     }
 
     @GET
-    @Path("/timeline/{userId}")
+    @Path("{userId}/timeline")
     @Produces(MediaType.APPLICATION_JSON)
     public Response search(@PathParam("userId") long userId) {
         List<Kweet> kweets = kweetService.timeline(userId);

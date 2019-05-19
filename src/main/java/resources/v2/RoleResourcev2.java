@@ -46,10 +46,11 @@ public class RoleResourcev2 {
     }
 
     @GET
-    @Path("/get-user-roles/{id}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getUserRoles(long userId){
-        List<Role> roles = roleService.userRoles(userId);
+    public Response getUserRoles(@PathParam("id") long id){
+        List<Role> roles = roleService.userRoles(id);
         return Response.ok().entity(roles).build();
     }
+
 }
