@@ -1,4 +1,4 @@
-package resources;
+package resources.v2;
 
 import Exceptions.UserExistsException;
 import Exceptions.UserNotFoundException;
@@ -16,19 +16,14 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
-import java.net.URI;
 import java.util.List;
 
 import static security.jwt.Constants.ADMIN;
-import static security.jwt.Constants.USER;
 
-@Path("/users")
-//@RolesAllowed({USER,ADMIN})
+@Path("/v2/users")
 @RequestScoped
 @SuppressWarnings("Duplicates")
-public class UserResource {
-
+public class UserResourcev2 {
     @Inject
     UserService userService;
 
@@ -45,9 +40,11 @@ public class UserResource {
 
     @GET
     @Path("/get-by-id/{id}")
+
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUserById(@PathParam("id") long id) {
         User user = userService.getUserById(id);
+
         return Response.ok(user).build();
     }
 
@@ -118,6 +115,8 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response editUser(@PathParam("username") String username, User user) {
+//        User u = userService.getUser(username);
+//        u = user;
         userService.edit(user);
         return Response.ok().entity(user).build();
     }
@@ -163,5 +162,4 @@ public class UserResource {
         userService.edit(u);
         return Response.status(200).entity(userLogin).build();
     }
-
 }

@@ -1,12 +1,11 @@
-package resources;
+package resources.v2;
 
-import Exceptions.UserNotFoundException;
+
 import models.Kweet;
 import models.KweetCreator;
 import service.KweetService;
 import service.UserService;
 
-import javax.annotation.security.PermitAll;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -14,11 +13,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/kweets")
-@PermitAll
+@Path("v2/kweets")
 @RequestScoped
-public class KweetResource {
-
+@SuppressWarnings("Duplicates")
+public class KweetResourcev2 {
     @Inject
     KweetService kweetService;
 

@@ -162,7 +162,7 @@ public class UserService {
      * @return
      */
     public User unfollow(long userId, long userToUnfollowId) {
-        User user = getUserById(userId);
+        User user = getFullUserById(userId);
         User userToUnfollow = getUserById(userToUnfollowId);
         user.getFollowing().remove(userToUnfollow);
         userDAO.edit(user);
