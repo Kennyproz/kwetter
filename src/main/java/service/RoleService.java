@@ -54,10 +54,10 @@ public class RoleService {
     /**
      * Returns the role with given id
      *
-     * @param id
+     * @param roleId
      * @return
      */
-    public Role getRoleById(long id) {
-        return roleDAO.getRoleById(id);
+    public Role getRoleById(long roleId) {
+        return roleDAO.getRoleById(roleId);
     }
 }

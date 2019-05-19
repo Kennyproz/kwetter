@@ -9,6 +9,7 @@ import models.User;
 import javax.ejb.Stateful;
 import javax.enterprise.inject.Alternative;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Alternative
@@ -67,9 +68,9 @@ public class UserMemoryDAO implements UserDAO {
     }
 
     @Override
-    public User getUserById(long id) {
+    public User getUserById(long userId) {
         for (User u : users){
-            if(u.getId() == id){
+            if(u.getId() == userId){
                 return u;
             }
         }
@@ -122,33 +123,46 @@ public class UserMemoryDAO implements UserDAO {
     }
 
     @Override
-    public List<User> getFollowing(long id) {
-//        List<User> following = null;
-//        for (User u : this.users){
-//
-//
-//        }
+    public List<User> getFollowing(long userId) {
+        for (User u : this.users){
+            if(u.getId() == userId){
+                return new ArrayList<User>(u.getFollowing());
+            }
+        }
         return null;
     }
 
     @Override
-    public List<User> getFollowers(long id) {
-        return null;
+    public List<User> getFollowers(long userId) {
+        List<User> followers = new ArrayList<>();
+        for (User u : this.users){
+            for(User follows : u.getFollowing() ){
+                if(follows.getFollowing().contains(this.getUserById(userId))){
+                    followers.add(follows);
+                }
+            }
+        }
+        return followers;
     }
 
     @Override
     public boolean isFollowing(long userId, long isFollowingUserId) {
+        for(User u : getUserById(userId).getFollowing()){
+            if(u.getId() == isFollowingUserId){
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
-    public User getFullUserById(long id) {
-        return null;
+    public User getFullUserById(long userId) {
+        return this.getUserById(userId);
     }
 
     @Override
-    public List<Role> getUserRoles(long id) {
-        return null;
+    public List<Role> getUserRoles(long userId) {
+        return new ArrayList<>(getFullUserById(userId).getRoles());
     }
 
 }

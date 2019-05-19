@@ -36,6 +36,8 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER)
     private List<Kweet> kweets;
 
+    public List<Link> links = new ArrayList<>();
+
     public User() {
         this.kweets = new ArrayList<>();
     }
@@ -226,6 +228,14 @@ public class User {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public List<Link> getLinks() {
+        return links;
+    }
+
+    public void setLinks(List<Link> links) {
+        this.links = links;
     }
 
     public void addKweet(Kweet kweet) {

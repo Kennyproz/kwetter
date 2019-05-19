@@ -85,10 +85,6 @@ public class UserCreator implements Serializable {
         this.kweets = kweets;
     }
 
-//    public List<Role> getRolesAsRole(){
-//
-//    }
-
     public UserCreator() {
 
     }

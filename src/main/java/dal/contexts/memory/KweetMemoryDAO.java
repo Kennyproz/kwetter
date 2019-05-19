@@ -35,7 +35,6 @@ public class KweetMemoryDAO implements KweetDAO {
 
     @Override
     public boolean edit(Kweet kweet){
-
         return false;
     }
 
@@ -78,11 +77,17 @@ public class KweetMemoryDAO implements KweetDAO {
 
     @Override
     public List<Kweet> searchKweets(String search) {
-        return null;
+        List<Kweet> kweets = new ArrayList<>();
+        for(Kweet k : kweets){
+            if(k.getContent().contains(search)){
+                kweets.add(k);
+            }
+        }
+        return kweets;
     }
 
     @Override
     public List<Kweet> timeline(long userId) {
-        return null;
+        return kweets;
     }
 }

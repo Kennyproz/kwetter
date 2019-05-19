@@ -10,18 +10,18 @@ import java.util.List;
 public interface UserDAO {
     User add(User user) throws UserExistsException;
     boolean edit(User user);
-    void remove(long userId);
-    User getUserById(long id);
-    List<User> users();
-    List<User> search(String username);
-    User getUser(String username) throws UserNotFoundException;
     boolean checkIfUsernameExists(String username);
+    boolean isFollowing(long userId, long isFollowingUserId);
+    void remove(long userId);
+    User getUser(String username) throws UserNotFoundException;
+    User getUserById(long id);
+    User getFullUserById(long id);
     User login(String username, String password);
+    List<Role> getUserRoles(long id);
+    List<User> search(String username);
     List<User> getFollowing(long id);
     List<User> getFollowers(long id);
-    boolean isFollowing(long userId, long isFollowingUserId);
-    User getFullUserById(long id);
-    List<Role> getUserRoles(long id);
+    List<User> users();
 
 
 }

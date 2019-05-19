@@ -50,16 +50,6 @@ public class RoleMemoryDAO implements RoleDAO {
         return null;
     }
 
-//    @Override
-//    public Role getRole(int roleId) {
-//        for (Role role : roles){
-//            if (role.getId().equals(roleId)) {
-//                return role;
-//            }
-//        }
-//        return null;
-   // }
-
     @Override
     public List<Role> roles() {
         return roles;

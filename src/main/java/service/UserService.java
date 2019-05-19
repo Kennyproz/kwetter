@@ -69,12 +69,34 @@ public class UserService {
         return userDAO.getUser(username);
     }
 
-    public List<User> getFollowersById(long id){
-        return userDAO.getFollowers(id);
+    /**
+     * Returns the followers of user with id id
+     *
+     * @param userId
+     * @return User
+     */
+    public List<User> getFollowersById(long userId){
+        return userDAO.getFollowers(userId);
     }
 
-    public List<User> getFollowingById(long id){
-        return userDAO.getFollowing(id);
+    /**
+     * Returns the following users of user with id id
+     *
+     * @param userId
+     * @return User
+     */
+    public List<User> getFollowingById(long userId){
+        return userDAO.getFollowing(userId);
+    }
+
+    /**
+     * Returns userDTO by Id
+     *
+     * @param userId
+     * @return User
+     */
+    public User getUserById(long userId) {
+        return userDAO.getUserById(userId);
     }
 
     /**
@@ -83,10 +105,6 @@ public class UserService {
      * @param id
      * @return User
      */
-    public User getUserById(long id) {
-        return userDAO.getUserById(id);
-    }
-
     public User getFullUserById(long id){
         return userDAO.getFullUserById(id);
     }
@@ -126,6 +144,12 @@ public class UserService {
         return user;
     }
 
+    /**
+     * Returns the user roles
+     *
+     * @param userId
+     * @return User
+     */
     public List<Role> getUserRoles(long userId){
         return userDAO.getUserRoles(userId);
     }
@@ -145,25 +169,28 @@ public class UserService {
         return user;
     }
 
-
+    /**
+     * Logs the user in.
+     *
+     * @param username
+     * @param password
+     * @return
+     */
     public User login(String username, String password) {
         return userDAO.login(username, password);
     }
 
+    /**
+     * Check if user with id userId is following user with id userFollowId
+     *
+     * @param userId
+     * @param userFollowId
+     * @return
+     */
     public boolean isFollowing(long userId, long userFollowId){
         return userDAO.isFollowing(userId,userFollowId);
     }
 
 
-//    public Set<String> getRoleNames(long userId){
-//        Set<String> roles = new HashSet<>();
-//        List<Role> roleList = this.getUserRoles(userId);
-//        for(int i = 0; i < roleList.size();i++){
-//            System.out.println(roleList.get(i).getName());
-//            System.out.println(roleList.get(i).getId());
-////            roles.add(roleList.get(i).getName());
-//        }
-//        return roles;
-//    }
 
 }

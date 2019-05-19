@@ -66,14 +66,33 @@ public class KweetService {
         return kweetDAO.userKweets(userId);
     }
 
+    /**
+     * Returns all kweets of the user
+     *
+     * @param username
+     * @return
+     */
     public List<Kweet> kweets(String username) {
         return kweetDAO.userKweets(username);
     }
 
+    /**
+     * Returns all kweets containing search
+     *
+     * @param search
+     * @return
+     */
     public List<Kweet> search(String search){
         return kweetDAO.searchKweets(search);
     }
 
+
+    /**
+     * Returns all kweets of the user and his/her following users
+     *
+     * @param userId
+     * @return
+     */
     public List<Kweet> timeline(long userId){
         return kweetDAO.timeline(userId);
     }

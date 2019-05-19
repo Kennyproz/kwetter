@@ -17,6 +17,8 @@ import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
+import java.net.URI;
 import java.util.List;
 import java.util.Set;
 
@@ -117,8 +119,6 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response editUser(@PathParam("username") String username, User user) {
-//        User u = userService.getUser(username);
-//        u = user;
         userService.edit(user);
         return Response.ok().entity(user).build();
     }
@@ -164,10 +164,5 @@ public class UserResource {
         userService.edit(u);
         return Response.status(200).entity(userLogin).build();
     }
-
-
-
-
-
 
 }
