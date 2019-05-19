@@ -1,10 +1,9 @@
-package resources;
+package resources.v2;
 
 import Exceptions.RoleExistsException;
 import models.Role;
 import service.RoleService;
 
-import javax.annotation.security.PermitAll;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -12,11 +11,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/roles")
-@PermitAll
+@Path("v2/roles")
 @RequestScoped
-public class RoleResource {
-
+@SuppressWarnings("Duplicates")
+public class RoleResourcev2 {
     @Inject
     RoleService roleService;
 
@@ -54,5 +52,4 @@ public class RoleResource {
         List<Role> roles = roleService.userRoles(userId);
         return Response.ok().entity(roles).build();
     }
-
 }
