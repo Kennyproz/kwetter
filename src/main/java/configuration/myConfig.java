@@ -34,6 +34,7 @@ public class myConfig extends ResourceConfig {
         register(UserResourcev2.class);
         register(KweetResourcev2.class);
         register(RoleResourcev2.class);
+        register(resources.websockets.KweetResource.class);
         register(UserNotFoundExceptionMapper.class);
         register(UserExistsExceptionMapper.class);
         register(RoleExistsExceptionMapper.class);

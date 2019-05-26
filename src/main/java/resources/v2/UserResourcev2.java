@@ -56,7 +56,6 @@ public class UserResourcev2 {
                         .path("/followers"))
                         .rel("followers")
                 .build();
-//        Link self = getUriForSelf(uriInfo,user);
         return Response.ok(user).links(self,followers).build();
     }
 
@@ -102,14 +101,6 @@ public class UserResourcev2 {
     public Response allUsers(@Context UriInfo uriInfo) {
         List<User> users = userService.users();
         users.forEach(u -> initLinks(u,uriInfo));
-//        Link self = Link.fromUriBuilder(uriInfo.getAbsolutePathBuilder()).rel("self").build();
-//        Link followers = Link.fromUriBuilder(
-//                uriInfo.getBaseUriBuilder()
-//                        .path(UserResourcev2.class)
-//                        .path(Long.toString(users.getId()))
-//                        .path("/followers"))
-//                .rel("followers")
-//                .build();
         return Response.status(200).entity(users).build();
     }
 
