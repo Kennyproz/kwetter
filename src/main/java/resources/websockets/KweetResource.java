@@ -3,7 +3,6 @@ package resources.websockets;
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
-import javax.ws.rs.Path;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Set;
@@ -15,20 +14,23 @@ import java.util.concurrent.CopyOnWriteArraySet;
 public class KweetResource {
 
     private Session session;
+//    private final Set<Session> sessions = new HashSet<>();
     private static Set<KweetResource>  kweetEndpoints = new CopyOnWriteArraySet<>();
-    private static HashMap<String, String>  kweets = new HashMap<>();
+//    private static HashMap<String, String>  kweets = new HashMap<>();
+    private static HashMap<String, String> users = new HashMap<>();
+
 
 
     @OnOpen
-    public void onOpen(Session session, @PathParam("kweet") String kweet)
+    public void onOpen(Session session, @PathParam("user") String userId)
     {
         this.session = session;
-        System.out.println("test?? ");
         kweetEndpoints.add(this);
-        kweets.put(session.getId(), kweet);
+//        sessions.add(session);
+        users.put(session.getId(), userId);
 
         Message message = new Message();
-        message.setFrom(kweet);
+        message.setFrom(userId);
         message.setContent("Connected!");
         try {
             broadcast(message);
@@ -42,7 +44,7 @@ public class KweetResource {
 
     @OnMessage
     public void onMessage(Session session, Message message) throws IOException {
-        message.setFrom(kweets.get(session.getId()));
+        message.setFrom(users.get(session.getId()));
         try {
             broadcast(message);
         } catch (EncodeException e) {
@@ -55,7 +57,7 @@ public class KweetResource {
 
         kweetEndpoints.remove(this);
         Message message = new Message();
-        message.setFrom(kweets.get(session.getId()));
+        message.setFrom(users.get(session.getId()));
         message.setContent("Disconnected!");
         try {
             broadcast(message);
