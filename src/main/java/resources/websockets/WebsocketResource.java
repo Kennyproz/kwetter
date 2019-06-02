@@ -1,5 +1,6 @@
 package resources.websockets;
 
+import javax.ejb.Singleton;
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
@@ -7,18 +8,20 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.logging.Logger;
 
+@Singleton
 @ServerEndpoint(value="/websocket/kweet",
                 decoders = MessageDecoder.class,
                 encoders = MessageEncoder.class)
-public class KweetResource {
+public class WebsocketResource {
 
     private Session session;
 //    private final Set<Session> sessions = new HashSet<>();
-    private static Set<KweetResource>  kweetEndpoints = new CopyOnWriteArraySet<>();
+    private static Set<WebsocketResource>  kweetEndpoints = new CopyOnWriteArraySet<>();
 //    private static HashMap<String, String>  kweets = new HashMap<>();
     private static HashMap<String, String> users = new HashMap<>();
-
+    Logger logger = Logger.getLogger(getClass().getName());
 
 
     @OnOpen
@@ -26,8 +29,10 @@ public class KweetResource {
     {
         this.session = session;
         kweetEndpoints.add(this);
+        logger.info("testMessage");
 //        sessions.add(session);
         users.put(session.getId(), userId);
+        System.out.println("New user connection: "+ userId);
 
         Message message = new Message();
         message.setFrom(userId);
@@ -44,7 +49,13 @@ public class KweetResource {
 
     @OnMessage
     public void onMessage(Session session, Message message) throws IOException {
+        System.out.println("reached onmessage");
+        logger.info("Reached on message yay");
+        logger.info(message.toString());
+
+
         message.setFrom(users.get(session.getId()));
+        System.out.println(message);
         try {
             broadcast(message);
         } catch (EncodeException e) {
@@ -54,6 +65,7 @@ public class KweetResource {
 
     @OnClose
     public void onClose(Session session) throws IOException {
+        System.out.println("reached onclose. user is leaving");
 
         kweetEndpoints.remove(this);
         Message message = new Message();
@@ -69,7 +81,21 @@ public class KweetResource {
 
     @OnError
     public void onError(Session session, Throwable throwable) {
-        // Do error handling here
+        Message message = new Message();
+        message.setFrom("Server");
+        message.setContent(throwable.toString());
+        try {
+            broadcast(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (EncodeException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void send(String test){
+        logger.info(test);
+
     }
 
     private static void broadcast(Message message)

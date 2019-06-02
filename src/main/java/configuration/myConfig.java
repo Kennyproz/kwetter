@@ -13,6 +13,7 @@ import resources.UserResource;
 import resources.v2.KweetResourcev2;
 import resources.v2.RoleResourcev2;
 import resources.v2.UserResourcev2;
+import resources.websockets.WebsocketResource;
 
 import javax.annotation.security.DeclareRoles;
 import javax.ws.rs.ApplicationPath;
@@ -34,7 +35,7 @@ public class myConfig extends ResourceConfig {
         register(UserResourcev2.class);
         register(KweetResourcev2.class);
         register(RoleResourcev2.class);
-        register(resources.websockets.KweetResource.class);
+        register(WebsocketResource.class);
         register(UserNotFoundExceptionMapper.class);
         register(UserExistsExceptionMapper.class);
         register(RoleExistsExceptionMapper.class);

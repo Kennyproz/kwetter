@@ -23,7 +23,7 @@ import java.util.List;
 import static security.jwt.Constants.ADMIN;
 import static security.jwt.Constants.USER;
 
-@Path("/user")
+@Path("/users")
 //@RolesAllowed({USER,ADMIN})
 @RequestScoped
 @SuppressWarnings("Duplicates")

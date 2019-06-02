@@ -6,7 +6,6 @@
             connection-validation-method="auto-commit"
             datasource-classname="com.mysql.cj.jdbc.MysqlDataSource"
             idle-timeout-in-seconds="3000"
-            max-connection-usage-count="2"
             max-pool-size="32"
             steady-pool-size="8"
             max-wait-time-in-millis="60"

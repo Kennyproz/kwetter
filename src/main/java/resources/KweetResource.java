@@ -14,7 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/kweet")
+@Path("/kweets")
 @PermitAll
 @RequestScoped
 public class KweetResource {
