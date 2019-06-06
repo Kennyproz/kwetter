@@ -10,7 +10,6 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.logging.Logger;
 
-@Singleton
 @ServerEndpoint(value="/websocket/kweet",
                 decoders = MessageDecoder.class,
                 encoders = MessageEncoder.class)
