@@ -16,10 +16,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-
-@ServerEndpoint(value="/websocket/kweet",
-                decoders = MessageDecoder.class,
-                encoders = MessageEncoder.class)
+@ServerEndpoint(value = "/websocket/kweet",
+        decoders = MessageDecoder.class,
+        encoders = MessageEncoder.class)
 public class WebsocketResource {
 
     private Session session;
@@ -31,12 +30,11 @@ public class WebsocketResource {
 
 
     @OnOpen
-    public void onOpen(Session session, @PathParam("user") String userId)
-    {
+    public void onOpen(Session session, @PathParam("user") String userId) {
         this.session = session;
         kweetEndpoints.add(this);
-        currentSessions.put(userId,session);
-        System.out.println("New user connection: "+ userId);
+        currentSessions.put(userId, session);
+        System.out.println("New user connection: " + userId);
 
         Message message = new Message();
         message.setFrom(userId);
@@ -91,7 +89,7 @@ public class WebsocketResource {
     private void broadcast(Message message)
             throws IOException, EncodeException {
         kweetEndpoints.forEach(endpoint -> {
-            synchronized (endpoint){
+            synchronized (endpoint) {
                 try {
                     endpoint.session.getBasicRemote().
                             sendObject(message);
@@ -102,21 +100,19 @@ public class WebsocketResource {
         });
     }
 
-    private void sendToFollowers(Message message){
-            List<User> followers = userDAO.getFollowers(Long.parseLong(message.getFrom()));
-            currentSessions.get(message.getFrom()).getAsyncRemote().sendObject(message);
-            System.out.println("REached here with sout");
-            System.out.println("This man has: " +followers.size() + " Followers");
-            followers.forEach( f -> {
-                System.out.println("entered here boy, i gots followers");
-                if(currentSessions.containsKey(f.getId())){
-                    synchronized (currentSessions) {
-                        if(currentSessions.containsKey(f.getId())) {
-                            currentSessions.get(f.getId()).getAsyncRemote().sendObject(message);
-                        }
-                    }
+    private void sendToFollowers(Message message) {
+        List<User> followers = userDAO.getFollowers(Long.parseLong(message.getFrom()));
+        currentSessions.get(message.getFrom()).getAsyncRemote().sendObject(message);
+        System.out.println("This man has: " + followers.size() + " followers");
+        System.out.println("There are " + currentSessions.size() + "current sessions atm");
+        followers.forEach(f -> System.out.println(f.getId() + " " + f.getUsername()));
+        followers.forEach(f -> {
+            if (currentSessions.containsKey(Long.toString(f.getId()))) {
+                synchronized (currentSessions) {
+                    currentSessions.get(Long.toString(f.getId())).getAsyncRemote().sendObject(message);
                 }
-            });
+            }
+        });
     }
 
 }
