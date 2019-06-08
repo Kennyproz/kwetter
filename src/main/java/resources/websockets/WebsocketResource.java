@@ -1,27 +1,33 @@
 package resources.websockets;
 
+import dal.interfaces.UserDAO;
+import models.User;
+import resources.UserResource;
+
 import javax.ejb.Singleton;
+import javax.inject.Inject;
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
-import java.util.logging.Logger;
 
-@Singleton
+
 @ServerEndpoint(value="/websocket/kweet",
                 decoders = MessageDecoder.class,
                 encoders = MessageEncoder.class)
 public class WebsocketResource {
 
     private Session session;
-//    private final Set<Session> sessions = new HashSet<>();
-    private static Set<WebsocketResource>  kweetEndpoints = new CopyOnWriteArraySet<>();
-//    private static HashMap<String, String>  kweets = new HashMap<>();
-    private static HashMap<String, String> users = new HashMap<>();
-    Logger logger = Logger.getLogger(getClass().getName());
+    private static Set<WebsocketResource> kweetEndpoints = new CopyOnWriteArraySet<>();
+    private static Map<String, Session> currentSessions = new ConcurrentHashMap<>();
+
+    @Inject
+    UserDAO userDAO;
 
 
     @OnOpen
@@ -29,9 +35,7 @@ public class WebsocketResource {
     {
         this.session = session;
         kweetEndpoints.add(this);
-        logger.info("testMessage");
-//        sessions.add(session);
-        users.put(session.getId(), userId);
+        currentSessions.put(userId,session);
         System.out.println("New user connection: "+ userId);
 
         Message message = new Message();
@@ -48,20 +52,11 @@ public class WebsocketResource {
     }
 
     @OnMessage
-    public void onMessage(Session session, Message message) throws IOException {
+    public void onMessage(Message message) throws IOException {
         System.out.println("reached onmessage");
-        logger.info("Reached on message yay");
-        logger.info(message.toString());
-
-
-        message.setFrom(users.get(session.getId()));
-        System.out.println(message);
-        try {
-            broadcast(message);
-        } catch (EncodeException e) {
-            e.printStackTrace();
-        }
+        sendToFollowers(message);
     }
+
 
     @OnClose
     public void onClose(Session session) throws IOException {
@@ -69,7 +64,6 @@ public class WebsocketResource {
 
         kweetEndpoints.remove(this);
         Message message = new Message();
-        message.setFrom(users.get(session.getId()));
         message.setContent("Disconnected!");
         try {
             broadcast(message);
@@ -93,16 +87,11 @@ public class WebsocketResource {
         }
     }
 
-    public void send(String test){
-        logger.info(test);
 
-    }
-
-    private static void broadcast(Message message)
+    private void broadcast(Message message)
             throws IOException, EncodeException {
-
         kweetEndpoints.forEach(endpoint -> {
-            synchronized (endpoint) {
+            synchronized (endpoint){
                 try {
                     endpoint.session.getBasicRemote().
                             sendObject(message);
@@ -111,6 +100,23 @@ public class WebsocketResource {
                 }
             }
         });
+    }
+
+    private void sendToFollowers(Message message){
+            List<User> followers = userDAO.getFollowers(Long.parseLong(message.getFrom()));
+            currentSessions.get(message.getFrom()).getAsyncRemote().sendObject(message);
+            System.out.println("REached here with sout");
+            System.out.println("This man has: " +followers.size() + " Followers");
+            followers.forEach( f -> {
+                System.out.println("entered here boy, i gots followers");
+                if(currentSessions.containsKey(f.getId())){
+                    synchronized (currentSessions) {
+                        if(currentSessions.containsKey(f.getId())) {
+                            currentSessions.get(f.getId()).getAsyncRemote().sendObject(message);
+                        }
+                    }
+                }
+            });
     }
 
 }
