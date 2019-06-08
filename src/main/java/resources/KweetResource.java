@@ -78,6 +78,7 @@ public class KweetResource {
     }
 
     @GET
+    @PermitAll
     @Path("/timeline/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response search(@PathParam("userId") long userId) {

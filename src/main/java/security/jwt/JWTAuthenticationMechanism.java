@@ -35,9 +35,11 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-
 package security.jwt;
-import static security.jwt.Constants.*;
+
+import static security.jwt.Constants.AUTHORIZATION_HEADER;
+import static security.jwt.Constants.BEARER;
+import static security.jwt.Constants.REMEMBERME_VALIDITY_SECONDS;
 import io.jsonwebtoken.ExpiredJwtException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -77,7 +79,7 @@ public class JWTAuthenticationMechanism implements HttpAuthenticationMechanism {
     @Override
     public AuthenticationStatus validateRequest(HttpServletRequest request, HttpServletResponse response, HttpMessageContext context) {
 
-        LOGGER.log(Level.INFO, "validateRequest: {0}", request.getRequestURI());
+//        LOGGER.log(Level.INFO, "validateRequest: {0}", request.getRequestURI());
         // Get the (caller) name and password from the request
         // NOTE: This is for the smallest possible example only. In practice
         // putting the password in a request query parameter is highly insecure

@@ -36,13 +36,13 @@ public class StartUp {
      */
     @PostConstruct
     private void settingUpDatabase()  {
-        this.addUsers();
-        this.addKweets();
-        try {
-            this.addRoles();
-        } catch (RoleExistsException e) {
-            e.printStackTrace();
-        }
+//        this.addUsers();
+//        this.addKweets();
+//        try {
+//            this.addRoles();
+//        } catch (RoleExistsException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private void addRoles() throws RoleExistsException {

@@ -37,7 +37,8 @@
  */
 package security.jwt;
 
-import static security.jwt.Constants.*;
+import static security.jwt.Constants.ADMIN;
+import static security.jwt.Constants.USER;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptySet;
 import static java.util.Collections.singleton;

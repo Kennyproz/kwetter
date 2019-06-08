@@ -37,10 +37,8 @@
  */
 package security.jwt;
 
-import static security.jwt.Constants.*;
+import static security.jwt.Constants.REMEMBERME_VALIDITY_SECONDS;
 import io.jsonwebtoken.*;
-import models.Role;
-
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Set;
@@ -49,8 +47,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import static java.util.stream.Collectors.joining;
-import static security.jwt.Constants.REMEMBERME_VALIDITY_SECONDS;
-
 import javax.annotation.PostConstruct;
 
 public class TokenProvider {
@@ -73,13 +69,13 @@ public class TokenProvider {
         this.tokenValidityForRememberMe = TimeUnit.SECONDS.toMillis(REMEMBERME_VALIDITY_SECONDS);   //24 hours
     }
 
-    public String createToken(String username, Set<String> roles, Boolean rememberMe) {
+    public String createToken(String username, Set<String> authorities, Boolean rememberMe) {
         long now = (new Date()).getTime();
         long validity = rememberMe ? tokenValidityForRememberMe : tokenValidity;
 
         return Jwts.builder()
                 .setSubject(username)
-                .claim(AUTHORITIES_KEY, roles.stream().collect(joining(",")))
+                .claim(AUTHORITIES_KEY, authorities.stream().collect(joining(",")))
                 .signWith(SignatureAlgorithm.HS512, secretKey)
                 .setExpiration(new Date(now + validity))
                 .compact();

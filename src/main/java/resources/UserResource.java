@@ -36,6 +36,7 @@ public class UserResource {
     TokenProvider tokenProvider;
 
     @GET
+    @PermitAll
     @Path("/get-by-username/{username}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUser(@PathParam("username") String username) throws UserNotFoundException {
