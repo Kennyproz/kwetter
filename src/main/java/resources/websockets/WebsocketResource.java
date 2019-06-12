@@ -2,9 +2,7 @@ package resources.websockets;
 
 import dal.interfaces.UserDAO;
 import models.User;
-import resources.UserResource;
 
-import javax.ejb.Singleton;
 import javax.inject.Inject;
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
