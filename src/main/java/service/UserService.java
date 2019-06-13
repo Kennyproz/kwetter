@@ -45,7 +45,11 @@ public class UserService {
      * @return
      */
     public boolean edit(User user) {
-        return userDAO.edit(user);
+        User editedUser = this.getFullUserById(user.getId());
+        if(!this.userDAO.checkIfUsernameExists(user.getUsername())){
+            editedUser.setUsername(user.getUsername());
+        }
+        return userDAO.edit(editedUser);
     }
 
     /**
@@ -191,6 +195,8 @@ public class UserService {
         return userDAO.isFollowing(userId,userFollowId);
     }
 
-
+    public boolean checkUsername(String username){
+        return userDAO.checkIfUsernameExists(username);
+    }
 
 }

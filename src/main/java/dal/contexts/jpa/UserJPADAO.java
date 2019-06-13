@@ -78,7 +78,7 @@ public class UserJPADAO implements UserDAO {
 
     @Override
     public boolean checkIfUsernameExists(String username) {
-        if(em.createQuery("SELECT NEW models.User(u.id, u.username, u.password, u.photo, u.bio, u.location, u.website) FROM User u WHERE username LIKE :name").setParameter("name",username).getResultList().stream().findFirst().orElse(null) == null)
+        if(em.createQuery("SELECT NEW models.User(u.id, u.username, u.password, u.photo, u.bio, u.location, u.website) FROM User u WHERE username LIKE :name").setParameter("name",username).getResultList().stream().findFirst().orElse(null) != null)
         {
             return true;
         }

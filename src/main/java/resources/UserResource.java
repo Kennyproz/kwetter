@@ -115,10 +115,10 @@ public class UserResource {
     }
 
     @PUT
-    @Path("/edit-user/{username}")
+    @Path("/edit-user")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response editUser(@PathParam("username") String username, User user) {
+    public Response editUser(User user) {
         userService.edit(user);
         return Response.ok().entity(user).build();
     }
@@ -163,6 +163,14 @@ public class UserResource {
         u.setToken(token);
         userService.edit(u);
         return Response.status(200).entity(userLogin).build();
+    }
+
+    @GET
+    @PermitAll
+    @Path("/check-username/{username}")
+    public Response checkUsername(@PathParam("username") String username){
+        boolean exists = userService.checkUsername(username);
+        return Response.ok().entity(exists).build();
     }
 
 }
