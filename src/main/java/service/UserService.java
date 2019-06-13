@@ -163,7 +163,7 @@ public class UserService {
      */
     public User unfollow(long userId, long userToUnfollowId) {
         User user = getFullUserById(userId);
-        User userToUnfollow = getUserById(userToUnfollowId);
+        User userToUnfollow = getFullUserById(userToUnfollowId);
         user.getFollowing().remove(userToUnfollow);
         userDAO.edit(user);
         return user;
