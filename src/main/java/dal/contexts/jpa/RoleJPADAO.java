@@ -4,6 +4,7 @@ package dal.contexts.jpa;
 import Exceptions.RoleExistsException;
 import dal.interfaces.RoleDAO;
 import models.Role;
+import models.User;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
@@ -60,12 +61,18 @@ public class RoleJPADAO implements RoleDAO {
 
     @Override
     public void removeRoleFromUser(long userId, long roleId) {
-
+        User u = em.find(User.class, userId);
+        Role r = em.find(Role.class, roleId);
+        u.getRoles().remove(r);
+        em.merge(u);
     }
 
     @Override
     public boolean addRoleToUser(long userId, long roleId) {
-//        em.createQuery("INSERT INTO User.roles(roleId) :roleId",Role.class).setParameter("userId", userId).setParameter("roleId",roleId).getResultList();
+        User u = em.find(User.class, userId);
+        Role r = em.find(Role.class, roleId);
+        u.getRoles().add(r);
+        em.merge(u);
         return true;
     }
 }

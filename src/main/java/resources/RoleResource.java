@@ -5,12 +5,15 @@ import models.Role;
 import service.RoleService;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+
+import static security.jwt.Constants.ADMIN;
 
 @Path("/roles")
 @PermitAll
@@ -53,6 +56,26 @@ public class RoleResource {
     public Response getUserRoles(long userId){
         List<Role> roles = roleService.userRoles(userId);
         return Response.ok().entity(roles).build();
+    }
+
+    @PUT
+    @Path("/add")
+    @RolesAllowed({ADMIN})
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addUserRole(@QueryParam("userId") long userId, @QueryParam("roleId") long roleId) {
+        roleService.addRoleToUser(userId,roleId);
+        return Response.ok().build();
+    }
+
+    @PUT
+    @Path("/remove")
+    @RolesAllowed({ADMIN})
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response removeUserRole(@QueryParam("userId") long userId, @QueryParam("roleId") long roleId) {
+        roleService.removeRoleFromUser(userId,roleId);
+        return Response.ok().build();
     }
 
 }

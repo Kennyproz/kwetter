@@ -3,10 +3,8 @@ package dal.contexts.jpa;
 import dal.interfaces.KweetDAO;
 import models.Kweet;
 import models.User;
-import sun.swing.BakedArrayList;
 
 import javax.ejb.Stateless;
-import javax.enterprise.inject.Alternative;
 import javax.enterprise.inject.Default;
 import javax.inject.Named;
 import javax.persistence.EntityManager;

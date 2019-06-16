@@ -3,7 +3,6 @@ package dal.contexts.memory;
 import dal.interfaces.KweetDAO;
 import models.Hashtag;
 import models.Kweet;
-import models.User;
 
 
 import javax.ejb.Stateful;

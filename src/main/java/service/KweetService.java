@@ -50,6 +50,16 @@ public class KweetService {
     /**
      * Deletes the kweet
      *
+     * @param kweetId
+     */
+    public void remove(long kweetId) {
+        Kweet kweet = getKweetById(kweetId);
+        kweetDAO.remove(kweet);
+    }
+
+    /**
+     * Deletes the kweet
+     *
      * @param kweet
      */
     public void remove(Kweet kweet) {
@@ -97,4 +107,8 @@ public class KweetService {
         return kweetDAO.timeline(userId);
     }
 
+
+    public Kweet getKweetById(long id){
+        return kweetDAO.getKweetById(id);
+    }
 }

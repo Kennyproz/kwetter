@@ -64,6 +64,16 @@ public class User {
         this.following = new HashSet<>();
     }
 
+    public User(long id,String username, String photo, String bio, String location, String website) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.photo = photo;
+        this.bio = bio;
+        this.location = location;
+        this.website = website;
+    }
+
     public User(long id,String username,String password, String photo, String bio, String location, String website) {
         this.id = id;
         this.username = username;

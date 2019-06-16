@@ -1,7 +1,6 @@
 package dal.interfaces;
 
 import models.Kweet;
-import models.User;
 
 import java.util.List;
 

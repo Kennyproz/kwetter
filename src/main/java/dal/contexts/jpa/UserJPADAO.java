@@ -87,7 +87,7 @@ public class UserJPADAO implements UserDAO {
 
     @Override
     public User login(String username, String password) {
-        User user = (User) em.createQuery("SELECT NEW models.User(u.id, u.username, u.password, u.photo, u.bio, u.location, u.website) FROM User u WHERE username LIKE :name AND password LIKE :password").setParameter("name",username).setParameter("password",password).getSingleResult();
+        User user = (User) em.createQuery("SELECT NEW models.User(u.id, u.username, u.photo, u.bio, u.location, u.website) FROM User u WHERE username LIKE :name AND password LIKE :password").setParameter("name",username).setParameter("password",password).getSingleResult();
         if(user != null){
             user.setRoles(new HashSet<Role>(this.getUserRoles(user.getId())));
             return user;

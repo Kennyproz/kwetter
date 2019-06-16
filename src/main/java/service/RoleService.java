@@ -60,4 +60,12 @@ public class RoleService {
     public Role getRoleById(long roleId) {
         return roleDAO.getRoleById(roleId);
     }
+
+    public boolean addRoleToUser(long userId, long roleId){
+        return roleDAO.addRoleToUser(userId,roleId);
+    }
+
+    public void removeRoleFromUser(long userId, long roleId){
+        roleDAO.removeRoleFromUser(userId,roleId);
+    }
 }

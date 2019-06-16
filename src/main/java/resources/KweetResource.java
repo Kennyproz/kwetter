@@ -7,12 +7,15 @@ import service.KweetService;
 import service.UserService;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+
+import static security.jwt.Constants.ADMIN;
 
 @Path("/kweets")
 @PermitAll
@@ -29,7 +32,6 @@ public class KweetResource {
     @Path("/add")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-
     public Response add(KweetCreator kweetcreator) {
         Kweet kweet = kweetService.add(kweetcreator, userService.users());
         return Response.ok().entity(kweet).build();
@@ -45,12 +47,13 @@ public class KweetResource {
     }
 
     @DELETE
-    @Path("/remove")
+    @RolesAllowed({ADMIN})
+    @Path("/remove/{kweetId}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response remove(Kweet kweet) {
-        kweetService.remove(kweet);
-        return Response.status(202).entity("Deleted succesfully").build();
+    public Response remove(@PathParam("kweetId") long kweetId) {
+        kweetService.remove(kweetId);
+        return Response.status(202).build();
     }
 
     @GET
