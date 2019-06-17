@@ -108,6 +108,12 @@ public class KweetService {
     }
 
 
+    /**
+     * Returns a kweet with the given id
+     *
+     * @param id
+     * @return
+     */
     public Kweet getKweetById(long id){
         return kweetDAO.getKweetById(id);
     }

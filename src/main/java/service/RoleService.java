@@ -46,6 +46,12 @@ public class RoleService {
         return roleDAO.roles();
     }
 
+
+    /**
+     * Returns all roles of the given user
+     * @param userId
+     * @return
+     */
     public List<Role> userRoles(long userId) {
         return roleDAO.getRolesByUserId(userId);
     }
@@ -61,10 +67,24 @@ public class RoleService {
         return roleDAO.getRoleById(roleId);
     }
 
+    /**
+     * Adds a role to the user with the given id
+     *
+     * @param userId
+     * @param roleId
+     * @return
+     */
     public boolean addRoleToUser(long userId, long roleId){
         return roleDAO.addRoleToUser(userId,roleId);
     }
 
+    /**
+     * Removes a role of the user with the given id
+     *
+     * @param userId
+     * @param roleId
+     * @return
+     */
     public void removeRoleFromUser(long userId, long roleId){
         roleDAO.removeRoleFromUser(userId,roleId);
     }

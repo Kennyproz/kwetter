@@ -195,6 +195,13 @@ public class UserService {
         return userDAO.isFollowing(userId,userFollowId);
     }
 
+    /**
+     * Check if user with username @param exists
+     *
+     * @param username
+     *
+     * @return
+     */
     public boolean checkUsername(String username){
         return userDAO.checkIfUsernameExists(username);
     }
